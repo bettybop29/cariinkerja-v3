@@ -5,7 +5,10 @@
      <form class="mb-3">
   <div class="col-md-4 ">
     <label for="validationDefault01" class="form-label">Job name</label>
-    <input type="text" class="form-control" id="validationDefault01" required>
+    <input type="text" class="form-control" id="validationDefault01" value="{{job.name}}" required>
+    <h1>{{jobName}}</h1>
+    <h1>{{jobSalary}}</h1>
+    <h1>{{jobPosition}}</h1>
   </div>
   <div class="col-md-4">
     <label for="validationDefault02" class="form-label mt-3">Last name</label>
@@ -37,6 +40,38 @@
 
 <script>
 export default {
+  props: ['id'],
+  data() {
+    return {
+      // apiUrl: 'http://54.255.4.75:9091/api/v1/job/delete/59',
+      jobName: null,
+      jobSalary: null,
+      jobPosition: null
+    }
+  },
+
+  methods: {
+    fetchData() {
+      
+      // const url = this.apiUrl + this.id
+      const url = 'http://54.255.4.75:9091/api/v1/job/23'
+      fetch(url).then((res) => {
+        if(res.status == 200) {
+          return res.json()
+        }
+      })
+      .then((data) => {
+        this.jobName = data.jobName
+        this.jobSalary = data.jobSalary,
+        this.jobPosition = data.jobPosition
+        console.log(this.jobName)
+      })
+    }
+  },
+
+  mounted() {
+    this.fetchData()
+  }
   
 }
 </script>
