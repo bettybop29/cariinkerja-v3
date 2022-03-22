@@ -28,7 +28,7 @@
 
           <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
           <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
-          <button class="btn btn-danger" v-on:click="deletejob">delete</button>
+          <button class="btn btn-danger" v-on:click="deleteJob">delete</button>
           
           
       
@@ -41,6 +41,7 @@
 </template>
 <script>
 import axios from "axios";
+
 
 export default {
     name:"JobComponent",
@@ -57,12 +58,10 @@ export default {
           console.log(Error);
         }
       },
-      deletejob(){
-        console.log(Error)
-        axios.put(`http://54.255.4.75:9091/api/v1/job/delete/27`),{
-  
-        }
+      deleteJob(){
+        
       }
+
     }
     
 }

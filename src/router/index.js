@@ -38,7 +38,6 @@ const routes = [
     path: '/jobdetail/:id',
     name: 'jobdetail',
     component: JobDetail, 
-    props: true
   },
   {
     path: '/signup',

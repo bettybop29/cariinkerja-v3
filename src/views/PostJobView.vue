@@ -162,10 +162,12 @@ export default {
     axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
     .then((resp)=>{
       this.list=resp.data
-      
+      localStorage.setItem("job-info", JSON.stringify(resp.data));
+      console.log(resp.jobId) 
+
       const user = JSON.parse(localStorage.getItem("user-info"))
       this.user = user.data.recruiterCompany
-      console.log(user)
+      // console.log(user)
     })
   }
 

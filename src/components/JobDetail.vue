@@ -1,43 +1,71 @@
-<template>
-
-  <div><h1><marquee>ian sowddoho</marquee></h1></div>
-   <div class="container col">
-     <form class="mb-3">
-  <div class="col-md-4 ">
-    <label for="validationDefault01" class="form-label">Job name</label>
-    <input type="text" class="form-control" id="validationDefault01" required>
+<template>   
+   <!-- <h1>{{jobName}}</h1>
+            <h1>{{jobSalary}}</h1>
+            <h1>{{jobPosition}}</h1> -->  
+            <div class="container mt-5">
+              
+                <div class="card mb-3" style="max-width: 640px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="http://54.255.4.75:9091/resources/meta.png" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h4 class="card-title1">{{job.jobName}}</h4>
+        <h6 class="card-title">{{job.jobPosition}} | Rp. {{job.jobSalary}}</h6>
+        <label class="mt-3">Description job : </label>
+        <p class="card-text">{{job.jobDesc}}</p>
+        <label class="">Job Requirement :</label>
+        <p class="card-text">{{job.jobRequirement}}</p>
+        <p class="card-text">{{job.jobAddress}}</p> 
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small> 
+        <router-link class="btn btn-danger" to="/postjob"><i class="bi bi-arrow-left-circle-fill"></i>Post job</router-link></p>
+      </div>
+    </div>
   </div>
-  <div class="col-md-4">
-    <label for="validationDefault02" class="form-label mt-3">Last name</label>
-    <input type="text" class="form-control" id="validationDefault02" required>
-  </div>
- 
-  <div class="col-md-4">
-    <label for="validationDefault03" class="form-label mt-3">City</label>
-    <input type="text" class="form-control" id="validationDefault03" required>
-  </div>
-  <div class="col-md-4">
-    <label for="validationDefault04" class="form-label mt-3">State</label>
-    <select class="form-select" id="validationDefault04" required>
-      <option selected disabled value="">Choose...</option>
-      <option>...</option>
-    </select>
-  </div>
-  <div class="col-md-4">
-    <label for="validationDefault05" class="form-label mt-3">Zip</label>
-    <input type="text" class="form-control" id="validationDefault05" required>
-  </div>
- 
-  <div class="col-12 mt-3">
-    <button class="btn btn-primary" type="submit">Edit</button>
-  </div>
-</form>
-     </div>   
+</div>
+            </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+  props: ['id'],
+  data() {
+    return {
+      // apiUrl: 'http://54.255.4.75:9091/api/v1/job/delete/59',
+      // jobName: null,
+      // jobSalary: null,
+      // jobPosition: null,
+      // jobDesc:null,
+      // jobAddress:null,
+      // jobRequirement:null
+      job:[]
+    }
+  },
+  methods: {
+    fetchData() {
+      
+      // const url = this.apiUrl + this.id
+      axios.get(`http://54.255.4.75:9091/api/v1/job/`+this.$route.params.id)
+      
+      
+      .then((data) => {
+       this.job=data.data
+        // console.log(this.jobDesc)
+      })
+      
+    }
+  },
+  mounted() {
+    this.fetchData()
+    
+    
+     
   
+  }
+  
+
 }
 </script>
 
@@ -49,5 +77,15 @@ export default {
      box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
      padding: 20px;
      border-radius: 20px;
+   }
+   .card {
+     padding: 10px;
+     border-radius: 20px;
+   }
+   .btn{
+     margin-left: 10px;
+   }
+   i {
+     margin-right: 10px;
    }
 </style>

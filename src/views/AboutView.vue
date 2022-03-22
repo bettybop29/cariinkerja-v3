@@ -7,12 +7,12 @@
       <div class="card">
         <img src="../assets/logo.svg" alt="">
         <div class="card-body">
-          <h5 class="card-title">Company name</h5>
-          <p class="card-text"></p>
-          <p class="card-text">jumlah staff</p>
-          <p class="card-text">address</p>
-          <p class="card-text">company</p>
-          <p class="card-text">Industry</p>
+          <h5 class="card-title">{{profile.recruiterCompany}}</h5>
+          <p class="card-text">{{profile.recruiterIndustry}}</p>
+          <p class="card-text">{{profile.recruiterDesc}}</p>
+          <p class="card-text">{{profile.recruiterEmail}}</p>
+          <p class="card-text">{{profile.recruiterAddress}}</p>
+          <p class="card-text">{{profile.recruiterPhone}}</p>
         </div>
       </div>
       
@@ -25,7 +25,7 @@
 </div>
 </template>
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 import sidebarcomponent from '../components/SidebarComponent.vue'
 export default {
   components: {
@@ -33,23 +33,20 @@ export default {
   },
   data(){
     return{
-      users:null
+      profile:[]
     }
   },
   methods:{
-  //   getRecruiter(){
-  //     const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-  //     axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`).then((result)=>{
-  //       console.warn(result)
-  //       this.users=result.data
-  //     })
-  //   }
-  // },
+  fetchData(){
+    const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+      axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
+      .then((profile)=> {
+        this.profile=profile.data
+      })
+    }
   },
   mounted(){
-    const recruiter = JSON.parse(localStorage.getItem("user-info"))
-      this.recruiter = recruiter.data.recruiterCompany
-      console.log(recruiter)
+    this.fetchData()
   }
 
 
