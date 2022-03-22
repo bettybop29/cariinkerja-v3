@@ -40,7 +40,6 @@
 
 </template>
 <script>
-import axios from "axios";
 
 
 export default {
@@ -48,16 +47,7 @@ export default {
     props:['item'],
 
     methods:{
-      jobDetail(){
-        try {
-          axios.get(
-            `http://54.255.4.75:9091/api/v1/job/11`
-          
-          );
-        } catch {
-          console.log(Error);
-        }
-      },
+      
       deleteJob(){
         
       }

@@ -6,7 +6,7 @@ import LoginView from '../views/LoginView.vue'
 import DashboardView from '../views/DashboardView.vue' 
 import SignupView from '../views/SignupView.vue'
 import JobDetail from '../components/JobDetail.vue'
-
+import UpdateProfile from '../components/UpdateProfile.vue'
 
 const routes = [
   {
@@ -38,6 +38,11 @@ const routes = [
     path: '/jobdetail/:id',
     name: 'jobdetail',
     component: JobDetail, 
+  },
+  {
+    path: '/updateprofile/:id',
+    name: 'updateprofile',
+    component: UpdateProfile, 
   },
   {
     path: '/signup',

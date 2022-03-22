@@ -33,13 +33,7 @@ export default {
   props: ['id'],
   data() {
     return {
-      // apiUrl: 'http://54.255.4.75:9091/api/v1/job/delete/59',
-      // jobName: null,
-      // jobSalary: null,
-      // jobPosition: null,
-      // jobDesc:null,
-      // jobAddress:null,
-      // jobRequirement:null
+      
       job:[]
     }
   },
@@ -53,19 +47,12 @@ export default {
       .then((data) => {
        this.job=data.data
         // console.log(this.jobDesc)
-      })
-      
+      })      
     }
   },
   mounted() {
-    this.fetchData()
-    
-    
-     
-  
+    this.fetchData() 
   }
-  
-
 }
 </script>
 

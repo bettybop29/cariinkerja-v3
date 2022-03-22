@@ -13,12 +13,15 @@
           <p class="card-text">{{profile.recruiterEmail}}</p>
           <p class="card-text">{{profile.recruiterAddress}}</p>
           <p class="card-text">{{profile.recruiterPhone}}</p>
+          <p class="card-text">{{profile.recruiterId}}</p>
+          <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
+          <router-link class="btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile</router-link>
         </div>
       </div>
       
     </div>
     <div class="col">
-      image 3d
+      agri
     </div>
   </div>
 </div>
@@ -28,22 +31,30 @@
 import axios from 'axios'
 import sidebarcomponent from '../components/SidebarComponent.vue'
 export default {
+  props:['id'],
   components: {
     SidebarComponent : sidebarcomponent
   },
   data(){
+    
     return{
       profile:[]
+
     }
   },
   methods:{
   fetchData(){
     const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
       axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
+      
       .then((profile)=> {
         this.profile=profile.data
+        
       })
-    }
+    },
+    // async updateProfile(){
+    //   await axios.
+    // }
   },
   mounted(){
     this.fetchData()

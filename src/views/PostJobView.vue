@@ -130,8 +130,9 @@ export default {
       try {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
         const result = await axios.post(
-          `http://54.255.4.75:9091/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc} products to vendor&jobRequirement=${this.jobRequirement}`
+          `http://54.255.4.75:/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc}&jobRequirement=${this.jobRequirement}`
         );
+        console.warn(result)
         // localStorage.setItem("user-info", JSON.stringify(result.data));
         console.log(result)
         createToast("Job Successfully Created", { type: "success" });
@@ -162,12 +163,6 @@ export default {
     axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
     .then((resp)=>{
       this.list=resp.data
-      localStorage.setItem("job-info", JSON.stringify(resp.data));
-      console.log(resp.jobId) 
-
-      const user = JSON.parse(localStorage.getItem("user-info"))
-      this.user = user.data.recruiterCompany
-      // console.log(user)
     })
   }
 
