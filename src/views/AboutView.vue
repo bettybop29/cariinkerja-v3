@@ -13,7 +13,7 @@
           <p class="card-text">{{profile.recruiterEmail}}</p>
           <p class="card-text">{{profile.recruiterAddress}}</p>
           <p class="card-text">{{profile.recruiterPhone}}</p>
-          <p class="card-text">{{profile.recruiterId}}</p>
+          
           <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
           <router-link class="btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile</router-link>
         </div>

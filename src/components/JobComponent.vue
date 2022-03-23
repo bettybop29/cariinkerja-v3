@@ -28,7 +28,7 @@
 
           <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
           <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
-          <button class="btn btn-danger" v-on:click="deleteJob">delete</button>
+          <button class="btn btn-danger" v-on:click="deleteJob(item.jobId)">delete</button>
           
           
       
@@ -40,15 +40,28 @@
 
 </template>
 <script>
-
-
+import axios from 'axios'
+import "mosha-vue-toastify/dist/style.css";
+import { createToast } from "mosha-vue-toastify";
 export default {
     name:"JobComponent",
     props:['item'],
 
     methods:{
       
-      deleteJob(){
+      async deleteJob(id){
+      try {
+       let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/`+id);
+        console.warn(result)
+        
+           createToast("Job Deleted!", { type: "danger" });
+           location.reload(true)
+      
+      }catch{
+        console.warn
+        
+      }    
+          
         
       }
 

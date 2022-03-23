@@ -1,9 +1,11 @@
 <template>
   <div class="container mt-5">
-      <h1>{{profile.recruiterEmail}}</h1>
+    <div class="title-bar">
+      <h1>Update Profile</h1>
+      </div>
       <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4">
-    <label for="validationCustom01" class="form-label">Job name</label>
+    <label for="validationCustom01" class="form-label">Email</label>
     <input type="text" class="form-control" id="validationCustom01"  v-model="profile.recruiterEmail" required>
     <div class="valid-feedback">
       Looks good!
@@ -17,16 +19,6 @@
     </div>
   </div>
   <div class="col-md-4">
-    <label for="validationCustomUsername" class="form-label">Username</label>
-    <div class="input-group has-validation">
-      <span class="input-group-text" id="inputGroupPrepend">@</span>
-      <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-      <div class="invalid-feedback">
-        Please choose a username.
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
     <label for="validationCustom03" class="form-label">City</label>
     <input type="text" class="form-control" id="validationCustom03" v-model="profile.recruiterAddress" required>
     <div class="invalid-feedback">
@@ -34,18 +26,22 @@
     </div>
   </div>
   <div class="col-md-3">
-    <label for="validationCustom04" class="form-label">State</label>
-    <select class="form-select" id="validationCustom04" required>
+    <label for="validationCustom04" class="form-label">Staff</label>
+    <select class="form-select" id="validationCustom04" required  v-model="profile.recruiterStaff">
       <option selected disabled value="">Choose...</option>
-      <option>...</option>
+      <option>less than 5</option>
+      <option> 5 - 10</option>
+      <option>10 - 100</option>
+      <option>100 - 1000</option>
+      <option>more than 1000</option>
     </select>
     <div class="invalid-feedback">
       Please select a valid state.
     </div>
   </div>
   <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Zip</label>
-    <input type="text" class="form-control" id="validationCustom05" required>
+    <label for="validationCustom05" class="form-label">Phone</label>
+    <input type="number" class="form-control" id="validationCustom05"  required>
     <div class="invalid-feedback">
       Please provide a valid zip.
     </div>
@@ -62,10 +58,12 @@
     </div>
   </div>
   <div class="col-12">
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <button class="btn btn-primary" v-on:click="updateProfile">Update</button>
   </div>
 </form>
+<router-link class="btn btn" to="/postjob">Back</router-link>
   </div>
+  
 </template>
 
 <script>
@@ -78,16 +76,34 @@ export default {
       }
     },
     methods:{
+      //func get data
       fetchData() {
         axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/`+this.$route.params.id)
 
         .then((data) => {
           this.profile=data.data
-        })
+       })
+      },
+      async updateProfile(){
+      // console.log(this.profile)
+      const result =  await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/`+this.$route.params.id,{
+          recruiterEmail: this.profile.recruiterEmail,
+          recruiterCompany: this.profile.recruiterCompany,
+          recruiterIndustry: this.profile.recruiterIndustry,
+          recruiterPhone: this.profile.recruiterPhone,
+          recruiterStaff: this.profile.recruiterEmail,
+          recruiterDesc: this.profile.recruiterDesc,
+          recruiterAddress: this.profile.recruiterAddress
+      });
+          if (result.status==200){
+            this.$router.push({name:'postjob'}) ;
+          }
       }
     },
+    //render func
     mounted(){
       this.fetchData()
+      
     }
 }
 </script>
@@ -99,5 +115,14 @@ export default {
   .container{
     background-color: #f3f3f3;
     border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  }
+  .title-bar {
+    background-color: rgb(79, 22, 238);
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: white;
   }
 </style>
