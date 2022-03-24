@@ -27,35 +27,22 @@
   </div>
   <div class="col-md-3">
     <label for="validationCustom04" class="form-label">Staff</label>
-    <select class="form-select" id="validationCustom04" required  v-model="profile.recruiterStaff">
+    <!-- <select class="form-select" id="validationCustom04" required  v-model="profile.recruiterStaff">
       <option selected disabled value="">Choose...</option>
       <option>less than 5</option>
       <option> 5 - 10</option>
       <option>10 - 100</option>
       <option>100 - 1000</option>
       <option>more than 1000</option>
-    </select>
+    </select> -->
+    <input type="number" class="form-control" id="validationCustom03" v-model="profile.recruiterStaff" required>
     <div class="invalid-feedback">
       Please select a valid state.
     </div>
   </div>
   <div class="col-md-3">
     <label for="validationCustom05" class="form-label">Phone</label>
-    <input type="number" class="form-control" id="validationCustom05"  required>
-    <div class="invalid-feedback">
-      Please provide a valid zip.
-    </div>
-  </div>
-  <div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-      <label class="form-check-label" for="invalidCheck">
-        Agree to terms and conditions
-      </label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
-      </div>
-    </div>
+    <input type="number" class="form-control" id="validationCustom05" v-model="profile.recruiterPhone" required>
   </div>
   <div class="col-12">
     <button class="btn btn-primary" v-on:click="updateProfile">Update</button>
@@ -85,7 +72,7 @@ export default {
        })
       },
       async updateProfile(){
-      // console.log(this.profile)
+      
       const result =  await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/`+this.$route.params.id,{
           recruiterEmail: this.profile.recruiterEmail,
           recruiterCompany: this.profile.recruiterCompany,

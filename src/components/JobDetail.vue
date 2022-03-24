@@ -10,12 +10,13 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <!-- <h4 class="card-title1">{{job.jobName}}</h4> -->
+                <h4 class="card-title1">{{job.jobName}}</h4>
                 <h6 class="card-title">{{job.jobPosition}} | Rp. {{job.jobSalary}}</h6>
-                <label class="mt-3">Description job : </label>
+                <label class="label mt-3">Description job : </label>
                 <p class="card-text">{{job.jobDesc}}</p>
-                <label class="">Job Requirement :</label>
+                <label class="label">Job Requirement :</label>
                 <p class="card-text">{{job.jobRequirement}}</p>
+                <label class="label">Address :</label>
                 <p class="card-text">{{job.jobAddress}}</p> 
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small> 
                 <router-link class="btn btn-danger" to="/postjob"><i class="bi bi-arrow-left-circle-fill"></i>Post job</router-link></p>
@@ -23,7 +24,7 @@
             </div>
           </div>
         </div>
-        <h1>dahlah</h1>
+        <h1>Applicants</h1>
         <!-- <table border="1">
           <tr v-for="item in list" :key="item.id">
             <td>{{item.jobseekerName}}</td>
@@ -31,30 +32,95 @@
             <td>{{item.jobseekerResume}}</td>
           </tr>
         </table> -->
-        <table class="table">
+        <table class="table table-hover">
   <thead>
-    <tr>
+    <tr class="">
       <th scope="col">No.</th>
       <th scope="col">Name</th>
       <th scope="col">E-mail</th>
-      <th scope="col">Resume</th>
+      <th scope="col" class="resume">Resume</th>
+      <th scope="col">Status</th>
+      <th scope="col" class="action">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr v-for="item in list" :key="item.id">
-      <th scope="row">1</th>
+      <th scope="row">{{item.jobseekerId}}</th>
       <td>{{item.jobseekerName}}</td>
       <td>{{item.jobseekerEmail}}</td>
       <td><button class="btn btn-primary" v-on:click="getResume">Download</button></td>
+      <td>status</td>
+      <td><button class="btn btn-success" v-on:click="accepted">Accept</button>
+      <button class="btn btn-danger" v-on:click="rejected">Reject</button></td>
+      
     </tr>
    
   </tbody>
 </table>
-        
+
+      <!-- <div class="container my-4">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Extn</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                    <th>Apply</th>
+                    <th>Decline</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Extn</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                    <th>Apply</th>
+                    <th>Decline</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div> -->
+
   </div>
 </template>
 
 <script>
+// $(document).ready(function() {
+
+//     $('#example').DataTable( {
+//         "ajax": "http://54.255.4.75:9091/api/v1/application/applicants/9", //link ini diganti ke API dari postman
+//         "columns": [ 
+//             { "data": "name" }, // ini tulis dari parameter json
+//             { "data": "position" },
+//             { "data": "office" },
+//             { "data": "extn" },
+//             { "data": "start_date" },
+//             { "data": "salary" },
+//             { "data": "id", // pakai parameter data & render utk action
+//               "render": function(data, type, row, meta){
+//                     data = '<a href="http://localhost/path/to/api_apply_job/' + data + '">Apply</a>';
+//                     return data;
+//                 }
+//             },
+//             { "data": "id", // pakai parameter data & render utk action
+//               "render": function(data, type, row, meta){
+//                     data = '<a href="http://localhost/path/to/api_decline_job/' + data + '">Decline</a>';
+//                     return data;
+//                 }
+//             },  
+//         ]
+//     });
+
+// });
+
+
+
 import axios from 'axios'
 export default {
   props: ['id'],
@@ -77,6 +143,15 @@ export default {
         // console.log(this.jobDesc)
       })      
     },
+   getResume(){
+    console.log("download resume")
+    },
+    accepted(){
+      console.log("acc")
+    },
+    rejected(){
+      console.log("rejected")
+    }
   },
   mounted() {
     this.fetchData()
@@ -85,7 +160,6 @@ export default {
     .then((resp)=>{
       this.list=resp.data
     })
-  
   }
 }
 </script>
@@ -109,4 +183,21 @@ export default {
    i {
      margin-right: 10px;
    }
+   .card-title1{
+     font-weight: bold;
+   }
+   .label{
+     font-weight: 600;
+   }
+   .table{
+     background-color: white;
+     padding: 20px;
+   }
+   .resume{
+     padding-left: 35px;
+   }
+   .action{
+     padding-left: 70px;
+   }
+   
 </style>

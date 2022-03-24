@@ -42,14 +42,14 @@
             </div>
         </div>
         <div class="card-monitor">
-        <div class="card-approve">
+          <div class="card-approve">
             <div class="card-title">
-              <h4>Summary of Approve</h4>
-            </div>  
-        </div>
-        <div class="col card-reject">
-        <h4>Summary of Reject</h4>
-        </div>
+                <h4>Summary of Approve</h4>
+             </div>  
+              </div>
+                <div class="col card-reject">
+              <h4>Summary of Reject</h4>
+          </div>
         </div>
 
 <img src="../assets/Saly.png" alt="">
