@@ -10,9 +10,10 @@
           <a class="bi bi-three-dots-vertical" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
 
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Unactive</a></li>
+            <li></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <button class="dropdown-item" v-on:click="unactive">Unactive</button>
           </ul>
         </div>
         
@@ -65,7 +66,10 @@ export default {
         
       }
 
-    }
+    },
+    unactive(){
+      console.log("unactive")
+    } 
     
 }
 </script>

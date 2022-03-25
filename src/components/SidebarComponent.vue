@@ -19,7 +19,7 @@
                    <router-link class="" to="/about"><i class="bi bi-person-fill"></i>Company profile</router-link>
                 </li>
                 <li>
-                   <router-link class="" to="/about"><i class="bi bi-newspaper"></i>Advertisement</router-link>
+                   <router-link class="" to="/advertisement"><i class="bi bi-newspaper"></i>Advertisement</router-link>
                 </li>
             </ul>
 

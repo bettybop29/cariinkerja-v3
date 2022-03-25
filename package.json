@@ -17,6 +17,7 @@
     "boxicons": "^2.1.2",
     "core-js": "^3.8.3",
     "express": "^4.17.3",
+    "jl-datatable": "^1.1.0",
     "mosha-vue-toastify": "^1.0.23",
     "serve-static": "^1.14.2",
     "vue": "^3.2.31",

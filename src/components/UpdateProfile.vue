@@ -19,6 +19,13 @@
     </div>
   </div>
   <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">Phone</label>
+    <input type="number" class="form-control" id="validationCustom02" v-model="profile.recruiterPhone" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4">
     <label for="validationCustom03" class="form-label">City</label>
     <input type="text" class="form-control" id="validationCustom03" v-model="profile.recruiterAddress" required>
     <div class="invalid-feedback">
@@ -41,14 +48,36 @@
     </div>
   </div>
   <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Phone</label>
-    <input type="number" class="form-control" id="validationCustom05" v-model="profile.recruiterPhone" required>
+    <label for="validationCustom05" class="form-label">Description :</label>
+    <textarea type="textarea" class="form-control" id="validationCustom05" v-model="profile.recruiterDesc" required></textarea>
   </div>
+   <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Culture</label>
+    <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterCulture">
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Benefit</label>
+    <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterBenefit">
+  </div>
+  <h3>Social Media</h3>
+   <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Facebook</label>
+    <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterFb">
+  </div>
+   <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Instagram</label>
+    <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterIg">
+  </div>
+   <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Linkedin</label>
+    <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterLinkedin">
+  </div>
+ 
   <div class="col-12">
     <button class="btn btn-primary" v-on:click="updateProfile">Update</button>
   </div>
 </form>
-<router-link class="btn btn" to="/postjob">Back</router-link>
+<router-link class="btn btn-danger" to="/about"><i class="bi bi-arrow-left-circle"></i> Back</router-link>
   </div>
   
 </template>
@@ -73,17 +102,22 @@ export default {
       },
       async updateProfile(){
       
-      const result =  await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/`+this.$route.params.id,{
+      const result =  await axios.put(`http://54.255.4.75:9091/api/v1/auth/recruiter/`+this.$route.params.id,{
           recruiterEmail: this.profile.recruiterEmail,
           recruiterCompany: this.profile.recruiterCompany,
           recruiterIndustry: this.profile.recruiterIndustry,
           recruiterPhone: this.profile.recruiterPhone,
           recruiterStaff: this.profile.recruiterEmail,
           recruiterDesc: this.profile.recruiterDesc,
-          recruiterAddress: this.profile.recruiterAddress
+          recruiterAddress: this.profile.recruiterAddress,
+          recruiterBenefit:this.profile.recruiterBenefit,
+          recruiterCulture: this.profile.recruiterCulture,
+          recruiterLinkedin: this.profile.recruiterLinkedin,
+          recruiterIg: this.profile.recruiterIg,
+          recruiterFb: this.profile.recruiterFb
       });
           if (result.status==200){
-            this.$router.push({name:'postjob'}) ;
+            this.$router.push("/about");
           }
       }
     },
@@ -111,5 +145,8 @@ export default {
     padding: 10px;
     margin-bottom: 20px;
     color: white;
+  }
+  .btn-danger {
+    margin-top: 5px;
   }
 </style>

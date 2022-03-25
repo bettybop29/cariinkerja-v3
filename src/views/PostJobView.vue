@@ -129,9 +129,7 @@ export default {
     async addjob() {
       try {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-        await axios.post(
-          `http://54.255.4.75:9091/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc}&jobRequirement=${this.jobRequirement}`
-        );
+        await axios.post(`http://54.255.4.75:9091/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc}&jobRequirement=${this.jobRequirement}`);
         // console.warn(result)
         // // localStorage.setItem("user-info", JSON.stringify(result.data));
         // console.log(result)
