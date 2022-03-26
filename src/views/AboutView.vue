@@ -10,9 +10,9 @@
           <h5 class="card-title">{{profile.recruiterCompany}}</h5>
           <p class="card-text">{{profile.recruiterIndustry}}</p>
           <p class="card-text">{{profile.recruiterDesc}}</p>
-          <p class="card-text">{{profile.recruiterEmail}}</p>
           <p class="card-text">{{profile.recruiterAddress}}</p>
-          <p class="card-text">{{profile.recruiterPhone}}</p>
+          
+          
           
           <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
           <router-link class="btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile</router-link>
@@ -21,7 +21,17 @@
       
     </div>
     <div class="col">
-      agri
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Contact</h5>
+          <hr>
+          <p class="card-text"><i class="bi bi-envelope"></i> {{profile.recruiterEmail}}</p>
+          <p class="card-text"><i class="bi bi-facebook"></i> {{profile.recruiterFb}}</p>
+          <p class="card-text"><i class="bi bi-instagram"></i> {{profile.recruiterIg}}</p>
+          <p class="card-text"><i class="bi bi-linkedin"></i> {{profile.recruiterLinkedin}}</p>
+          <p class="card-text"><i class="bi bi-telephone"></i> {{profile.recruiterPhone}}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -81,5 +91,8 @@ export default {
 .card {
   border-radius: 20px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.card-title{
+  font-weight: bold;
 }
 </style>

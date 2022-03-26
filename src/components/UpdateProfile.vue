@@ -52,6 +52,10 @@
     <textarea type="textarea" class="form-control" id="validationCustom05" v-model="profile.recruiterDesc" required></textarea>
   </div>
    <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">status :</label>
+    <textarea type="textarea" class="form-control" id="validationCustom05" v-model="profile.recruiterStatus" required></textarea>
+  </div>
+   <div class="col-md-3">
     <label for="validationCustom05" class="form-label">Culture</label>
     <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterCulture">
   </div>
@@ -84,6 +88,8 @@
 
 <script>
 import axios from 'axios'
+import "mosha-vue-toastify"
+import { createToast } from "mosha-vue-toastify"
 export default {
     props:['id'],
     data(){
@@ -100,31 +106,21 @@ export default {
           this.profile=data.data
        })
       },
-      async updateProfile(){
-      
-      const result =  await axios.put(`http://54.255.4.75:9091/api/v1/auth/recruiter/`+this.$route.params.id,{
-          recruiterEmail: this.profile.recruiterEmail,
-          recruiterCompany: this.profile.recruiterCompany,
-          recruiterIndustry: this.profile.recruiterIndustry,
-          recruiterPhone: this.profile.recruiterPhone,
-          recruiterStaff: this.profile.recruiterEmail,
-          recruiterDesc: this.profile.recruiterDesc,
-          recruiterAddress: this.profile.recruiterAddress,
-          recruiterBenefit:this.profile.recruiterBenefit,
-          recruiterCulture: this.profile.recruiterCulture,
-          recruiterLinkedin: this.profile.recruiterLinkedin,
-          recruiterIg: this.profile.recruiterIg,
-          recruiterFb: this.profile.recruiterFb
-      });
-          if (result.status==200){
-            this.$router.push("/about");
-          }
+      // func edit profile
+      async updateProfile(){   
+      try {
+        await axios.patch(`http://54.255.4.75:9091/api/v1/auth/recruiter/89?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterStatus=${this.profile.recruiterStatus}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterBenefit=${this.profile.recruiterBenefit}`)
+        this.$router.push('/about')
+        createToast("Profile updated", {type: 'success'});
+        
+      } catch {
+        console.log(Error)
+      }
       }
     },
     //render func
     mounted(){
       this.fetchData()
-      
     }
 }
 </script>

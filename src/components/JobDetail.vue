@@ -49,7 +49,7 @@
       <td>{{item.jobseekerName}}</td>
       <td>{{item.jobseekerEmail}}</td>
       <td><button class="btn btn-primary" v-on:click="getResume">Download</button></td>
-      <td>status</td>
+      <td>{{item.applicationStatus}}</td>
       <td><button class="btn btn-success" v-on:click="accepted">Accept</button>
       <button class="btn btn-danger" v-on:click="rejected">Reject</button></td>
       
@@ -277,7 +277,7 @@ export default {
   mounted() {
     this.fetchData()
     
-    axios.get(`http://54.255.4.75:9091/api/v1/application/applicants/`+this.$route.params.id)
+    axios.get(`http://54.255.4.75:9091/api/v1/application/applicants/82`)
     .then((resp)=>{
       this.list=resp.data
     })
