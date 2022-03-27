@@ -113,9 +113,9 @@ export default {
         this.$router.push('/about')
         createToast("Profile updated", {type: 'success'});
         
-      } catch {
-        console.log(Error)
-      }
+        } catch {
+          console.log(Error)
+        }
       }
     },
     //render func

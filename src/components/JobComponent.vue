@@ -31,6 +31,48 @@
           <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
           <button class="btn btn-danger" v-on:click="deleteJob(item.jobId)">delete</button>
           
+          <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+     <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Job Name:</label>
+            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">job Position: </label>
+            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">job Address: </label>
+            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">job Requirement: </label>
+            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
+          </div>
+          
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">job Description:</label>
+            <textarea class="form-control" id="message-text" v-model="edit.jobDesc"/>
+          </div>
+          <div class="modal-footer">
+        
+        <button class="btn btn-primary" v-on:click="updateJobData">Update</button>
+      </div>
+        </form>
+     </div>
+     
+    </div>
+  </div>
+</div>
+
+<a class="btn btn-success" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Edit</a>
           
       
     </div>
@@ -44,12 +86,26 @@
 import axios from 'axios'
 import "mosha-vue-toastify/dist/style.css";
 import { createToast } from "mosha-vue-toastify";
+import { warn } from '@vue/runtime-core';
 export default {
     name:"JobComponent",
-    props:['item'],
-
+    props:['item','id'],
+    
+    data(){
+      return {
+        edit:[]
+      }
+    },
     methods:{
-      
+     async updateJobData(){
+        try{
+          await axios.patch(`http://54.255.4.75:9091/api/v1/job/83?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=Cikarang&jobDesc=advertising delivered through digital channels such as search engines, websites, social media, email, and mobile apps.&jobRequirement=bachelor of education`)
+          createToast("Job Updated", { type: "success" });
+          location.reload(true)
+        } catch {
+          console.log(warn)
+        }
+      },
       async deleteJob(id){
       try {
        let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/`+id);
@@ -61,15 +117,17 @@ export default {
       }catch{
         console.warn
         
-      }    
-          
-        
+        }     
       }
-
     },
-    unactive(){
-      console.log("unactive")
-    } 
+   
+      mounted(){
+        axios.get(`http://54.255.4.75:9091/api/v1/job/83`)
+        .then((data)=>{
+          this.edit=data.data
+        })
+      }
+    
     
 }
 </script>
