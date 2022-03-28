@@ -50,8 +50,8 @@
       <td>{{item.jobseekerEmail}}</td>
       <td><button class="btn btn-primary" v-on:click="getResume">Download</button></td>
       <td>{{item.applicationStatus}}</td>
-      <td><button class="btn btn-success" v-on:click="accepted">Accept</button>
-      <button class="btn btn-danger" v-on:click="rejected">Reject</button></td>
+      <td><button class="btn btn-success" v-on:click="accepted(item.applicationId)">Accept</button>
+      <button class="btn btn-danger" v-on:click="rejected(item.applicationId)">Reject</button></td>
       
     </tr>
    
@@ -209,11 +209,15 @@ export default {
    getResume(){
     console.log("download resume")
     },
-    accepted(){
-      console.log("acc")
+    async accepted(id){
+     await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
+      location.reload(true)
+      console.log(id)
     },
-    rejected(){
-      console.log("rejected")
+   async rejected(id){
+      await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
+      location.reload(true)
+      console.log(id)
     }
   },
   mounted() {

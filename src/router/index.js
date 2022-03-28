@@ -7,7 +7,7 @@ import DashboardView from '../views/DashboardView.vue'
 import SignupView from '../views/SignupView.vue'
 import JobDetail from '../components/JobDetail.vue'
 import UpdateProfile from '../components/UpdateProfile.vue'
-import AdvertisementView from '../views/AdvertisementView'
+import CreditView from '../views/CreditView'
 
 const routes = [
   {
@@ -26,9 +26,9 @@ const routes = [
     component: AboutView 
   },
   {
-    path: '/advertisement',
-    name: 'advertisement',
-    component: AdvertisementView 
+    path: '/credit',
+    name: 'credit',
+    component: CreditView 
   },
   {
     path: '/login',

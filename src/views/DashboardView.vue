@@ -3,9 +3,12 @@
 <sidebar-component></sidebar-component>
 
 <div class="main">
+
   <div class="container">
+    
         <div class="card">
             <div class="card-title">
+              
               <h2>Hi, {{list.jobCompany}} !!</h2>
               <div class="card-text">
                 <p>Welcome back</p>

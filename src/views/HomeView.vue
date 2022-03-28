@@ -75,6 +75,8 @@
 
  <div class="main" style="background-color: #101419; padding:90px">
     <div class="d-flex justify-content-center" style="padding: 20px; color: white; text-align: center;"><h2>Our Satisfied Partner</h2></div> 
+    <marquee style="color:blue; font-weight:bold;">nichog gg pro aldous</marquee>
+    
   </div>
 
 <!-- sponsor -->

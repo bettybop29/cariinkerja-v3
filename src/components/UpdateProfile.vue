@@ -3,7 +3,7 @@
     <div class="title-bar">
       <h1>Update Profile</h1>
       </div>
-      <form class="row g-3 needs-validation" novalidate>
+      <form class="row g-3 needs-validation" novalidate @submit.prevent="updateProfile">
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">Email</label>
     <input type="text" class="form-control" id="validationCustom01"  v-model="profile.recruiterEmail" required>
@@ -78,7 +78,7 @@
   </div>
  
   <div class="col-12">
-    <button class="btn btn-primary" v-on:click="updateProfile">Update</button>
+    <button class="btn btn-primary" type="submit">Update</button>
   </div>
 </form>
 <router-link class="btn btn-danger" to="/about"><i class="bi bi-arrow-left-circle"></i> Back</router-link>
@@ -109,7 +109,7 @@ export default {
       // func edit profile
       async updateProfile(){   
       try {
-        await axios.patch(`http://54.255.4.75:9091/api/v1/auth/recruiter/89?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterStatus=${this.profile.recruiterStatus}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterBenefit=${this.profile.recruiterBenefit}`)
+        await axios.put(`http://54.255.4.75:9091/api/v1/auth/recruiter/89?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterStatus=${this.profile.recruiterStatus}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterBenefit=${this.profile.recruiterBenefit}`)
         this.$router.push('/about')
         createToast("Profile updated", {type: 'success'});
         

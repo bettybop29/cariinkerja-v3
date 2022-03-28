@@ -1,6 +1,6 @@
 <template>
 <sidebar-component></sidebar-component>
-  <h1>Advertisement page</h1>
+  <h1>Credit page</h1>
 </template>
 
 <script>
@@ -12,6 +12,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  h1{
+    text-align: center;
+  }
 </style>

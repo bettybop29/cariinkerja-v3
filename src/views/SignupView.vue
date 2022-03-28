@@ -6,16 +6,20 @@
         <div class="container">
           <div class="row">
             <div class="col-5">
+              <form @submit.prevent="signUp">
               <div class="form-signup">
                 <div class="mb-3">
+                  
                   <h2 style="padding-bottom: 20px; font-weight: bold">
                     Sign Up
                   </h2>
+                  
                   <label class="form-label">Email</label>
                   <input
                     v-model="recruiterEmail"
                     type="email"
                     class="form-control"
+                    required
                   />
                 </div>
                 <div class="mb-3">
@@ -24,6 +28,7 @@
                     v-model="recruiterPassword"
                     type="password"
                     class="form-control"
+                    required
                   />
                 </div>
                 <div class="mb-3">
@@ -32,6 +37,7 @@
                     v-model="recruiterCompany"
                     type="text"
                     class="form-control"
+                    required
                   />
                 </div>
                 <div class="mb-3">
@@ -40,17 +46,20 @@
                     v-model="recruiterIndustry"
                     type="text"
                     class="form-control"
+                    required
                   />
                 </div>
                 <button
                   type="submit"
-                  v-on:click="signup"
+                  
                   class="btn btn-success"
                 >
                   Signup
                 </button>
+                
                 <router-link to="/login" class="btn btn-danger">Back to Login</router-link>
               </div>
+              </form>
             </div>
             
             <img src="../assets/Saly.png" alt="" />
@@ -95,7 +104,7 @@ export default {
     };
   },
   methods: {
-    async signup() {
+    async signUp() {
       try {
         // console.log(this.recruiterEmail,this.recruiterPassword,this.recruiterCompany,this.recruiterIndustry)
         const result = await axios.post(

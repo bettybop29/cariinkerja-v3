@@ -15,7 +15,7 @@
         <div class="col-md">
           <div class="formlogin">
             <div class="mb-3">
-              <form action="">
+              <form action="" @submit.prevent="login">
                 <label for="validationDefault01" class="form-label"
                   >Email</label
                 >
@@ -39,12 +39,13 @@
                   placeholder="password"
                   required
                 />
+                 <button type="submit" class="btn btn-primary">login</button>
               </form>
+              
             </div>
             <div>
-              <button type="submit" v-on:click="login" class="btn btn-primary">
-                Login
-              </button>
+             
+             
             </div>
             <br />
             Jika anda belum memiliki akun
@@ -137,6 +138,10 @@ export default {
     };
   },
   methods: {
+    test(){
+      console.log("test")
+      
+    },
     async login() {
       try {
         const result = await axios.post(
@@ -221,5 +226,8 @@ footer {
 }
 .btn {
   margin-bottom: 5px;
+}
+.btn-primary{
+  margin-top: 20px;
 }
 </style>

@@ -63,7 +63,7 @@
           </div>
           <div class="modal-footer">
         
-        <button class="btn btn-primary" v-on:click="updateJobData">Update</button>
+        <button class="btn btn-primary" v-on:click="updateJobData(item.jobId)">Update</button>
       </div>
         </form>
      </div>
@@ -72,7 +72,7 @@
   </div>
 </div>
 
-<a class="btn btn-success" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Edit</a>
+<button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
           
       
     </div>
@@ -97,9 +97,18 @@ export default {
       }
     },
     methods:{
-     async updateJobData(){
+      
+      getDetail(id){
+        console.log(id)
+        axios.get(`http://54.255.4.75:9091/api/v1/job/${id}`)
+        .then((data)=>{
+          this.edit=data.data
+        })
+      },
+     async updateJobData(id){
         try{
-          await axios.patch(`http://54.255.4.75:9091/api/v1/job/83?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`)
+          console.log(id)
+          await axios.patch(`http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`)
           createToast("Job Updated", { type: "success" });
           location.reload(true)
         } catch {
@@ -120,12 +129,10 @@ export default {
         }     
       }
     },
+    
    
       mounted(){
-        axios.get(`http://54.255.4.75:9091/api/v1/job/83`)
-        .then((data)=>{
-          this.edit=data.data
-        })
+        this.getDetail(this.id);
       }
     
     
