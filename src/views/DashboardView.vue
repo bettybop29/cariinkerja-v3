@@ -4,36 +4,9 @@
 
 <div class="main">
   <div class="container">
-    <!-- <div class="row">
-      <div class="col">
-        <div class="card">
-          <div class="card-title">
-            <h2>Hi,{{nameCompany}}!!</h2>
-            <div class="card-text">
-              <p>Welcome back</p>
-              <p>You have 17 new resumes</p>
-              <button class="btn">See all</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <img src="@/assets/Saly.png" alt="">
-      
-      <div class="col card-approve">
-        <div class="card-title">
-        <h4>Summary of Approve</h4>
-        </div>  
-      </div>
-
-      
-      
-    </div>
-  </div>
-</div> -->
-
         <div class="card">
             <div class="card-title">
-              <h2>Hi,{{nameCompany}}!!</h2>
+              <h2>Hi, {{list.jobCompany}} !!</h2>
               <div class="card-text">
                 <p>Welcome back</p>
                 <p>You have 17 new resumes</p>
@@ -100,11 +73,11 @@ export default {
     async addjob() {
       try {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-        const result = await axios.post(
+        await axios.post(
           `http://54.255.4.75:9091/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc} products to vendor&jobRequirement=${this.jobRequirement}`
         );
         // localStorage.setItem("user-info", JSON.stringify(result.data));
-        console.log(result)
+        
         createToast("Job Successfully Created", { type: "success" });
         location.reload(true)
         
@@ -127,6 +100,8 @@ export default {
     axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
     .then((resp)=>{
       this.list=resp.data
+
+      console.warn(recruiterId)
       
       
     })

@@ -99,13 +99,13 @@ export default {
     methods:{
      async updateJobData(){
         try{
-          await axios.patch(`http://54.255.4.75:9091/api/v1/job/83?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=Cikarang&jobDesc=advertising delivered through digital channels such as search engines, websites, social media, email, and mobile apps.&jobRequirement=bachelor of education`)
+          await axios.patch(`http://54.255.4.75:9091/api/v1/job/83?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`)
           createToast("Job Updated", { type: "success" });
           location.reload(true)
         } catch {
           console.log(warn)
         }
-      },
+       },
       async deleteJob(id){
       try {
        let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/`+id);

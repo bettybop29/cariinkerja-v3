@@ -57,36 +57,6 @@
    
   </tbody>
 </table>
-
-      <!-- <div class="container my-4">
-        <table id="example" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Extn</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                    <th>Apply</th>
-                    <th>Decline</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Extn</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                    <th>Apply</th>
-                    <th>Decline</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div> -->
-
 <JlDatatable
         :url='datatable.url'
         :columns="datatable.columns"  
@@ -124,34 +94,6 @@
 </template>
 
 <script>
-// $(document).ready(function() {
-
-//     $('#example').DataTable( {
-//         "ajax": "http://54.255.4.75:9091/api/v1/application/applicants/9", //link ini diganti ke API dari postman
-//         "columns": [ 
-//             { "data": "name" }, // ini tulis dari parameter json
-//             { "data": "position" },
-//             { "data": "office" },
-//             { "data": "extn" },
-//             { "data": "start_date" },
-//             { "data": "salary" },
-//             { "data": "id", // pakai parameter data & render utk action
-//               "render": function(data, type, row, meta){
-//                     data = '<a href="http://localhost/path/to/api_apply_job/' + data + '">Apply</a>';
-//                     return data;
-//                 }
-//             },
-//             { "data": "id", // pakai parameter data & render utk action
-//               "render": function(data, type, row, meta){
-//                     data = '<a href="http://localhost/path/to/api_decline_job/' + data + '">Decline</a>';
-//                     return data;
-//                 }
-//             },  
-//         ]
-//     });
-
-// });
-
 
 import JlDatatable from 'jl-datatable';
 import axios from 'axios'

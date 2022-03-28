@@ -9,6 +9,7 @@
         <div class="card-body">
           <h5 class="card-title">{{profile.recruiterCompany}}</h5>
           <p class="card-text">{{profile.recruiterIndustry}}</p>
+           <p class="card-text">{{profile.recruiterStaff}}</p>
           <p class="card-text">{{profile.recruiterDesc}}</p>
           <p class="card-text">{{profile.recruiterAddress}}</p>
           
@@ -79,7 +80,7 @@ export default {
 }
 .container {
   padding-left: 170px;
-  margin-top: 200px;
+  margin-top: 100px;
   height: 100px;
   
 }
