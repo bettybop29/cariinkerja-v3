@@ -8,8 +8,8 @@
         <img src="../assets/logo.svg" alt="">
         <div class="card-body">
           <h5 class="card-title">{{profile.recruiterCompany}}</h5>
-          <p class="card-text">{{profile.recruiterIndustry}}</p>
-           <p class="card-text">{{profile.recruiterStaff}}</p>
+          <p class="card-text">Industry: {{profile.recruiterIndustry}}</p>
+           <p class="card-text">Staff: {{profile.recruiterStaff}}</p>
           <p class="card-text">{{profile.recruiterDesc}}</p>
           <p class="card-text">{{profile.recruiterAddress}}</p>
           

@@ -1,7 +1,6 @@
 <template>
 <div class="row">
-  <!-- <router-link :to="{ path:'/jobdetail/', params: { userId: '123' }}" class="card-link"> -->
-<!-- <router-link :to="{ path:'/jobdetail/:{{item.jobId}}" class="card-link"> -->
+
   <div class="card" style="width: 18rem;">
     
        <img src="http://54.255.4.75:9091/resources/meta.png"   class="card-img-top" alt="...">
@@ -23,7 +22,7 @@
          <span>Status: {{item.jobStatus}}</span>
           <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
           <p class="card-text"><i class="bi-cash"></i> IDR {{ item.jobSalary }}</p>
-          <p class="card-text"><i class="bi-briefcase-fill"></i> {{ item.jobPosition }}</p>
+          
           
           <p class="card-text"><i class="bi-geo-alt"></i> {{ item.jobAddress }}</p>
 
@@ -31,7 +30,7 @@
           <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
           <button class="btn btn-danger" v-on:click="deleteJob(item.jobId)">delete</button>
           
-          <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+          <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -63,7 +62,7 @@
           </div>
           <div class="modal-footer">
         
-        <button class="btn btn-primary" v-on:click="updateJobData(item.jobId)">Update</button>
+        <button class="btn btn-primary" v-on:click="updateJobData(edit.jobId)">Update</button>
       </div>
         </form>
      </div>
@@ -72,7 +71,7 @@
   </div>
 </div>
 
-<button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
+<button class="btn btn-success" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
           
       
     </div>
@@ -89,7 +88,7 @@ import { createToast } from "mosha-vue-toastify";
 import { warn } from '@vue/runtime-core';
 export default {
     name:"JobComponent",
-    props:['item','id'],
+    props:['item','id',],
     
     data(){
       return {
@@ -98,16 +97,16 @@ export default {
     },
     methods:{
       
-      getDetail(id){
-        console.log(id)
-        axios.get(`http://54.255.4.75:9091/api/v1/job/${id}`)
+      async getDetail(jobId){
+        
+        await axios.get(`http://54.255.4.75:9091/api/v1/job/${jobId}`)
         .then((data)=>{
           this.edit=data.data
         })
       },
      async updateJobData(id){
         try{
-          console.log(id)
+          
           await axios.patch(`http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`)
           createToast("Job Updated", { type: "success" });
           location.reload(true)
@@ -132,7 +131,7 @@ export default {
     
    
       mounted(){
-        this.getDetail(this.id);
+        this.getDetail();
       }
     
     

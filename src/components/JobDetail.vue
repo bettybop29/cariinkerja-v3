@@ -45,7 +45,7 @@
   </thead>
   <tbody>
     <tr v-for="item in list" :key="item.id">
-      <th scope="row">{{item.jobseekerId}}</th>
+      <th scope="row"></th>
       <td>{{item.jobseekerName}}</td>
       <td>{{item.jobseekerEmail}}</td>
       <td><button class="btn btn-primary" v-on:click="getResume">Download</button></td>
@@ -195,6 +195,7 @@ export default {
     error(err){
       console.log(err);
     },
+    
     async fetchData() {
       
       // const url = this.apiUrl + this.id
@@ -212,6 +213,7 @@ export default {
     async accepted(id){
      await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
       location.reload(true)
+      
       console.log(id)
     },
    async rejected(id){

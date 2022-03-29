@@ -1,89 +1,65 @@
 <template>
-  <div class="container mt-5">
-    <div class="title-bar">
+<div class="bg-color">
+  <div class="container">
+    <form class="row" @submit.prevent="updateProfile">
       <h1>Update Profile</h1>
+      <div class="col-md-5">
+        <label for="validationDefault03" class="form-label">Email:</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterEmail" disabled>
       </div>
-      <form class="row g-3 needs-validation" novalidate @submit.prevent="updateProfile">
-  <div class="col-md-4">
-    <label for="validationCustom01" class="form-label">Email</label>
-    <input type="text" class="form-control" id="validationCustom01"  v-model="profile.recruiterEmail" required>
-    <div class="valid-feedback">
-      Looks good!
-    </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Culture</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCulture" required>
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Industry</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry" required>
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Benefit</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterBenefit"  required>
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Phone</label>
+        <input type="number" class="form-control" id="validationDefault03" v-model="profile.recruiterPhone" required>
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Facebook</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb" required>
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Company</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany" required>
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Instagram</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg" required>
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Staff</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterStaff" required>
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Linkedin</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin" required>
+      </div>
+      
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterDesc"></textarea>
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Address</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterAddress"></textarea>
+      </div>
+      <!-- <div class="col-md-10 mb-3">
+        <input type="file" class="form-control" aria-label="file example" required>
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div> -->
+      <button class="btn btn-success" type="submit">Edit</button>
+    </form>
   </div>
-  <div class="col-md-4">
-    <label for="validationCustom02" class="form-label">Company</label>
-    <input type="text" class="form-control" id="validationCustom02" v-model="profile.recruiterCompany" required>
-    <div class="valid-feedback">
-      Looks good!
-    </div>
-  </div>
-  <div class="col-md-4">
-    <label for="validationCustom02" class="form-label">Phone</label>
-    <input type="number" class="form-control" id="validationCustom02" v-model="profile.recruiterPhone" required>
-    <div class="valid-feedback">
-      Looks good!
-    </div>
-  </div>
-  <div class="col-md-4">
-    <label for="validationCustom03" class="form-label">City</label>
-    <input type="text" class="form-control" id="validationCustom03" v-model="profile.recruiterAddress" required>
-    <div class="invalid-feedback">
-      Please provide a valid city.
-    </div>
-  </div>
-  <div class="col-md-3">
-    <label for="validationCustom04" class="form-label">Staff</label>
-    <!-- <select class="form-select" id="validationCustom04" required  v-model="profile.recruiterStaff">
-      <option selected disabled value="">Choose...</option>
-      <option>less than 5</option>
-      <option> 5 - 10</option>
-      <option>10 - 100</option>
-      <option>100 - 1000</option>
-      <option>more than 1000</option>
-    </select> -->
-    <input type="number" class="form-control" id="validationCustom03" v-model="profile.recruiterStaff" required>
-    <div class="invalid-feedback">
-      Please select a valid state.
-    </div>
-  </div>
-  <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Description :</label>
-    <textarea type="textarea" class="form-control" id="validationCustom05" v-model="profile.recruiterDesc" required></textarea>
-  </div>
-   <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">status :</label>
-    <textarea type="textarea" class="form-control" id="validationCustom05" v-model="profile.recruiterStatus" required></textarea>
-  </div>
-   <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Culture</label>
-    <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterCulture">
-  </div>
-  <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Benefit</label>
-    <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterBenefit">
-  </div>
-  <h3>Social Media</h3>
-   <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Facebook</label>
-    <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterFb">
-  </div>
-   <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Instagram</label>
-    <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterIg">
-  </div>
-   <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Linkedin</label>
-    <input type="text" class="form-control" id="validationCustom05" v-model="profile.recruiterLinkedin">
-  </div>
- 
-  <div class="col-12">
-    <button class="btn btn-primary" type="submit">Update</button>
-  </div>
-</form>
-<router-link class="btn btn-danger" to="/about"><i class="bi bi-arrow-left-circle"></i> Back</router-link>
-  </div>
-  
+</div>
 </template>
 
 <script>
@@ -126,23 +102,30 @@ export default {
 </script>
 
 <style scoped>
+.bg-color{
+  background-color: #f3f3f3;
+  height: 100vh;
+  
+}
   h1 {
-    text-align: center;
+    text-align: left;
+    padding: 0;
+    margin-bottom: 20px;
   }
+  
   .container{
-    background-color: #f3f3f3;
-    border-radius: 20px;
+    background: white;
     padding: 20px;
+    border-radius: 20px;
+    position: absolute;
+    margin: 1.5%;
+    width: 60%;
+    padding-right: 0;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   }
-  .title-bar {
-    background-color: rgb(79, 22, 238);
-    border-radius: 20px;
-    padding: 10px;
-    margin-bottom: 20px;
-    color: white;
+  .btn{
+    width: 81%;
+    margin-left: 12px;
   }
-  .btn-danger {
-    margin-top: 5px;
-  }
+ 
 </style>
