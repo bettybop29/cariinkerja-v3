@@ -1,17 +1,29 @@
 <template>
 <div class="main">
+  
 <sidebar-component></sidebar-component>
+
 <div class="container">
+  <p class="head-title">Company Profile</p>
   <div class="row">
     <div class="col">
+      
       <div class="card">
-        <img src="../assets/logo.svg" alt="">
+        <img src="../assets/saly.png" alt="">
         <div class="card-body">
           <h5 class="card-title">{{profile.recruiterCompany}}</h5>
-          <p class="card-text">Industry: {{profile.recruiterIndustry}}</p>
-           <p class="card-text">Staff: {{profile.recruiterStaff}}</p>
+        
+          <p class="card-text">{{profile.recruiterIndustry}}</p>
+            <p class="card-span">Staff: </p>
+           <p class="card-text"><i class="bi bi-person-fill"></i> {{profile.recruiterStaff}}</p>
+           <p class="card-span">Description: </p>
           <p class="card-text">{{profile.recruiterDesc}}</p>
+          <p class="card-span">Address: </p>
           <p class="card-text">{{profile.recruiterAddress}}</p>
+          <p class="card-span">Culture: </p>
+          <p class="card-text">{{profile.recruiterCulture}}</p>
+          <p class="card-span">Benefit: </p>
+          <p class="card-text">{{profile.recruiterBenefit}}</p>
           
           
           
@@ -77,12 +89,17 @@ export default {
 <style scoped>
 .main{
  background: #F3F3F3;
+ height: 110vh;
 }
 .container {
   padding-left: 170px;
-  margin-top: 100px;
+  margin-top: 40px;
   height: 100px;
-  
+}
+.head-title{
+  position: relative;
+  font-size: 30px;
+  padding-left: 10px;
 }
 .container img {
   width: 60px;
@@ -94,6 +111,12 @@ export default {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 .card-title{
+  font-weight: bold;
+  font-size: 25px;
+}
+.card-span{
+  padding: 0;
+  margin: 0;
   font-weight: bold;
 }
 </style>

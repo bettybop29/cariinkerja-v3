@@ -24,6 +24,7 @@
             </div>
           </div>
         </div>
+        
         <h1>Applicants</h1>
         <!-- <table border="1">
           <tr v-for="item in list" :key="item.id">
@@ -44,20 +45,25 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="item in list" :key="item.id">
-      <th scope="row"></th>
+    <tr v-for="(item, index) in list" :key="item.id">
+      <th scope="row">{{index +1}}</th>
       <td>{{item.jobseekerName}}</td>
       <td>{{item.jobseekerEmail}}</td>
       <td><button class="btn btn-primary" v-on:click="getResume">Download</button></td>
       <td>{{item.applicationStatus}}</td>
-      <td><button class="btn btn-success" v-on:click="accepted(item.applicationId)">Accept</button>
-      <button class="btn btn-danger" v-on:click="rejected(item.applicationId)">Reject</button></td>
+
+      <td><button v-if="item.applicationStatus == 'sent'" class="btn btn-success" v-on:click="accepted(item.applicationId)" id="button" name="button">Accept</button>
+      <button v-else disabled class="btn btn-success" v-on:click="accepted(item.applicationId)" id="button" name="button">Accept</button>
+      <button v-if="item.applicationStatus == 'sent'"  class="btn btn-danger" v-on:click="rejected(item.applicationId)" id="button" >Reject</button>
+      <button v-else disabled class="btn btn-danger" v-on:click="rejected(item.applicationId)" id="button" >Reject</button></td>
+      
       
     </tr>
    
   </tbody>
 </table>
-<JlDatatable
+
+<!-- <JlDatatable
         :url='datatable.url'
         :columns="datatable.columns"  
 
@@ -82,7 +88,7 @@
         @paginated="onPaginate"
 
         @error="error"
-      />
+      /> -->
 
 
 
@@ -95,106 +101,109 @@
 
 <script>
 
-import JlDatatable from 'jl-datatable';
+
+// import "mosha-vue-toastify/dist/style.css";
+// import { createToast } from "mosha-vue-toastify";
+// import JlDatatable from 'jl-datatable';
 import axios from 'axios'
 export default {
   components: {
-    JlDatatable
+    // JlDatatable
   },
   props: ['id'],
   data() {
     return {
-      datatable: {
-        url: 'https://www.jhonpride.ybdweb.com/api/users',
-        requestOptions: {
-          method: 'GET',
-          headers: {
-            "Accept": "application/json",                
-          }
-        },
-        lengthMenu: [10, 15, 20, 50, 120],
-        pageLength: 10,
-        isSearch: true,
-        isLengthMenu: true,
-        isSort: true,
-        sortDt:{
-          sortBy: 'name',
-          sort: 'ASC'
-        },
-        columns: [       
-            {
-            title: 'ID',
-            key: 'id',
-            isSort: true,            
-            width: '5%'
-          },   
-          {
-            title: 'Name',
-            key: 'name',
-            isSort: true,
-            isSearch: true,
-            // width: '10%'
-          },
-          {
-            title: 'Last Name',
-            key: 'last_name',
-            isSort: false,
-            isSearch: false,
-            // width: '10%'
-          },
-          {
-            title: 'Email',
-            key: 'email',
-            isSort: false,
-            isSearch: true,
-            // width: '10%'
-          },
-          {
-            title: 'Address',
-            key: 'address',                        
-          },
-          {
-            title: 'Cell Phone',
-            key: 'cell_phone',  
-            width: '10%'                      
-          },
-          {
-            title: 'Actions',            
-            key: 'id',
-            isAction: true,
+      // datatable: {
+      //   url: 'https://www.jhonpride.ybdweb.com/api/users',
+      //   requestOptions: {
+      //     method: 'GET',
+      //     headers: {
+      //       "Accept": "application/json",                
+      //     }
+      //   },
+      //   lengthMenu: [10, 15, 20, 50, 120],
+      //   pageLength: 10,
+      //   isSearch: true,
+      //   isLengthMenu: true,
+      //   isSort: true,
+      //   sortDt:{
+      //     sortBy: 'name',
+      //     sort: 'ASC'
+      //   },
+      //   columns: [       
+      //       {
+      //       title: 'ID',
+      //       key: 'id',
+      //       isSort: true,            
+      //       width: '5%'
+      //     },   
+      //     {
+      //       title: 'Name',
+      //       key: 'name',
+      //       isSort: true,
+      //       isSearch: true,
+      //       // width: '10%'
+      //     },
+      //     {
+      //       title: 'Last Name',
+      //       key: 'last_name',
+      //       isSort: false,
+      //       isSearch: false,
+      //       // width: '10%'
+      //     },
+      //     {
+      //       title: 'Email',
+      //       key: 'email',
+      //       isSort: false,
+      //       isSearch: true,
+      //       // width: '10%'
+      //     },
+      //     {
+      //       title: 'Address',
+      //       key: 'address',                        
+      //     },
+      //     {
+      //       title: 'Cell Phone',
+      //       key: 'cell_phone',  
+      //       width: '10%'                      
+      //     },
+      //     {
+      //       title: 'Actions',            
+      //       key: 'id',
+      //       isAction: true,
            
-          }
-        ]
-      },
-      
+      //     }
+      //   ]
+      // },
+      index:1,
       job:[],
       list:[]
     }
   },
   
   methods: {
-    onCountPageChanged(countPage){
-      alert(countPage);
-    },
-    onSearch(search){
-      alert(search);
-    },
-    onGettingEntries(request){
-      console.log(request);
-    },
-    onEntriesFetched(fetched){
-      console.log(fetched.request);
-      console.log(fetched.data);
-    },
-    onColumnClicked(data){
-      console.log(data);
-    },
-    onPaginate(url){
-      console.log(url);
-    },
-    error(err){
-      console.log(err);
-    },
+    // onCountPageChanged(countPage){
+    //   alert(countPage);
+    // },
+    // onSearch(search){
+    //   alert(search);
+    // },
+    // onGettingEntries(request){
+    //   console.log(request);
+    // },
+    // onEntriesFetched(fetched){
+    //   console.log(fetched.request);
+    //   console.log(fetched.data);
+    // },
+    // onColumnClicked(data){
+    //   console.log(data);
+    // },
+    // onPaginate(url){
+    //   console.log(url);
+    // },
+    // error(err){
+    //   console.log(err);
+    // },
     
     async fetchData() {
       
@@ -207,25 +216,25 @@ export default {
         // console.log(this.jobDesc)
       })      
     },
-   getResume(){
-    console.log("download resume")
+    getResume(){
+    console.log("download ss")
     },
     async accepted(id){
      await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
-      location.reload(true)
-      
-      console.log(id)
+      location.reload(true) 
+      console.log(id) 
     },
-   async rejected(id){
+    async rejected(id){
       await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
       location.reload(true)
       console.log(id)
-    }
+    } 
+
   },
   mounted() {
     this.fetchData()
     
-    axios.get(`http://54.255.4.75:9091/api/v1/application/applicants/82`)
+    axios.get(`http://54.255.4.75:9091/api/v1/application/applicants/`+this.$route.params.id)
     .then((resp)=>{
       this.list=resp.data
     })
@@ -269,4 +278,5 @@ export default {
      padding-left: 70px;
    }
    
+  
 </style>

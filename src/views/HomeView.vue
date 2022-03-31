@@ -75,7 +75,7 @@
 
  <div class="main" style="background-color: #101419; padding:90px">
     <div class="d-flex justify-content-center" style="padding: 20px; color: white; text-align: center;"><h2>Our Satisfied Partner</h2></div> 
-    <marquee style="color:blue; font-weight:bold;">nichog gg pro aldous</marquee>
+   
     
   </div>
 
@@ -128,39 +128,37 @@
                 Jakarta Pusat</span>
             </div>
             <div class="col">
-            <ul class="navbar-nav mr-auto p-2"><h2>Company</h2>
+            <ul class="navbar-nav mr-auto p-2"><h2>Contact Us</h2>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">About Us</a>
+                <a class="nav-link active" aria-current="page" href="#">cariinkerja@gmail.com</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Blog</a>
+                <a class="nav-link" href="#">+62 855-9199-0622</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Career</a>
-              </li>
-          </ul>
-            </div>
-            <div class="col">
-            <ul class="navbar-nav mr-auto p-2"><h2>Features</h2>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Reviews</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Community</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Social Media</a>
+                <a class="nav-link" href="#">@cariikerja</a>
               </li>
           </ul>
             </div>
             <div class="col">
-            <ul class="navbar-nav mr-auto p-2"><h2>Help</h2>
+            <ul class="navbar-nav mr-auto p-2"><h2>Social media</h2>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">support@mail.com</a>
+                <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-facebook"></i> Cariinkerja</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">+6286736450982</a>
+                <a class="nav-link" href="#"><i class="bi bi-instagram"></i> Cariinkerjaa</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-linkedin"></i> @Cariinkerja</a>
+              </li>
+          </ul>
+            </div>
+            <div class="col">
+            <ul class="navbar-nav mr-auto p-2"><h2>Lets Join Us!!</h2>
+              <li class="nav-item">
+                <a href="#/login" class="btn btn-primary">Login</a>
+              </li>
+              
           </ul>
             </div>
         </div>
@@ -188,6 +186,12 @@ export default {
     return {
       userInfo: null
     }
+  },
+  methods:{
+    // goTop(){
+    //    document.body.scrollTop = 0;
+    //    document.documentElement.scrollTop = 0;
+    // }
   },
   mounted(){
     console.log("saduk")
@@ -255,5 +259,18 @@ export default {
 h1{
   font-weight: bold;
 }
- 
+.text-muted{
+  text-align: center;
+}
+i{
+  padding-right: 5px;
+}
+.btn-primary{
+  width: 100%;
+  padding: 20px;
+  font-size: 24px;
+}
+.btn-primary:hover{
+  background: rgb(0, 0, 177);
+}
 </style>

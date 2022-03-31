@@ -83,9 +83,9 @@ export default {
        })
       },
       // func edit profile
-      async updateProfile(){   
+      async updateProfile(id){   
       try {
-        await axios.put(`http://54.255.4.75:9091/api/v1/auth/recruiter/89?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterStatus=${this.profile.recruiterStatus}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterBenefit=${this.profile.recruiterBenefit}`)
+        await axios.put(`http://54.255.4.75:9091/api/v1/auth/recruiter/${id}?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterStatus=${this.profile.recruiterStatus}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterBenefit=${this.profile.recruiterBenefit}`)
         this.$router.push('/about')
         createToast("Profile updated", {type: 'success'});
         
@@ -104,7 +104,7 @@ export default {
 <style scoped>
 .bg-color{
   background-color: #f3f3f3;
-  height: 100vh;
+  height: 117vh;
   
 }
   h1 {
