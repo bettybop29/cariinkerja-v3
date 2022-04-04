@@ -50,7 +50,9 @@
       <td>{{item.jobseekerName}}</td>
       <td>{{item.jobseekerEmail}}</td>
       <td><button class="btn btn-primary" v-on:click="getResume">Download</button></td>
-      <td>{{item.applicationStatus}}</td>
+
+      <td><p v-if="item.applicationStatus != 'sent'">{{item.applicationStatus}}</p>
+      <p v-else>review</p></td>
 
       <td><button v-if="item.applicationStatus == 'sent'" class="btn btn-success" v-on:click="accepted(item.applicationId)" id="button" name="button">Accept</button>
       <button v-else disabled class="btn btn-success" v-on:click="accepted(item.applicationId)" id="button" name="button">Accept</button>
@@ -217,7 +219,6 @@ export default {
       })      
     },
     getResume(){
-    console.log("download ss")
     },
     async accepted(id){
      await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)

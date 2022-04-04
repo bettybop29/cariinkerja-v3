@@ -28,6 +28,7 @@
                     v-model="recruiterPassword"
                     type="password"
                     class="form-control"
+                    placeholder="Password must contain at least one number, one capital letter and one special character"
                     required
                   />
                 </div>

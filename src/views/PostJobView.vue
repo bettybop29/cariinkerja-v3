@@ -2,12 +2,14 @@
 <sidebar-component></sidebar-component>
 <div class="main">
    <button
+   
       type="button"
       class="btn btn-success"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
       data-bs-whatever="@getbootstrap"
     >
+    <i class="bi bi-plus-circle"></i>
       Add New Job
     </button>
 
@@ -129,10 +131,8 @@ export default {
     async addjob() {
       try {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+        
         await axios.post(`http://54.255.4.75:9091/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc}&jobRequirement=${this.jobRequirement}`);
-        // console.warn(result)
-        // // localStorage.setItem("user-info", JSON.stringify(result.data));
-        // console.log(result)
         createToast("Job Successfully Created", { type: "success" });
         location.reload(true)
         
@@ -161,7 +161,9 @@ export default {
     axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
     .then((resp)=>{
       this.list=resp.data
+      localStorage.setItem("job-info", JSON.stringify(resp.data));
     })
+    
   }
 
 }; 

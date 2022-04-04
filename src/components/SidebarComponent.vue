@@ -3,7 +3,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="../assets/logo.svg" alt="">
+                <img src="http://54.255.4.75:9091/resources/meta.png" alt="">
                 <span>Cariinkerja</span>
             </div>
 

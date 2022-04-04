@@ -5,11 +5,12 @@
 
 <div class="container">
   <p class="head-title">Company Profile</p>
+  <img src="http://54.255.4.75:9091/resources/meta.png" alt="">
   <div class="row">
     <div class="col">
       
       <div class="card">
-        <img src="../assets/saly.png" alt="">
+        <img src="" alt="">
         <div class="card-body">
           <h5 class="card-title">{{profile.recruiterCompany}}</h5>
         
@@ -38,11 +39,12 @@
         <div class="card-body">
           <h5 class="card-title">Contact</h5>
           <hr>
-          <p class="card-text"><i class="bi bi-envelope"></i> {{profile.recruiterEmail}}</p>
-          <p class="card-text"><i class="bi bi-facebook"></i> {{profile.recruiterFb}}</p>
-          <p class="card-text"><i class="bi bi-instagram"></i> {{profile.recruiterIg}}</p>
-          <p class="card-text"><i class="bi bi-linkedin"></i> {{profile.recruiterLinkedin}}</p>
-          <p class="card-text"><i class="bi bi-telephone"></i> {{profile.recruiterPhone}}</p>
+          <a class="card-text"><i class="bi bi-envelope"></i> {{profile.recruiterEmail}}</a>
+          <a class="card-text"><i class="bi bi-facebook"></i> {{profile.recruiterFb}}</a>
+          <a class="card-text"><i class="bi bi-instagram"></i> {{profile.recruiterIg}}</a>
+          <a class="card-text"><i class="bi bi-linkedin"></i> {{profile.recruiterLinkedin}}</a>
+          <a class="card-text"><i class="bi bi-telephone"></i> {{profile.recruiterPhone}}</a>
+           <a class="card-text"><i class="bi bi-telephone"></i> {{profile.recruiterWebsite}}</a>
         </div>
       </div>
     </div>
@@ -118,5 +120,20 @@ export default {
   padding: 0;
   margin: 0;
   font-weight: bold;
+}
+a{
+  display: flex;
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  cursor: pointer;
+  
+}
+i{
+  margin-right: 10px;
+}
+.btn{
+  text-align: center;
 }
 </style>
