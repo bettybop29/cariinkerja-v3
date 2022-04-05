@@ -82,7 +82,7 @@
           <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
           <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
           <button class="btn btn-danger" v-on:click="deleteJob(item.jobId)">delete</button>
-
+          
           <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
             <div class="modal-dialog modal-xl">
               <div class="modal-content">

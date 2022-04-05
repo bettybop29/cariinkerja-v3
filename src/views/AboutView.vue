@@ -45,6 +45,7 @@
           <a class="card-text"><i class="bi bi-linkedin"></i> {{profile.recruiterLinkedin}}</a>
           <a class="card-text"><i class="bi bi-telephone"></i> {{profile.recruiterPhone}}</a>
            <a class="card-text"><i class="bi bi-telephone"></i> {{profile.recruiterWebsite}}</a>
+           
         </div>
       </div>
     </div>

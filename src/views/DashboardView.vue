@@ -9,10 +9,10 @@
         <div class="card">
             <div class="card-title">
               
-              <h2>Hi, {{list.jobCompany}} !!</h2>
+              <h2>Hi, {{recruiters.recruiterCompany}} !!</h2>
               <div class="card-text">
                 <p>Welcome back</p>
-                <p>You have 17 new resumes</p>
+                
                 <button class="btn">See all</button>
               </div>
             </div>
@@ -21,18 +21,50 @@
           <div class="card-approve">
             <div class="card-title">
                 <h4>Summary of Approve</h4>
+                <h1>{{accept.data}}</h1>
              </div>  
               </div>
                 <div class="col card-reject">
               <h4>Summary of Reject</h4>
+              <h1>{{reject.data}}</h1>
+              
           </div>
         </div>
 
-<img src="../assets/Saly.png" alt="">
+<!-- <img src="../assets/Saly.png" alt=""> -->
+
   </div>
   
 </div>
-
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
   
  
 </template>
@@ -40,8 +72,6 @@
 <script>
 // import navbar from '../components/NavComponent.vue';
 import axios from "axios";
-import { createToast } from "mosha-vue-toastify";
-// import JobComponent from "../components/JobComponent.vue";
 import 'boxicons';
 import sidebarcomponent from '../components/SidebarComponent.vue'
 
@@ -60,57 +90,40 @@ export default {
   
   data() {
     return {
-      jobName:"",
-      jobSalary:"",
-      jobPosition:"",
-      jobRequirement:"",
-      jobDesc:"",
-      jobAddress:"",
-      list:[],
-      
-      
+      recruiters:[],
+      accept:"",
+      reject: ""
     };
   },
   methods : {
-    // func tambah job
-    async addjob() {
-      try {
-        const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-        await axios.post(
-          `http://54.255.4.75:9091/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc} products to vendor&jobRequirement=${this.jobRequirement}`
-        );
-        // localStorage.setItem("user-info", JSON.stringify(result.data));
-        
-        createToast("Job Successfully Created", { type: "success" });
-        location.reload(true)
-        
-      } catch (error) {
-        createToast("please, fill blank form", { type: "danger" });
-        console.log(error);
-      }
-    }   
-  },
-  
-  // func tampilin data
-  //monted render
-  mounted(){
-    //render localstorage
-    const nameCompany = JSON.parse(localStorage.getItem("user-info"))
-      this.nameCompany = nameCompany.data
-      console.log(nameCompany)
-
-    const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-    axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
-    .then((resp)=>{
-      this.list=resp.data
-
-      console.warn(recruiterId)
-      
+   async recruiter(){
+     const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+    await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
+    .then((data)=>{
+      this.recruiters=data.data
       
     })
-    
+   },
+   async countAcc(){
+     const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-accepted/${recruiterId}`)
+     .then((data)=>{
+      this.accept=data.data
+      })
+    },
+    async countRejc(){
+     const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-rejected/${recruiterId}`)
+     .then((data)=>{
+      this.reject=data.data
+      })
+    }
   },
-  
+  mounted(){
+    this.recruiter(),
+    this.countAcc(),
+    this.countRejc()
+  }
   
   
   

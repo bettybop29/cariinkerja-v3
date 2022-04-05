@@ -8,6 +8,7 @@ import SignupView from '../views/SignupView.vue'
 import JobDetail from '../components/JobDetail.vue'
 import UpdateProfile from '../components/UpdateProfile.vue'
 import CreditView from '../views/CreditView'
+import AplicantDetail from '../components/AplicantDetail.vue'
 
 const routes = [
   {
@@ -44,6 +45,11 @@ const routes = [
     path: '/jobdetail/:id',
     name: 'jobdetail',
     component: JobDetail, 
+  },
+  {
+    path: '/aplicantdetail/:id',
+    name: 'aplicantdetail',
+    component: AplicantDetail, 
   },
   {
     path: '/updateprofile/:id',

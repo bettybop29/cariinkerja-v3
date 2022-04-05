@@ -56,10 +56,10 @@
         <label for="validationDefault03" class="form-label">Website</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite"></textarea>
       </div>
-      <!-- <div class="col-md-10 mb-3">
+      <div class="col-md-10 mb-3">
         <input type="file" class="form-control" aria-label="file example" required>
         <div class="invalid-feedback">Example invalid form file feedback</div>
-      </div> -->
+      </div>
  <button class="btn btn-success" type="submit">Edit</button>
     </form>
   </div>

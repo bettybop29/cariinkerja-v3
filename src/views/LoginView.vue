@@ -14,7 +14,7 @@
         </div>
         <div class="col-md">
           <div class="formlogin">
-            <div class="mb-3">
+            <div class="form-floating mb-3">
               <form action="" @submit.prevent="login">
                 <label for="validationDefault01" class="form-label"
                   >Email</label
@@ -23,12 +23,12 @@
                   type="email"
                   v-model="email"
                   class="form-control"
-                  id="validationDefaultUsername"
+                  id="floatingInput"
                   aria-describedby="emailHelp"
                   placeholder="email"
                   required
                 />
-                <label for="validationDefault01" class="form-label"
+                <label for="floatingInput" class="form-label"
                   >Password</label
                 >
                 <input

@@ -49,15 +49,18 @@
       <th scope="row">{{index +1}}</th>
       <td>{{item.jobseekerName}}</td>
       <td>{{item.jobseekerEmail}}</td>
-      <td><button class="btn btn-primary" v-on:click="getResume">Download</button></td>
-
+      <td>{{item.jobseekerResume}}</td>
+      <td><button class="btn btn-primary" v-on:click="getResume(item.jobseekerResume)">Download</button></td>
+      
       <td><p v-if="item.applicationStatus != 'sent'">{{item.applicationStatus}}</p>
       <p v-else>review</p></td>
 
       <td><button v-if="item.applicationStatus == 'sent'" class="btn btn-success" v-on:click="accepted(item.applicationId)" id="button" name="button">Accept</button>
       <button v-else disabled class="btn btn-success" v-on:click="accepted(item.applicationId)" id="button" name="button">Accept</button>
       <button v-if="item.applicationStatus == 'sent'"  class="btn btn-danger" v-on:click="rejected(item.applicationId)" id="button" >Reject</button>
-      <button v-else disabled class="btn btn-danger" v-on:click="rejected(item.applicationId)" id="button" >Reject</button></td>
+      <button v-else disabled class="btn btn-danger" v-on:click="rejected(item.applicationId)" id="button" >Reject</button>
+      <router-link class="btn btn-primary" :to="{name:'aplicantdetail', params:{id:item.jobseekerId}}">tes</router-link>
+      </td>
       
       
     </tr>
@@ -218,7 +221,20 @@ export default {
         // console.log(this.jobDesc)
       })      
     },
-    getResume(){
+    async getResume(jobseekerResume){
+      await axios({
+        url:`http://54.255.4.75:9091/resources/${jobseekerResume}`,
+        methods:'GET',
+        responseType:'blob',
+      }).then((res) =>{
+        var FILE = window.URL.createObjectURL(new Blob([res.data]));
+        var docUrl = document.createElement('x');
+        docUrl.href = FILE;
+        docUrl.setAttribute('download','resume.pdf');
+        document.body.appendChild(docUrl);
+        docUrl.click();
+        
+      })
     },
     async accepted(id){
      await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
