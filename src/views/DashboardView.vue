@@ -11,7 +11,10 @@
               
               <h2>Hi, {{recruiters.recruiterCompany}} !!</h2>
               <div class="card-text">
-                <p>Welcome back</p>
+                <p>Welcome back you have
+                  {{total.data}}
+                  <br>new resumes
+                </p>
                 
                 <button class="btn">See all</button>
               </div>
@@ -21,12 +24,12 @@
           <div class="card-approve">
             <div class="card-title">
                 <h4>Summary of Approve</h4>
-                <h1>{{accept.data}}</h1>
+                <h1>{{accept.data}}<span> / {{total.data}}</span></h1>
              </div>  
               </div>
                 <div class="col card-reject">
-              <h4>Summary of Reject</h4>
-              <h1>{{reject.data}}</h1>
+                <h4>Summary of Reject</h4>
+                <h1>{{reject.data}}<span> / {{total.data}}</span></h1>
               
           </div>
         </div>
@@ -36,34 +39,27 @@
   </div>
   
 </div>
+
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">No.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Status</th>
+      <th scope="col">Jobname</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+    <tr v-for="(resume, index) in list" :key="resume.id">
+      <th scope="row">{{index + 1}}</th>
+      <td>{{resume.jobseekerName}}</td>
+      <td>{{resume.jobseekerEmail}}</td>
+      <td><p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
+      <p v-else>review</p></td>
+      <td>{{resume.jobName}}</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
+  </tbody>  
 </table>
   
  
@@ -92,10 +88,26 @@ export default {
     return {
       recruiters:[],
       accept:"",
-      reject: ""
+      reject: "",
+      list:[],
+      total:""
     };
   },
   methods : {
+  async totalAplicant(){
+    const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+    await axios.get(`http://54.255.4.75:9091/api/v1/application/applications/${recruiterId}`)
+    .then((data)=>{
+      this.total=data.data
+    })
+  },
+  async newResume(){
+    const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+    await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
+    .then((resp)=>{
+      this.list = resp.data.data
+    })
+  },
    async recruiter(){
      const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
     await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
@@ -122,7 +134,9 @@ export default {
   mounted(){
     this.recruiter(),
     this.countAcc(),
-    this.countRejc()
+    this.countRejc(),
+    this.newResume(),
+    this.totalAplicant()
   }
   
   
@@ -174,7 +188,7 @@ img{
   
 }
 .card-reject{
-  padding: 10px;
+  padding: 20px;
   background-image: url("../assets/reject.png");
   border-radius: 20px;
   height: 133px;
@@ -183,6 +197,9 @@ img{
 }
 .card-title{
   padding: 10px;
+}
+span{
+  font-size: 26px;
 }
 .card-monitor {
   margin-left: 10px;
@@ -200,7 +217,16 @@ img{
   background: rgb(235, 153, 1);
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
-
+.table{
+  margin-left: 310px;
+  margin-top: 20px;
+  width: 52.5%;
+  background: #F3F3F3;
+  
+}
+tbody{
+  padding: 20px;
+}
 
 
 </style>

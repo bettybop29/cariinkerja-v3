@@ -19,6 +19,7 @@ app.use(VueAxios,axios);
 app.use(moshaToast);
 app.use(JlDatatable);
 
+
 app.mount('#app');
 
 

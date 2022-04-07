@@ -1,8 +1,12 @@
 <template>   
    <!-- <h1>{{jobName}}</h1>
             <h1>{{jobSalary}}</h1>
-            <h1>{{jobPosition}}</h1> -->  
-   <div class="container mt-5">           
+            <h1>{{jobPosition}}</h1> -->
+      <div class="back">  
+        <router-link class="link-back" to="/post  job"><i class="bi bi-arrow-left-circle-fill"></i>Post job</router-link>
+      </div>       
+   <div class="container mt-5">     
+           
         <div class="card mb-3" style="max-width: 640px;">
           <div class="row g-0">
             <div class="col-md-4">
@@ -59,7 +63,7 @@
       <button v-else disabled class="btn btn-success" v-on:click="accepted(item.applicationId)" id="button" name="button">Accept</button>
       <button v-if="item.applicationStatus == 'sent'"  class="btn btn-danger" v-on:click="rejected(item.applicationId)" id="button" >Reject</button>
       <button v-else disabled class="btn btn-danger" v-on:click="rejected(item.applicationId)" id="button" >Reject</button>
-      <router-link class="btn btn-primary" :to="{name:'aplicantdetail', params:{id:item.jobseekerId}}">tes</router-link>
+      <router-link class="btn btn-primary" :to="{name:'aplicantdetail', params:{id:item.jobseekerId}}">view</router-link>
       </td>
       
       
@@ -294,6 +298,16 @@ export default {
    .action{
      padding-left: 70px;
    }
-   
+   .back{
+    padding: 20px;
+    margin: 0;
+   }
+   .link-back{
+     text-decoration: none;
+     color: rgb(33, 33, 33);
+   }
+   .link-back:hover{
+     text-decoration: underline;
+   }
   
 </style>
