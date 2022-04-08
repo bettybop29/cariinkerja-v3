@@ -23,7 +23,11 @@
                 </li>
             </ul>
 
+            <li class="image">
+                <a href="https://play.google.com/store/apps/details?id=com.whatsapp"></a>
+            </li>
             <ul class="list-unstyled CTAs">
+               
                
                 <li>
                    <button v-on:click="logout" class="btn btn-danger mt-5"><i class="bi bi-arrow-left-circle-fill"></i>Logout</button>
@@ -89,6 +93,12 @@ a:focus {
     height: 1px;
     border-bottom: 1px dashed #ddd;
     margin: 40px 0;
+}
+.image{
+    background: url("../assets/download.svg");
+    width: 95%;
+    height: 35%;
+    
 }
 
 /* ---------------------------------------------------
@@ -182,7 +192,7 @@ ul ul a {
 
 ul.CTAs {
     padding: 10px;
-    margin-top: 320px;
+    
 }
 
 .btn{

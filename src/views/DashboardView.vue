@@ -5,19 +5,22 @@
 <div class="main">
 
   <div class="container">
-    
+    <div class="logo-main">
+
+    </div>
         <div class="card">
             <div class="card-title">
               
               <h2>Hi, {{recruiters.recruiterCompany}} !!</h2>
               <div class="card-text">
-                <p>Welcome back you have
-                  {{total.data}}
-                  <br>new resumes
-                </p>
+                <h5>Welcome back you have<br>
+                  <span class="decor">{{total.data}}</span>
+                  new resume
+                </h5>
                 
-                <button class="btn">See all</button>
+                
               </div>
+              <button class="btn">See all</button>
             </div>
         </div>
         <div class="card-monitor">
@@ -33,12 +36,9 @@
               
           </div>
         </div>
+         
+    </div> 
 
-<!-- <img src="../assets/Saly.png" alt=""> -->
-
-  </div>
-  
-</div>
 
 <table class="table">
   <thead>
@@ -48,6 +48,7 @@
       <th scope="col">Contact</th>
       <th scope="col">Status</th>
       <th scope="col">Jobname</th>
+      <th scope="col">action</th>
     </tr>
   </thead>
   <tbody>
@@ -58,11 +59,14 @@
       <td><p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
       <p v-else>review</p></td>
       <td>{{resume.jobName}}</td>
+      <td><button class="btn-primary" onclick="w3_open()">view</button></td>
+      
     </tr>
   </tbody>  
 </table>
-  
- 
+
+</div>
+
 </template>
 
 <script>
@@ -75,7 +79,9 @@ import sidebarcomponent from '../components/SidebarComponent.vue'
 
 
 
+
 export default {
+  
   
   name: "DashboardView",
   components: {
@@ -83,9 +89,10 @@ export default {
     // JobComponent : JobComponent,
     SidebarComponent : sidebarcomponent
   },
-  
-  data() {
+  data(){
+    
     return {
+      path: 'http://54.255.4.75:9091',
       recruiters:[],
       accept:"",
       reject: "",
@@ -94,6 +101,9 @@ export default {
     };
   },
   methods : {
+   async w3_open(){
+      await axios.get(``)
+    },
   async totalAplicant(){
     const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
     await axios.get(`http://54.255.4.75:9091/api/v1/application/applications/${recruiterId}`)
@@ -137,15 +147,24 @@ export default {
     this.countRejc(),
     this.newResume(),
     this.totalAplicant()
-  }
-  
-  
-  
-  
+  },
 }; 
 </script>  
 
 <style scoped>
+.btn-primary{
+  border-radius: 10px;
+  border-style: none;
+  padding: 5px;
+  width: 100%;
+}
+.btn-primary:hover{
+  background: blue;
+  box-shadow: 6px 10px 15px -3px rgba(0,0,0,0.1);
+}
+.logo-main{
+  background: url("../assets/approve.png");
+}
 .main {
   background-color: #F3F3F3;
 }
@@ -153,7 +172,8 @@ export default {
   margin-left: 19%;
   
   text-align: left;
-  margin-top: 30px;
+  /* margin-top: 30px; */
+  padding-top: 30px;
   width: auto;
   display: flex;
 }
@@ -166,8 +186,9 @@ export default {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 .card-text {
-  padding: 0;
+  padding: 10px;
   margin: 0;
+  text-align: left;
 }
 img{
   position: fixed;
@@ -179,12 +200,22 @@ img{
   
   
 }
+h5{
+  padding-top: 5px;
+  text-align: left;
+  margin-left: 160px;
+}
+.decor{
+  font-size: 17px;
+  color: orange;
+}
 .card-approve {
  background-image: url("../assets/approve.png");
   border-radius: 20px;
   height: 133px;
   width: 373px;
   display: flex;
+  padding: 10px;
   
 }
 .card-reject{
@@ -194,6 +225,7 @@ img{
   height: 133px;
   width: 373px;
   margin-top: 9px;
+  box-shadow: 6px 10px 15px -3px rgba(0,0,0,0.1);
 }
 .card-title{
   padding: 10px;
@@ -221,11 +253,8 @@ span{
   margin-left: 310px;
   margin-top: 20px;
   width: 52.5%;
-  background: #F3F3F3;
+  background: white;
   
-}
-tbody{
-  padding: 20px;
 }
 
 
