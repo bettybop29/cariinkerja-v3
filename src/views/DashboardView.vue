@@ -26,12 +26,12 @@
         <div class="card-monitor">
           <div class="card-approve">
             <div class="card-title">
-                <h4>Summary of Approve</h4>
+                <h4>Summary of approve</h4>
                 <h1>{{accept.data}}<span> / {{total.data}}</span></h1>
              </div>  
               </div>
                 <div class="col card-reject">
-                <h4>Summary of Reject</h4>
+                <h4>Summary of reject</h4>
                 <h1>{{reject.data}}<span> / {{total.data}}</span></h1>
               
           </div>

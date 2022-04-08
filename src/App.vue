@@ -23,11 +23,12 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+  background: #f3f3f3;
   color: #292929;
   padding: 0;
   margin: 0;
- 
+  height: 100vh;
+  
   
   
 }

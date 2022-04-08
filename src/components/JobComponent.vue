@@ -1,137 +1,125 @@
 <template>
-<div class="container">
-<div class="row">
+  <div class="card">
+    <img src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="...">
 
-  <div class="card" style="width: 18rem;">
-    
-       <img src="http://54.255.4.75:9091/resources/meta.png"   class="card-img-top dark" alt="...">
-       
-        <div class="dropdown">
-          <a class="bi bi-three-dots-vertical" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
+    <div class="dropdown">
+      <a class="bi bi-three-dots-vertical" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+        aria-expanded="false"></a>
 
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li></li>
-            <button v-if="item.jobStatus !='hidden'" class="dropdown-item" v-on:click="active(item.jobId)">Hidden</button>
-            <button v-else disabled class="dropdown-item">Hidden</button>
-            <button v-if="item.jobStatus !='visible'" class="dropdown-item" v-on:click="visible(item.jobId)">Visible</button>
-            <button v-else disabled class="dropdown-item">Visible</button>
-          </ul>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li></li>
+        <button v-if="item.jobStatus !='hidden'" class="dropdown-item" v-on:click="active(item.jobId)">Hidden</button>
+        <button v-else disabled class="dropdown-item">Hidden</button>
+        <button v-if="item.jobStatus !='visible'" class="dropdown-item"
+          v-on:click="visible(item.jobId)">Visible</button>
+        <button v-else disabled class="dropdown-item">Visible</button>
+      </ul>
+    </div>
+
+    <div class="card-body dark" v-if="item.jobStatus !='visible'">
+      <h5 class="card-title">{{item.jobName}}</h5>
+      <span class="badge bg-primary">{{item.jobStatus}}</span>
+      <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
+      <p class="card-text"><i class="bi-cash"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
+      <p class="card-text"><i class="bi-geo-alt"></i> {{ item.jobAddress }}</p>
+      <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
+      <router-link class="btn btn-secondary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
+      <button class="btn btn-secondary" v-on:click="deleteJob(item.jobId)">Delete</button>
+
+      <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Job Name:</label>
+                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">job Position: </label>
+                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">job Address: </label>
+                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">job Requirement: </label>
+                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
+                </div>
+
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">job Description:</label>
+                  <textarea class="form-control" id="message-text" v-model="edit.jobDesc" />
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" v-on:click="updateJobData(edit.jobId)">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        
-        <div class="card-body dark" v-if="item.jobStatus !='visible'">   
-         <h5 class="card-title">{{item.jobName}}</h5>
-          <p class="card-text span label">{{item.jobStatus}}</p>
-          <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
-          <p class="card-text"><i class="bi-cash"></i> IDR {{ item.jobSalary }}</p>
-          <p class="card-text"><i class="bi-geo-alt"></i> {{ item.jobAddress }}</p>
-          <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
-          <router-link class="btn btn-secondary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
-          <button class="btn btn-secondary" v-on:click="deleteJob(item.jobId)">delete</button>
-
-          <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-     <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Job Name:</label>
-            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">job Position: </label>
-            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">job Address: </label>
-            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">job Requirement: </label>
-            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
-          </div>
-          
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">job Description:</label>
-            <textarea class="form-control" id="message-text" v-model="edit.jobDesc"/>
-          </div>
-          <div class="modal-footer">
-        
-        <button class="btn btn-secondary" v-on:click="updateJobData(edit.jobId)">Update</button>
       </div>
-        </form>
-     </div>
-     
-     
+      <button class="btn btn-secondary" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
     </div>
-  </div>
-</div>
-<button class="btn btn-secondary" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
-          
-      
-    </div>
+    
     <div class="card-body" v-else>   
-         <h5 class="card-title">{{item.jobName}}</h5>
-          <p class="card-text span">{{item.jobStatus}}</p>
-          <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
-          <p class="card-text"><i class="bi-cash"></i> IDR {{ item.jobSalary }}</p>
-          <p class="card-text"><i class="bi-geo-alt"></i> {{ item.jobAddress }}</p>
+      <h5 class="card-title">{{item.jobName}}</h5>
+      <span class="badge bg-primary">{{item.jobStatus}}</span>
+      <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
+      <p class="card-text"><i class="bi-cash"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
+      <p class="card-text"><i class="bi-geo-alt"></i> {{ item.jobAddress }}</p>
           <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
-          <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
-          <button class="btn btn-danger" v-on:click="deleteJob(item.jobId)">delete</button>
+      <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
+      <button class="btn btn-danger" v-on:click="deleteJob(item.jobId)">Delete</button>
           
-          <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-     <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Job Name:</label>
-            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
+      <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Job Name:</label>
+                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">job Position: </label>
+                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">job Address: </label>
+                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">job Requirement: </label>
+                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">job Description:</label>
+                    <textarea class="form-control" id="message-text" v-model="edit.jobDesc"/>
+                  </div>
+                  <div class="modal-footer">
+                
+                <button class="btn btn-primary" v-on:click="updateJobData(edit.jobId)">Update</button>
+              </div>
+                </form>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">job Position: </label>
-            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">job Address: </label>
-            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">job Requirement: </label>
-            <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
-          </div>
-          
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">job Description:</label>
-            <textarea class="form-control" id="message-text" v-model="edit.jobDesc"/>
-          </div>
-          <div class="modal-footer">
-        
-        <button class="btn btn-primary" v-on:click="updateJobData(edit.jobId)">Update</button>
+        </div>
       </div>
-        </form>
-     </div>
-     
-     
-    </div>
-  </div>
-</div>
-<button class="btn btn-success" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
-          
-      
+      <button class="btn btn-success" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
     </div>
   </div>
   <!-- </router-link> -->
-</div>
-</div>
 </template>
 <script>
 import axios from 'axios'
@@ -148,6 +136,10 @@ export default {
       }
     },
     methods:{
+       formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
        async active(id){
         try{
         await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=hidden`)
@@ -220,6 +212,9 @@ export default {
   .card img{
     width: 50%;
     height: 50%;
+      display: block;
+  margin-left: auto;
+  margin-right: auto;
   }
   .card-title {
     font-weight: bold;
