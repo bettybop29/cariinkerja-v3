@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="...">
+    <img :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark" alt="...">
 
     <div class="dropdown">
       <a class="bi bi-three-dots-vertical" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"

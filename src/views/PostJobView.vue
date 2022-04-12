@@ -106,7 +106,6 @@
       async addjob() {
         try {
           const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-
           await axios.post(
             `http://54.255.4.75:9091/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc}&jobRequirement=${this.jobRequirement}`
             );
@@ -139,8 +138,8 @@
     // func tampilin data
     //monted render
     mounted() {
-      const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-      axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
+      // const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+      axios.get(`http://54.255.4.75:9091/api/v1/jobs/89`)
         .then((resp) => {
           this.list = resp.data
           localStorage.setItem("job-info", JSON.stringify(resp.data));

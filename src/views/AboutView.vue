@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-md-6">
                   <img class="img-thumbnail position-absolute top-0 end-0 m-3"
-                    src="http://54.255.4.75:9091/resources/meta.png" alt="" style="width: 20%">
+                    :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 20%">
                 </div>
               </div>
 
@@ -48,7 +48,7 @@
               <a class="card-text"><i class="bi bi-instagram"></i> {{profile.recruiterIg}}</a>
               <a class="card-text"><i class="bi bi-linkedin"></i> {{profile.recruiterLinkedin}}</a>
               <a class="card-text"><i class="bi bi-telephone"></i> {{profile.recruiterPhone}}</a>
-              <a class="card-text"><i class="bi bi-telephone"></i> {{profile.recruiterWebsite}}</a>
+              <a class="card-text"><i class="bi bi-globe2"></i> {{profile.recruiterWebsite}}</a>
 
             </div>
           </div>
@@ -74,8 +74,8 @@
     },
     methods: {
       fetchData() {
-        const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-        axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
+        // const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+        axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/89`)
 
           .then((profile) => {
             this.profile = profile.data

@@ -146,14 +146,16 @@ export default {
       try {
         const result = await axios.post(
           `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`
+          // `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=fauziahaulia21@gmail.com&recruiterPassword=Superadmin1.`
         );
-        localStorage.setItem("user-info", JSON.stringify(result.data));
+         console.log("test")
+        localStorage.setItem("user-info", JSON.stringify(result.data.data.registerDTO));
         this.$router.push("/dashboard");
-        createToast(`Welcome back!! ${result.data.data.recruiterCompany}`, { type: "success" });
-        
+        createToast(`Welcome back!! ${result.data.data.registerDTO.recruiterCompany}`, { type: "success" });
+       
         
       } catch (error) {
-        createToast("Wrong Password!", { type: "danger" });
+        createToast("Wrong Email or Password!", { type: "danger" });
       }
     },
   },

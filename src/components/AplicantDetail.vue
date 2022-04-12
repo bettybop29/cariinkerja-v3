@@ -3,6 +3,7 @@
     <div class="container-fluid">
         <h2>Applicant profile for {{aplicant.jobseekerName}}</h2>
     </div>
+    <div class="container">
     <div class="content d-flex justify-content-center mt-5">
         <div class="p-2 bd-highlight flex-grow-1">
             <h1>{{aplicant.jobseekerName}}</h1>
@@ -10,7 +11,7 @@
 
         </div>
         <div class="p-2 bd-highlight left">
-            <h1>fsoto</h1>
+            <img class="img-thumbnail" :src="'http://54.255.4.75:9091/resources/'+aplicant.jobseekerImage" alt="">
         </div>
 
     </div>
@@ -47,7 +48,10 @@
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <strong>{{aplicant.jobseekerEducation}}</strong>get resume
+                            <strong>{{aplicant.jobseekerEducation}}</strong>
+                        </div>
+                        <div class="accordion-body">
+                        <button class="btn btn-primary">Download Resume</button>
                         </div>
                     </div>
                 </div>
@@ -55,7 +59,7 @@
             </div>
         </div>
     </div>
-
+</div>
 </template>
 
 <script>
@@ -89,7 +93,7 @@
 
 <style scoped>
     .container-fluid {
-        margin: 0;
+        margin-left: 12%;
         background: rgb(11, 0, 227);
         padding: 20px;
         color: white;

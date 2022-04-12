@@ -1,7 +1,7 @@
 <template>
 <!-- <nav-component></nav-component> -->
 <sidebar-component></sidebar-component>
-
+<sidebar-right></sidebar-right>
 <div class="main">
 
   <div class="container">
@@ -14,7 +14,7 @@
               <h2>Hi, {{recruiters.recruiterCompany}} !!</h2>
               <div class="card-text">
                 <h5>Welcome back you have<br>
-                  <span class="decor">{{total.data}}</span>
+                  <span class="decor">{{edit.data}}</span>
                   new resume
                 </h5>
                 
@@ -41,25 +41,29 @@
 
 
 <table class="table">
+  
   <thead>
+    <h3>Resume</h3>
     <tr>
       <th scope="col">No.</th>
       <th scope="col">Name</th>
       <th scope="col">Contact</th>
       <th scope="col">Status</th>
-      <th scope="col">Jobname</th>
+      <th scope="col">Job Name</th>
+      <th scope="col">Position</th>
       <th scope="col">action</th>
     </tr>
   </thead>
   <tbody>
     <tr v-for="(resume, index) in list" :key="resume.id">
-      <th scope="row">{{index + 1}}</th>
+      <td scope="row">{{index + 1}}</td>
       <td>{{resume.jobseekerName}}</td>
       <td>{{resume.jobseekerEmail}}</td>
       <td><p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
       <p v-else>review</p></td>
       <td>{{resume.jobName}}</td>
-      <td><button class="btn-primary" onclick="w3_open()">view</button></td>
+      <td><p class="position">{{resume.jobPosition}}</p></td>
+      <td><button class="btn-primary" onclick="w3_open">view</button></td>
       
     </tr>
   </tbody>  
@@ -74,7 +78,7 @@
 import axios from "axios";
 import 'boxicons';
 import sidebarcomponent from '../components/SidebarComponent.vue'
-
+import SidebarRight from '../components/SidebarRight.vue'
 
 
 
@@ -87,6 +91,7 @@ export default {
   components: {
     // NavComponent : navbar,
     // JobComponent : JobComponent,
+    SidebarRight : SidebarRight,
     SidebarComponent : sidebarcomponent
   },
   data(){
@@ -97,45 +102,52 @@ export default {
       accept:"",
       reject: "",
       list:[],
-      total:""
+      total:"",
+      edit:""
     };
   },
   methods : {
+  async totalnewAplicant(){
+    await axios.get(`http://54.255.4.75:9091/api/v1/application/new-resume/89`)
+    .then((data)=>{
+      this.edit=data.data
+    })
+  },
    async w3_open(){
       await axios.get(``)
     },
   async totalAplicant(){
-    const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-    await axios.get(`http://54.255.4.75:9091/api/v1/application/applications/${recruiterId}`)
+    // const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.data.recruiterId
+    await axios.get(`http://54.255.4.75:9091/api/v1/application/applications/89`)
     .then((data)=>{
       this.total=data.data
     })
   },
   async newResume(){
-    const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-    await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
+    // const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+    await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/89`)
     .then((resp)=>{
       this.list = resp.data.data
     })
   },
    async recruiter(){
-     const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-    await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
+    //  const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+    await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/89`)
     .then((data)=>{
       this.recruiters=data.data
       
     })
    },
    async countAcc(){
-     const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-accepted/${recruiterId}`)
+    //  const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-accepted/89`)
      .then((data)=>{
       this.accept=data.data
       })
     },
     async countRejc(){
-     const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-rejected/${recruiterId}`)
+    //  const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
+     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-rejected/89`)
      .then((data)=>{
       this.reject=data.data
       })
@@ -146,12 +158,26 @@ export default {
     this.countAcc(),
     this.countRejc(),
     this.newResume(),
-    this.totalAplicant()
+    this.totalAplicant(),
+    this.totalnewAplicant()
   },
 }; 
 </script>  
 
 <style scoped>
+.table{
+  border-radius: 20px;
+  padding: 10%;
+}
+.table h3{
+  margin: 15px;
+  width: 30px;
+  
+}
+.table td{
+  
+  overflow: auto;
+}
 .btn-primary{
   border-radius: 10px;
   border-style: none;
@@ -225,7 +251,7 @@ h5{
   height: 133px;
   width: 373px;
   margin-top: 9px;
-  box-shadow: 6px 10px 15px -3px rgba(0,0,0,0.1);
+  /* box-shadow: 6px 10px 15px -3px rgba(0,0,0,0.1); */
 }
 .card-title{
   padding: 10px;
@@ -254,7 +280,15 @@ span{
   margin-top: 20px;
   width: 52.5%;
   background: white;
-  
+}
+.position{
+  background: #E2E3F6;
+  padding: 3px;
+  width: 65px;
+  border-radius: 10px;
+  color: #7D8CD1;
+  font-size: 13px;
+  text-align: center;
 }
 
 

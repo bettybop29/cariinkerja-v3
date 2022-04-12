@@ -22,10 +22,13 @@
                    <router-link class="" to="/credit"><i class="bi bi-newspaper"></i>Credit</router-link>
                 </li>
             </ul>
-
+            <button class="icon-link">
             <li class="image">
-                <a href="https://play.google.com/store/apps/details?id=com.whatsapp"></a>
+                
+                <img src="../assets/mobile.svg" alt="">
+               <h4>Get Mobile<br> App</h4>
             </li>
+            </button>
             <ul class="list-unstyled CTAs">
                
                
@@ -95,9 +98,28 @@ a:focus {
     margin: 40px 0;
 }
 .image{
-    background: url("../assets/download.svg");
-    width: 95%;
-    height: 35%;
+    background: #f3f3f3;
+    text-align: center;
+    list-style: none;
+    outline: none;
+    padding-top: 20px;
+}
+
+.icon-link{
+    background: #f3f3f3;
+    justify-content: center;
+    border: none;
+    margin: 20px;
+    padding: 10px;
+    width: 80%;
+    height: 26%;
+    border-radius: 30px;
+    margin-top: 40px;
+    transition: box-shadow 1s;
+}
+.icon-link:hover{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    
     
 }
 
