@@ -61,10 +61,14 @@
       <td scope="row">{{index + 1}}</td>
       <td>{{resume.jobseekerName}}</td>
       <td>{{resume.jobseekerEmail}}</td>
-      <td><p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
-      <p v-else>review</p></td>
+      <td>
+        <p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
+        <p v-else>review</p></td>
       <td>{{resume.jobName}}</td>
-      <td><p class="position">{{resume.jobPosition}}</p></td>
+      <td>
+        <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
+        <p v-else class="position2">{{resume.jobPosition}}</p>
+      </td>
       <td><button class="btn-primary" >view</button></td>
       
     </tr>
@@ -110,7 +114,8 @@ export default {
   },
   methods : {
   async totalnewAplicant(){
-    await axios.get(`http://54.255.4.75:9091/api/v1/application/new-resume/89`)
+    const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+    await axios.get(`http://54.255.4.75:9091/api/v1/application/new-resume/${recruiterId}`)
     .then((data)=>{
       this.edit=data.data
     })
@@ -292,6 +297,14 @@ span{
   font-size: 13px;
   text-align: center;
 }
-
+.position2{
+  background: #e3fe9f;
+  padding: 3px;
+  width: 65px;
+  border-radius: 10px;
+  color: #b4bf1b;
+  font-size: 13px;
+  text-align: center;
+}
 
 </style>
