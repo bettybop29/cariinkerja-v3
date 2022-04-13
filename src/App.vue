@@ -60,4 +60,11 @@ nav a.router-link-exact-active {
 .logo {
   color: #0e2cb4;
 }
+
+  .main {
+    margin-left: 250px;
+    padding: 80px;
+    background-color: #F3F3F3;
+  }
+
 </style>

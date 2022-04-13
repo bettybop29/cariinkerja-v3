@@ -63,7 +63,7 @@
     </div>
 
     <div class="row">
-      <div class="col mt-3" v-for="item in list" v-bind:key="item.id">
+      <div class="col-md-3 mt-3" v-for="item in list" v-bind:key="item.id">
         <job-component :item="item"></job-component>
       </div>
     </div>
@@ -150,11 +150,11 @@
   };
 </script>
 <style scoped>
-  .main {
+  /* .main {
     margin-left: 16%;
     padding: 20px;
     background-color: #F3F3F3;
-  }
+  } */
 
   .btn:hover {
     box-shadow: 0 2px 10px rgb(0 0 0 / 0.5);

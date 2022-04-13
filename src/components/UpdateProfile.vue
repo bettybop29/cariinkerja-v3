@@ -1,125 +1,148 @@
 <template>
-<div class="bg-color">
-  <div class="container">
-    <form class="row" @submit.prevent="updateProfile">
-      <h1>Update Profile</h1>
-      <div class="col-md-5">
-        <label for="validationDefault03" class="form-label">Email:</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterEmail" disabled>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Culture</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCulture" required>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Industry</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry" required>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Benefit</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterBenefit"  required>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Phone</label>
-        <input type="number" class="form-control" id="validationDefault03" v-model="profile.recruiterPhone" required>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Facebook</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb" required>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Company</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany" required>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Instagram</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg" required>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Staff</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterStaff" required>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Linkedin</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin" required>
-      </div>
-      
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Description</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterDesc"></textarea>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Address</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterAddress"></textarea>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Website</label>
-        <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite">
-      </div>
-      <!-- <div class="col-md-10 mb-3">
+  <sidebar-component></sidebar-component>
+  <div class="main">
+    <div class="card">
+      <div class="card-body">
+        <form class="row" @submit.prevent="updateProfile">
+          <h2 class="fw-bold mb-3">Update Profile</h2>
+          <div class="col-md-5">
+            <label for="validationDefault03" class="form-label">Email:</label>
+            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterEmail" disabled>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Culture</label>
+            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCulture"
+              required>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Industry</label>
+            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry"
+              required>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Benefit</label>
+            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterBenefit"
+              required>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Phone</label>
+            <input type="number" class="form-control" id="validationDefault03" v-model="profile.recruiterPhone"
+              required>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Facebook</label>
+            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb" required>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Company</label>
+            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany"
+              required>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Instagram</label>
+            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg" required>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Staff</label>
+            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterStaff" required>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Linkedin</label>
+            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin"
+              required>
+          </div>
+
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+              v-model="profile.recruiterDesc"></textarea>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Address</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+              v-model="profile.recruiterAddress"></textarea>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationDefault03" class="form-label">Website</label>
+            <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite">
+          </div>
+          <!-- <div class="col-md-10 mb-3">
         <input type="file" class="form-control" aria-label="file example" required>
         <div class="invalid-feedback">Example invalid form file feedback</div>
       </div> -->
- <button class="btn btn-success" type="submit">Edit</button>
-    </form>
+          <button class="btn btn-success" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
-import axios from 'axios'
-import "mosha-vue-toastify"
-import { createToast } from "mosha-vue-toastify"
+  import sidebarcomponent from '../components/SidebarComponent.vue'
+  import axios from 'axios'
+  import "mosha-vue-toastify"
+  import {
+    createToast
+  } from "mosha-vue-toastify"
 
-export default {
-    props:['id'],
-    data(){
+  export default {
+    components: {
+      SidebarComponent: sidebarcomponent
+    },
+    props: ['id'],
+    data() {
       return {
-        profile:[]
+        profile: []
       }
     },
-    methods:{
+    methods: {
       //func get data
       fetchData() {
-        axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/`+this.$route.params.id)
+        axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/` + this.$route.params.id)
 
-        .then((data) => {
-          this.profile=data.data
-       })
+          .then((data) => {
+            this.profile = data.data
+          })
       },
       // func edit profile
-      async updateProfile(){    
-      try {
-        const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-        await axios.put(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterBenefit=${this.profile.recruiterBenefit}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterWebsite=${this.profile.recruiterWebsite}`);
-        this.$router.push('/about')
-        createToast("Profile updated", {type: 'success'});
-       
+      async updateProfile() {
+        try {
+          const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+          await axios.put(
+            `http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterBenefit=${this.profile.recruiterBenefit}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterWebsite=${this.profile.recruiterWebsite}`
+          );
+          this.$router.push('/about')
+          createToast("Profile updated", {
+            type: 'success'
+          });
+
         } catch {
           console.log(Error)
         }
       }
     },
     //render func
-    mounted(){
+    mounted() {
       this.fetchData()
     }
-}
+  }
 </script>
 
 <style scoped>
-.bg-color{
-  background-color: #f3f3f3;
-  height: 117vh;
-  
-}
+  .bg-color {
+    background-color: #f3f3f3;
+    height: 117vh;
+
+  }
+
+  /* 
   h1 {
     text-align: left;
     padding: 0;
     margin-bottom: 20px;
-  }
-  
-  .container{
+  } */
+
+  .container {
     background: white;
     padding: 20px;
     border-radius: 20px;
@@ -129,9 +152,13 @@ export default {
     padding-right: 0;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   }
-  .btn{
+
+  .btn {
     width: 81%;
     margin-left: 12px;
   }
- 
+
+  .card {
+    border-radius: 20px;
+  }
 </style>

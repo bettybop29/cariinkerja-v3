@@ -231,7 +231,7 @@ export default {
     float: right;
     position: absolute;
     margin: 10px;
-    margin-left:85%;
+    margin-left:90%;
   }
   .card-link {
     text-decoration: none;
