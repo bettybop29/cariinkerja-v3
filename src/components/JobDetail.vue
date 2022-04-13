@@ -3,36 +3,83 @@
   <!-- <h1>{{jobName}}</h1>
             <h1>{{jobSalary}}</h1>
             <h1>{{jobPosition}}</h1> -->
-  <div class="back">
+  <!-- <div class="back">
     <router-link class="link-back" to="/post  job"><i class="bi bi-arrow-left-circle-fill"></i>Post job</router-link>
-  </div>
-  <div class="container">
-
-    <div class="card mb-3" style="max-width: 640px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="http://54.255.4.75:9091/resources/meta.png" class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h4 class="card-title1">{{job.jobName}}</h4>
-            <h6 class="card-title">{{job.jobPosition}} | Rp. {{formatPrice(job.jobSalary)}}</h6>
-            <label class="label mt-3">Description job : </label>
-            <p class="card-text">{{job.jobDesc}}</p>
-            <label class="label">Job Requirement :</label>
-            <p class="card-text">{{job.jobRequirement}}</p>
-            <label class="label">Address :</label>
-            <p class="card-text">{{job.jobAddress}}</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-              <router-link class="btn btn-danger" to="/postjob"><i class="bi bi-arrow-left-circle-fill"></i>Post job
-              </router-link>
-            </p>
+  </div> -->
+  <div class="main">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-3" style="max-width: 640px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="http://54.255.4.75:9091/resources/meta.png" class="img-fluid rounded-start img-thumbnail"
+                alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h4 class="card-title1">{{job.jobName}}</h4>
+                <h6 class="card-title">{{job.jobPosition}} | Rp. {{formatPrice(job.jobSalary)}}</h6>
+                <label class="label mt-3">Description job : </label>
+                <p class="card-text">{{job.jobDesc}}</p>
+                <label class="label">Job Requirement :</label>
+                <p class="card-text">{{job.jobRequirement}}</p>
+                <label class="label">Address :</label>
+                <p class="card-text">{{job.jobAddress}}</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                  <router-link class="btn btn-danger" to="/postjob"><i class="bi bi-arrow-left-circle-fill"></i>Post job
+                  </router-link>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <div class="col-md-10">
+        <h2 class="fw-bold mb-4">Applicants</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr class="text-center">
+              <th scope="col">No.</th>
+              <th scope="col">Name</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Resume</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in list" :key="item.id" class="text-center">
+              <th scope="row">{{index +1}}</th>
+              <td>{{item.jobseekerName}}</td>
+              <td>{{item.jobseekerEmail}}</td>
+              <td><button class="btn btn-primary" v-on:click="getResume(item.jobseekerResume)">Download</button></td>
 
-    <h1>Applicants</h1>
+              <td>
+                <p v-if="item.applicationStatus != 'sent'">{{item.applicationStatus}}</p>
+                <p v-else>review</p>
+              </td>
+
+              <td><button v-if="item.applicationStatus == 'sent'" class="btn btn-success"
+                  v-on:click="accepted(item.applicationId)" id="button" name="button">Accept</button>
+                <button v-else disabled class="btn btn-success" v-on:click="accepted(item.applicationId)" id="button"
+                  name="button">Accept</button>
+                <button v-if="item.applicationStatus == 'sent'" class="btn btn-danger"
+                  v-on:click="rejected(item.applicationId)" id="button">Reject</button>
+                <button v-else disabled class="btn btn-danger" v-on:click="rejected(item.applicationId)"
+                  id="button">Reject</button>
+                <router-link class="btn btn-primary" :to="{name:'aplicantdetail', params:{id:item.jobseekerId}}">view
+                </router-link>
+              </td>
+
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
     <!-- <table border="1">
           <tr v-for="item in list" :key="item.id">
             <td>{{item.jobseekerName}}</td>
@@ -40,46 +87,7 @@
             <td>{{item.jobseekerResume}}</td>
           </tr>
         </table> -->
-    <table class="table table-hover">
-      <thead>
-        <tr class="">
-          <th scope="col">No.</th>
-          <th scope="col">Name</th>
-          <th scope="col">E-mail</th>
-          <th scope="col" class="resume">Resume</th>
-          <th scope="col">Status</th>
-          <th scope="col" class="action">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, index) in list" :key="item.id">
-          <th scope="row">{{index +1}}</th>
-          <td>{{item.jobseekerName}}</td>
-          <td>{{item.jobseekerEmail}}</td>
-          <td><button class="btn btn-primary" v-on:click="getResume(item.jobseekerResume)">Download</button></td>
 
-          <td>
-            <p v-if="item.applicationStatus != 'sent'">{{item.applicationStatus}}</p>
-            <p v-else>review</p>
-          </td>
-
-          <td><button v-if="item.applicationStatus == 'sent'" class="btn btn-success"
-              v-on:click="accepted(item.applicationId)" id="button" name="button">Accept</button>
-            <button v-else disabled class="btn btn-success" v-on:click="accepted(item.applicationId)" id="button"
-              name="button">Accept</button>
-            <button v-if="item.applicationStatus == 'sent'" class="btn btn-danger"
-              v-on:click="rejected(item.applicationId)" id="button">Reject</button>
-            <button v-else disabled class="btn btn-danger" v-on:click="rejected(item.applicationId)"
-              id="button">Reject</button>
-            <router-link class="btn btn-primary" :to="{name:'aplicantdetail', params:{id:item.jobseekerId}}">view
-            </router-link>
-          </td>
-
-
-        </tr>
-
-      </tbody>
-    </table>
 
     <!-- <JlDatatable
         :url='datatable.url'
@@ -107,13 +115,6 @@
 
         @error="error"
       /> -->
-
-
-
-
-  </div>
-
-
 
 </template>
 
@@ -223,9 +224,9 @@
       //   console.log(err);
       // },
       formatPrice(value) {
-        let val = (value/1).toFixed(2).replace('.', ',')
+        let val = (value / 1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-    },
+      },
       async fetchData() {
         // const url = this.apiUrl + this.id
         await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)

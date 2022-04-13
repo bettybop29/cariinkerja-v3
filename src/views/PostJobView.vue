@@ -1,5 +1,6 @@
 <template>
   <sidebar-component></sidebar-component>
+  <div class="container">
   <div class="main">
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
       data-bs-whatever="@getbootstrap">
@@ -63,10 +64,11 @@
     </div>
 
     <div class="row">
-      <div class="col mt-3" v-for="item in list" v-bind:key="item.id">
-        <job-component :item="item"></job-component>
+      <div class="col-md-3 mt-3" v-for="item in list" v-bind:key="item.id">
+        <job-component class="job-component" :item="item"></job-component>
       </div>
     </div>
+  </div>
   </div>
 </template>
 <script>
@@ -138,8 +140,8 @@
     // func tampilin data
     //monted render
     mounted() {
-      // const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-      axios.get(`http://54.255.4.75:9091/api/v1/jobs/89`)
+      const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+      axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
         .then((resp) => {
           this.list = resp.data
           localStorage.setItem("job-info", JSON.stringify(resp.data));
@@ -150,13 +152,20 @@
   };
 </script>
 <style scoped>
-  .main {
+  /* .main {
     margin-left: 16%;
     padding: 20px;
     background-color: #F3F3F3;
-  }
+  } */
 
   .btn:hover {
     box-shadow: 0 2px 10px rgb(0 0 0 / 0.5);
+  }
+  .container {
+    margin-left: 20%;
+    margin-top: 3%;
+  }
+  .job-component{
+    margin-top: 15px;
   }
 </style>

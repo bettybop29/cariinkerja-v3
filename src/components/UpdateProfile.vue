@@ -56,10 +56,12 @@
         <label for="validationDefault03" class="form-label">Website</label>
         <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite">
       </div>
-      <!-- <div class="col-md-10 mb-3">
-        <input type="file" class="form-control" aria-label="file example" required>
+      <div class="col-md-10 mb-3">
+        <img :src="previewImage" class="img-thumbnail" alt="">
+        <input type="file" class="form-control" aria-label="file example" accept="image/jpeg" @change=uploadImage>
         <div class="invalid-feedback">Example invalid form file feedback</div>
-      </div> -->
+      </div>
+      <!-- <input type="file" accept="image/jpeg" @change=uploadImage> -->
  <button class="btn btn-success" type="submit">Edit</button>
     </form>
   </div>
@@ -75,10 +77,21 @@ export default {
     props:['id'],
     data(){
       return {
-        profile:[]
+        profile:[],
+        previewImage:null
       }
     },
     methods:{
+      uploadImage(e){
+        axios.patch(`http://54.255.4.75:9091/api/v1/file/recruiter/photo/`+this.$route.params.id)
+                const image = e.target.files[0];
+                const reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = e =>{
+                    this.previewImage = e.target.result;
+                    console.log(this.previewImage);
+                };
+            },
       //func get data
       fetchData() {
         axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/`+this.$route.params.id)
