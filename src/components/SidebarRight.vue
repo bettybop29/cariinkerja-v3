@@ -3,7 +3,7 @@
     <div class="side-content">
       <ul>
           <li class="li-header">foto</li>
-          <li class="li-header">name</li>
+          <li class="li-header">{{aplDetail.jobseekerName}}</li>
           <li class="li-header">profesi</li>
           <li class="li-title">Basic Information</li>
           <li>birthdate<p class="text-side">test</p></li>
@@ -25,9 +25,28 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-    name:"SidebarRight"
-}
+    name:"SidebarRight",
+    data(){
+      return{
+        aplDetail:""
+      }
+    },
+
+    methods:{
+      async detailAplicant(){
+        await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant/40`)
+        .then((data)=>{
+          this.aplDetail=data.data
+        })
+      }
+    },
+    mounted(){
+      this.detailAplicant()
+    }
+};
 </script>
 
 <style scope>

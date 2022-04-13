@@ -74,8 +74,8 @@
     },
     methods: {
       fetchData() {
-        // const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-        axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/89`)
+        const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+        axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
 
           .then((profile) => {
             this.profile = profile.data

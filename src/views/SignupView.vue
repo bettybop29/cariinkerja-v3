@@ -111,16 +111,17 @@ export default {
         const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)     
         if(passwordCheck != null){
             const result = await axios.post(
+         
           `http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`
           );
-          createToast("password sukses", {type: "success"} )
+          createToast("Sign up sukses", {type: "success"} )
           localStorage.setItem("user-info", JSON.stringify(result.data));
           this.$router.push("/login");
          } else {
            createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
          }
-      } catch (error) {
-        console.log(error);
+      } catch (errorCode) {
+        console.log(errorCode);
         this.$router.push("/signup");
         createToast("please, fill blank form", { type: "danger" });
       }

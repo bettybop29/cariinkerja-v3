@@ -16,7 +16,7 @@
         <div class="col-md-8">
           <div class="card-body">
             <h4 class="card-title1">{{job.jobName}}</h4>
-            <h6 class="card-title">{{job.jobPosition}} | Rp. {{job.jobSalary}}</h6>
+            <h6 class="card-title">{{job.jobPosition}} | Rp. {{formatPrice(job.jobSalary)}}</h6>
             <label class="label mt-3">Description job : </label>
             <p class="card-text">{{job.jobDesc}}</p>
             <label class="label">Job Requirement :</label>
@@ -56,7 +56,6 @@
           <th scope="row">{{index +1}}</th>
           <td>{{item.jobseekerName}}</td>
           <td>{{item.jobseekerEmail}}</td>
-          <td>{{item.jobseekerResume}}</td>
           <td><button class="btn btn-primary" v-on:click="getResume(item.jobseekerResume)">Download</button></td>
 
           <td>
@@ -223,13 +222,13 @@
       // error(err){
       //   console.log(err);
       // },
-
+      formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
       async fetchData() {
-
         // const url = this.apiUrl + this.id
         await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)
-
-
           .then((data) => {
             this.job = data.data
             // console.log(this.jobDesc)

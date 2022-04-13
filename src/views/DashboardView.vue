@@ -1,7 +1,9 @@
 <template>
 <!-- <nav-component></nav-component> -->
 <sidebar-component></sidebar-component>
-<sidebar-right></sidebar-right>
+
+  <sidebar-right></sidebar-right>
+
 <div class="main">
 
   <div class="container">
@@ -63,7 +65,7 @@
       <p v-else>review</p></td>
       <td>{{resume.jobName}}</td>
       <td><p class="position">{{resume.jobPosition}}</p></td>
-      <td><button class="btn-primary" onclick="w3_open">view</button></td>
+      <td><button class="btn-primary" >view</button></td>
       
     </tr>
   </tbody>  
@@ -117,37 +119,37 @@ export default {
       await axios.get(``)
     },
   async totalAplicant(){
-    // const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.data.recruiterId
-    await axios.get(`http://54.255.4.75:9091/api/v1/application/applications/89`)
+    const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+    await axios.get(`http://54.255.4.75:9091/api/v1/application/applications/${recruiterId}`)
     .then((data)=>{
       this.total=data.data
     })
   },
   async newResume(){
-    // const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-    await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/89`)
+    const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+    await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
     .then((resp)=>{
       this.list = resp.data.data
     })
   },
    async recruiter(){
-    //  const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-    await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/89`)
+   const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+    await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
     .then((data)=>{
       this.recruiters=data.data
       
     })
    },
    async countAcc(){
-    //  const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-accepted/89`)
+   const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-accepted/${recruiterId}`)
      .then((data)=>{
       this.accept=data.data
       })
     },
     async countRejc(){
-    //  const recruiterId = JSON.parse(localStorage.getItem("user-info")).data.recruiterId
-     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-rejected/89`)
+   const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-rejected/${recruiterId}`)
      .then((data)=>{
       this.reject=data.data
       })
