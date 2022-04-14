@@ -2,7 +2,7 @@
 <!-- <nav-component></nav-component> -->
 <sidebar-component></sidebar-component>
 
-  <sidebar-right></sidebar-right>
+  <sidebar-right :view="views"></sidebar-right>
 
 <div class="main">
 
@@ -69,7 +69,7 @@
         <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
         <p v-else class="position2">{{resume.jobPosition}}</p>
       </td>
-      <td><button class="btn-primary" >view</button></td>
+      <td><button class="btn-primary" @click="getView(resume.jobseekerId)">view</button></td>
       
     </tr>
   </tbody>  
@@ -109,7 +109,8 @@ export default {
       reject: "",
       list:[],
       total:"",
-      edit:""
+      edit:"",
+      views:""
     };
   },
   methods : {
@@ -135,6 +136,7 @@ export default {
     await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
     .then((resp)=>{
       this.list = resp.data.data
+      
     })
   },
    async recruiter(){
@@ -158,6 +160,12 @@ export default {
      .then((data)=>{
       this.reject=data.data
       })
+    },
+    async getView(id){
+      await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant/${id}`)
+      .then((data)=>{
+        this.views=data.data.data
+      })
     }
   },
   mounted(){
@@ -166,7 +174,8 @@ export default {
     this.countRejc(),
     this.newResume(),
     this.totalAplicant(),
-    this.totalnewAplicant()
+    this.totalnewAplicant(),
+    this.getView()
   },
 }; 
 </script>  

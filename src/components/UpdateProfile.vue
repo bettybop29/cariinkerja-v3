@@ -1,7 +1,7 @@
 <template>
 <div class="bg-color">
   <div class="container">
-    <form class="row" @submit.prevent="updateProfile">
+    <form class="row" @submit.prevent="updateProfile" type="multipart">
       <h1>Update Profile</h1>
       <div class="col-md-5">
         <label for="validationDefault03" class="form-label">Email:</label>
@@ -58,9 +58,10 @@
       </div>
       <div class="col-md-10 mb-3">
         <img :src="previewImage" class="img-thumbnail" alt="">
-        <input type="file" class="form-control" aria-label="file example" accept="image/jpeg" @change=uploadImage>
+        <input type="file" class="form-control" aria-label="file example" accept="image/jpeg" @change=onFileSelected>
         <div class="invalid-feedback">Example invalid form file feedback</div>
       </div>
+      <button @click="onUpload">upload</button>
       <!-- <input type="file" accept="image/jpeg" @change=uploadImage> -->
  <button class="btn btn-success" type="submit">Edit</button>
     </form>
@@ -82,16 +83,17 @@ export default {
       }
     },
     methods:{
-      uploadImage(e){
-        axios.patch(`http://54.255.4.75:9091/api/v1/file/recruiter/photo/`+this.$route.params.id)
-                const image = e.target.files[0];
-                const reader = new FileReader();
-                reader.readAsDataURL(image);
-                reader.onload = e =>{
-                    this.previewImage = e.target.result;
-                    console.log(this.previewImage);
-                };
-            },
+      onFileSelected(event){
+        this.selectedFile = event.target.files[0]
+      },
+      onUpload(){
+        const fd = new FormData();
+        fd.append('image',this.selectedFile, this.selectedFile.name)
+        axios.put(`http://54.255.4.75:9091/api/v1/file/recruiter/photo/`,fd + this.$route.params.id)
+        .then(res =>{
+          console.log(res)
+        })
+      },
       //func get data
       fetchData() {
         axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/`+this.$route.params.id)

@@ -2,20 +2,23 @@
   <div class="sidebar-right">
     <div class="side-content">
       <ul>
-          <li class="li-header">foto</li>
-          <li class="li-header">{{aplDetail.jobseekerName}}</li>
-          <li class="li-header">profesi</li>
+          <li class="li-foto">
+            <img :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
+          </li>
+          <li class="li-header">{{view.jobseekerName}}<p>{{view.jobseekerProfession}}</p></li>
+          
           <li class="li-title">Basic Information</li>
-          <li>birthdate<p class="text-side">test</p></li>
-          <li>City<p class="text-side">test</p></li>
-          <li>Phone<p class="text-side">test</p></li>
-          <li>Email<p class="text-side">test</p></li>
-          <li><button class="btn-resume">Resume <i class="bi bi-three-dots"></i></button></li>
-          <li><button class="btn-portofolio">Portofolio <i class="bi bi-three-dots"></i></button></li>
+          <li>birthdate:<p class="text-side" >{{view.jobseekerDateOfBirth}}</p></li>
+          <li>City:<p class="text-side">{{view.jobseekerAddress}}</p></li>
+          <li>Phone:<p class="text-side">{{view.jobseekerPhone}}</p></li>
+          <li>Email:<p class="text-side">{{view.jobseekerEmail}}</p></li>
+          <li><button class="btn-resume" v-on:click="getResume(view.jobseekerResume)">Resume <i class="bi bi-cloud-arrow-down-fill"></i></button></li>
+          <li><button class="btn-portofolio">Portofolio <i class="bi bi-box-arrow-up-right"></i></button></li>
           <li>
             <div class="action">
-              <button class="acc"><i class="bi bi-check2"></i>accept</button>
-              <button class="rej"><i class="bi bi-x-lg"></i>reject</button>
+              <button class="acc" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i>accept</button>
+              <button class="rej" v-on:click="rejected(view.applicationId)"><i class="bi bi-x-lg"></i>reject</button>
+              <p>{{view.applicationId}}</p>
             </div>
           </li>
 
@@ -29,24 +32,35 @@ import axios from "axios";
 
 export default {
     name:"SidebarRight",
-    data(){
-      return{
-        aplDetail:""
-      }
-    },
-
+    props:['view','id'],
     methods:{
-      async detailAplicant(){
-        await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant/40`)
-        .then((data)=>{
-          this.aplDetail=data.data
+      async accepted(id) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
+        location.reload(true)
+        console.log(id)
+      },
+      async rejected(id) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
+        location.reload(true)
+        console.log(id)
+      },
+     async getResume(jobseekerResume){
+         await axios({
+          url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
+          methods: 'GET',
+          responseType: 'blob',
+        }).then((res) => {
+          var FILE = window.URL.createObjectURL(new Blob([res.data]));
+          var docUrl = document.createElement('x');
+          docUrl.href = FILE;
+          docUrl.setAttribute('download', 'resume.pdf');
+          document.body.appendChild(docUrl);
+          docUrl.click();
+
         })
       }
-    },
-    mounted(){
-      this.detailAplicant()
-    }
-};
+  }
+}
 </script>
 
 <style scope>
@@ -69,7 +83,7 @@ export default {
     }
     .side-content li{
       list-style: none;
-      margin: 20px;
+      margin: 18px;
       margin-left: 0px;
       margin-right: 30px;
       padding-right: 0px;
@@ -81,7 +95,7 @@ export default {
       
     }
     .li-title{
-      padding-top: 30px;
+  
       font-weight: bold;
     }
     .action button{
@@ -116,7 +130,6 @@ export default {
       background: #d79097;
     }
     .btn-resume{
-      margin-top: 30px;
       border: none;
       padding: 15px;
       border-radius: 20px;
@@ -144,25 +157,27 @@ export default {
     .btn-portofolio i{
       margin-left: 112px;
     }
-    /* p{
-      position: absolute;
-      float: right;
-      display: flex;
-      flex-direction: row;
-      padding-left: 190px;
-    } */
     .text-side{
       position: absolute;
-      float: right;
-      display: flex;
-      flex-direction: row;
-      padding-left: 190px;
+      padding-left: 150px;
+      text-align: right;
+      justify-content: right;
+      
+      
     }
     .li-header{
       text-align: center;
       padding: 0;
-      margin: 0;
+      margin-top: 10px;
       align-items: center;
+    }
+    .li-foto img{
+      width: 100px;
+      height: 100px;
+      margin-left: 60px;
+      margin-top: 0;
+      border-radius: 50%;
+      border: 3px solid #f3f3f3;
     }
     
 </style>

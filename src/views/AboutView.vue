@@ -16,6 +16,9 @@
                 <div class="col-md-6">
                   <img class="img-thumbnail position-absolute top-0 end-0 m-3"
                     :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 20%">
+                    <!-- <img class="img-thumbnail position-absolute top-0 end-0 m-3"
+                    src="http://54.255.4.75:9091/resources/meta.png" alt="" style="width: 20%"> -->
+                    
                 </div>
               </div>
 
@@ -76,7 +79,7 @@
       fetchData() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
         axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
-
+        
           .then((profile) => {
             this.profile = profile.data
 
