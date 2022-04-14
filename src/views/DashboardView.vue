@@ -165,6 +165,7 @@ export default {
       await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant/${id}`)
       .then((data)=>{
         this.views=data.data.data
+        console.log(id)
       })
     }
   },

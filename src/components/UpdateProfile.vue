@@ -89,7 +89,7 @@ export default {
       onUpload(){
         const fd = new FormData();
         fd.append('image',this.selectedFile, this.selectedFile.name)
-        axios.put(`http://54.255.4.75:9091/api/v1/file/recruiter/photo/`,fd + this.$route.params.id)
+        axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo/`,fd + this.$route.params.id)
         .then(res =>{
           console.log(res)
         })

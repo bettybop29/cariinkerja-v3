@@ -3,12 +3,21 @@
     <div class="side-content">
       <ul>
           <li class="li-foto">
-            <img :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
+            <img v-if="view.jobseekerImage == null" src="http://54.255.4.75:9091/resources/meta.png" alt="">
+            <img v-else :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
           </li>
-          <li class="li-header">{{view.jobseekerName}}<p>{{view.jobseekerProfession}}</p></li>
+          <li class="li-header fw-bold">
+            <p v-if="view.jobseekerImage == null">???</p>
+            <p v-else>{{view.jobseekerName}}</p>
+            <p v-if="view.jobseekerImage == null" class="fw-normal">???</p>
+            <p v-else class="fw-normal">{{view.jobseekerProfession}}</p>
+          </li>
           
           <li class="li-title">Basic Information</li>
-          <li>birthdate:<p class="text-side" >{{view.jobseekerDateOfBirth}}</p></li>
+          <li>
+            birthdate:<p v-if="view.jobseekerImage == null" class="text-side" >???</p>
+            <p v-else class="text-side">{{view.jobseekerDateOfBirth}}</p>
+          </li>
           <li>City:<p class="text-side">{{view.jobseekerAddress}}</p></li>
           <li>Phone:<p class="text-side">{{view.jobseekerPhone}}</p></li>
           <li>Email:<p class="text-side">{{view.jobseekerEmail}}</p></li>
@@ -159,7 +168,7 @@ export default {
     }
     .text-side{
       position: absolute;
-      padding-left: 150px;
+      padding-left: 100px;
       text-align: right;
       justify-content: right;
       
