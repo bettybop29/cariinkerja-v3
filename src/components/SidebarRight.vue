@@ -14,13 +14,22 @@
           </li>
           
           <li class="li-title">Basic Information</li>
-          <li>
-            birthdate:<p v-if="view.jobseekerImage == null" class="text-side" >???</p>
+          <li>birthdate:
+            <p v-if="view.jobseekerDateOfBirth == null" class="text-side text-muted" >???</p>
             <p v-else class="text-side">{{view.jobseekerDateOfBirth}}</p>
           </li>
-          <li>City:<p class="text-side">{{view.jobseekerAddress}}</p></li>
-          <li>Phone:<p class="text-side">{{view.jobseekerPhone}}</p></li>
-          <li>Email:<p class="text-side">{{view.jobseekerEmail}}</p></li>
+          <li>City:
+            <p v-if="view.jobseekerAddress == null" class="text-side text-muted">???</p>
+             <p class="text-side">{{view.jobseekerAddress}}</p>
+            </li>
+          <li>Phone:
+              <p v-if="view.jobseekerPhone == null" class="text-side text-muted">???</p>
+              <p class="text-side">{{view.jobseekerPhone}}</p>
+          </li>
+          <li>Email:
+            <p v-if="view.jobseekerEmail == null" class="text-side text-muted">???</p>
+            <p  class="text-side">{{view.jobseekerEmail}}</p>
+          </li>
           <li><button class="btn-resume" v-on:click="getResume(view.jobseekerResume)">Resume <i class="bi bi-cloud-arrow-down-fill"></i></button></li>
           <li><button class="btn-portofolio">Portofolio <i class="bi bi-box-arrow-up-right"></i></button></li>
           <li>
@@ -43,15 +52,15 @@ export default {
     name:"SidebarRight",
     props:['view','id'],
     methods:{
-      async accepted(id) {
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
+      async accepted(applicationId) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${applicationId}`)
         location.reload(true)
-        console.log(id)
+        console.log(applicationId)
       },
-      async rejected(id) {
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
+      async rejected(applicationId) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${applicationId}`)
         location.reload(true)
-        console.log(id)
+        console.log(applicationId)
       },
      async getResume(jobseekerResume){
          await axios({
@@ -92,7 +101,7 @@ export default {
     }
     .side-content li{
       list-style: none;
-      margin: 18px;
+      margin: 13px;
       margin-left: 0px;
       margin-right: 30px;
       padding-right: 0px;
@@ -104,7 +113,7 @@ export default {
       
     }
     .li-title{
-  
+      padding: 0;
       font-weight: bold;
     }
     .action button{

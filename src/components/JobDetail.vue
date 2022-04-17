@@ -1,5 +1,6 @@
 <template>
   <sidebar-component></sidebar-component>
+  
   <!-- <h1>{{jobName}}</h1>
             <h1>{{jobSalary}}</h1>
             <h1>{{jobPosition}}</h1> -->
@@ -7,13 +8,16 @@
     <router-link class="link-back" to="/post  job"><i class="bi bi-arrow-left-circle-fill"></i>Post job</router-link>
   </div> -->
   <div class="main">
+    <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
     <div class="row">
       <div class="col-md-12">
         <div class="card mb-3" style="max-width: 640px;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img :src="'http://54.255.4.75:9091/resources/'+job.recruiterImage" class="img-fluid rounded-start img-thumbnail"
+              <img v-if="job.recruiterImage = null" :src="'http://54.255.4.75:9091/resources/'+job.recruiterImage" class="img-fluid rounded-start img-thumbnail"
                 alt="...">
+                  <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="img-fluid rounded-start img-thumbnail"
+                  alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -275,7 +279,7 @@
 
 <style scoped>
   .main{
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 18%;
   }
   .container {
@@ -334,4 +338,18 @@
   .link-back:hover {
     text-decoration: underline;
   }
+  .new{
+    background: transparent;
+    margin: 10px;
+    border: none;
+    color: black;
+    
+  }
+  .new:hover{
+    transition: color 1s;
+    background: transparent;
+    color: red;
+    
+  }
+  
 </style>

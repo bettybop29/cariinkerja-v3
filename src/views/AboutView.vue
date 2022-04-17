@@ -14,10 +14,10 @@
                   <h5 class="card-title">{{profile.recruiterCompany}}</h5>
                 </div>
                 <div class="col-md-6">
-                  <img class="img-thumbnail position-absolute top-0 end-0 m-3"
-                    :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 20%">
-                    <!-- <img class="img-thumbnail position-absolute top-0 end-0 m-3"
-                    src="http://54.255.4.75:9091/resources/meta.png" alt="" style="width: 20%"> -->
+                  <img v-if="profile.recruiterImage == null" class="img-thumbnail position-absolute top-0 end-0 m-3"
+                  :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 20%">
+                    <img v-else class="img-thumbnail position-absolute top-0 end-0 m-3"
+                    src="http://54.255.4.75:9091/resources/meta.png" alt="" style="width: 20%">
                     
                 </div>
               </div>

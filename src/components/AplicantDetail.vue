@@ -4,7 +4,9 @@
         <h2>Applicant profile for {{aplicant.jobseekerName}}</h2>
     </div>
     <div class="container">
+        
     <div class="content d-flex justify-content-center mt-5">
+        <button class="btn btn-primary" onclick="history.back()">Go Back</button>
         <div class="p-2 bd-highlight flex-grow-1">
             <h1>{{aplicant.jobseekerName}}</h1>
             <span>{{aplicant.jobseekerAddress}}</span>
@@ -26,6 +28,7 @@
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
+                       
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             Skill

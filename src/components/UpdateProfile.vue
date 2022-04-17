@@ -1,4 +1,5 @@
 <template>
+<sidebarcomponent/>
 <div class="bg-color">
   <div class="container">
     <form class="row" @submit.prevent="updateProfile" type="multipart">
@@ -73,9 +74,12 @@
 import axios from 'axios'
 import "mosha-vue-toastify"
 import { createToast } from "mosha-vue-toastify"
-
+import sidebarcomponent from '@/components/SidebarComponent.vue'
 export default {
     props:['id'],
+    components:{
+      sidebarcomponent
+    },
     data(){
       return {
         profile:[],
@@ -143,6 +147,7 @@ export default {
     width: 60%;
     padding-right: 0;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin-left: 20%;
   }
   .btn{
     width: 81%;
