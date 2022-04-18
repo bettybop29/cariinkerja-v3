@@ -14,7 +14,7 @@
         <div class="card mb-3" style="max-width: 640px;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img v-if="job.recruiterImage = null" :src="'http://54.255.4.75:9091/resources/'+job.recruiterImage" class="img-fluid rounded-start img-thumbnail"
+              <img v-if="job.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+job.recruiterImage" class="img-fluid rounded-start img-thumbnail"
                 alt="...">
                   <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="img-fluid rounded-start img-thumbnail"
                   alt="...">

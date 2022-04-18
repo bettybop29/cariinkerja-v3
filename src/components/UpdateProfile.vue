@@ -1,7 +1,9 @@
 <template>
 <sidebarcomponent/>
 <div class="bg-color">
+  <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
   <div class="container">
+    
     <form class="row" @submit.prevent="updateProfile" type="multipart">
       <h1>Update Profile</h1>
       <div class="col-md-5">
@@ -20,31 +22,16 @@
         <label for="validationDefault03" class="form-label">Benefit</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterBenefit"  required>
       </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Phone</label>
-        <input type="number" class="form-control" id="validationDefault03" v-model="profile.recruiterPhone" required>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Facebook</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb" required>
-      </div>
+     
       <div class="col-md-5 mb-3">
         <label for="validationDefault03" class="form-label">Company</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany" required>
       </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Instagram</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg" required>
-      </div>
+    
       <div class="col-md-5 mb-3">
         <label for="validationDefault03" class="form-label">Staff</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterStaff" required>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label for="validationDefault03" class="form-label">Linkedin</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin" required>
-      </div>
-      
+      </div>    
       <div class="col-md-5 mb-3">
         <label for="validationDefault03" class="form-label">Description</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterDesc"></textarea>
@@ -53,21 +40,40 @@
         <label for="validationDefault03" class="form-label">Address</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterAddress"></textarea>
       </div>
+     
+ 
+    </form>
+  </div>
+  <div class="container bottom">
+    <h1>Contact</h1>
+     <form class="row" @submit.prevent="updateProfile">
+ <div class="col-md-5 mb-3">
+  
+        <label for="validationDefault03" class="form-label">Phone</label>
+        <input type="number" class="form-control" id="validationDefault03" v-model="profile.recruiterPhone" required>
+      </div>
       <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Facebook</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb" required>
+      </div>
+      <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Instagram</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg" required>
+      </div>
+       <div class="col-md-5 mb-3">
+        <label for="validationDefault03" class="form-label">Linkedin</label>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin" required>
+      </div>
+       <div class="col-md-5 mb-3">
         <label for="validationDefault03" class="form-label">Website</label>
         <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite">
       </div>
-      <div class="col-md-10 mb-3">
-        <img :src="previewImage" class="img-thumbnail" alt="">
-        <input type="file" class="form-control" aria-label="file example" accept="image/jpeg" @change=onFileSelected>
-        <div class="invalid-feedback">Example invalid form file feedback</div>
-      </div>
-      <button @click="onUpload">upload</button>
-      <!-- <input type="file" accept="image/jpeg" @change=uploadImage> -->
- <button class="btn btn-success" type="submit">Edit</button>
-    </form>
+      <button class="btn btn-success" type="submit">Edit</button>
+     </form>
   </div>
+  
 </div>
+
 </template>
 
 <script>
@@ -153,5 +159,27 @@ export default {
     width: 81%;
     margin-left: 12px;
   }
+  .new{
+    background: transparent;
+    width: max-content;
+    margin-left: 20%;
+    color: black;
+    margin-top: 20px;
+    border: none;
+    padding-left: 10px;
+    transition: ease-in-out 1s;
+  }
+  .new:hover{
+    background: transparent;
+    color: red;
+    padding-left: 0;
+    transition: ease-in-out 1s;
+    
+  }
+  .bottom{
+    margin-top: 35%;
+  }
+
+  
  
 </style>

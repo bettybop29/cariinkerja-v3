@@ -7,36 +7,35 @@
             <img v-else :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
           </li>
           <li class="li-header fw-bold">
-            <p v-if="view.jobseekerImage == null">???</p>
+            <p v-if="view.jobseekerImage == null">---</p>
             <p v-else>{{view.jobseekerName}}</p>
-            <p v-if="view.jobseekerImage == null" class="fw-normal">???</p>
+            <p v-if="view.jobseekerImage == null" class="fw-normal">---</p>
             <p v-else class="fw-normal">{{view.jobseekerProfession}}</p>
           </li>
           
           <li class="li-title">Basic Information</li>
           <li>birthdate:
-            <p v-if="view.jobseekerDateOfBirth == null" class="text-side text-muted" >???</p>
+            <p v-if="view.jobseekerDateOfBirth == null" class="text-side text-muted" >---</p>
             <p v-else class="text-side">{{view.jobseekerDateOfBirth}}</p>
           </li>
           <li>City:
-            <p v-if="view.jobseekerAddress == null" class="text-side text-muted">???</p>
+            <p v-if="view.jobseekerAddress == null" class="text-side text-muted">---</p>
              <p class="text-side">{{view.jobseekerAddress}}</p>
             </li>
           <li>Phone:
-              <p v-if="view.jobseekerPhone == null" class="text-side text-muted">???</p>
+              <p v-if="view.jobseekerPhone == null" class="text-side text-muted">---</p>
               <p class="text-side">{{view.jobseekerPhone}}</p>
           </li>
           <li>Email:
-            <p v-if="view.jobseekerEmail == null" class="text-side text-muted">???</p>
+            <p v-if="view.jobseekerEmail == null" class="text-side text-muted">---</p>
             <p  class="text-side">{{view.jobseekerEmail}}</p>
           </li>
           <li><button class="btn-resume" v-on:click="getResume(view.jobseekerResume)">Resume <i class="bi bi-cloud-arrow-down-fill"></i></button></li>
           <li><button class="btn-portofolio">Portofolio <i class="bi bi-box-arrow-up-right"></i></button></li>
-          <li>
+          <li> 
             <div class="action">
               <button class="acc" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i>accept</button>
               <button class="rej" v-on:click="rejected(view.applicationId)"><i class="bi bi-x-lg"></i>reject</button>
-              <p>{{view.applicationId}}</p>
             </div>
           </li>
 
@@ -52,15 +51,15 @@ export default {
     name:"SidebarRight",
     props:['view','id'],
     methods:{
-      async accepted(applicationId) {
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${applicationId}`)
+      async accepted(id) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
         location.reload(true)
-        console.log(applicationId)
+        console.log(id)
       },
-      async rejected(applicationId) {
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${applicationId}`)
+      async rejected(id) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
         location.reload(true)
-        console.log(applicationId)
+        console.log(id)
       },
      async getResume(jobseekerResume){
          await axios({

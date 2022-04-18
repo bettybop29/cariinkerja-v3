@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img v-if="item.recruiterImage == null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark" alt="...">
+    <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark" alt="...">
     <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="...">
 
     <div class="dropdown">

@@ -40,12 +40,13 @@
         </div>
          
     </div> 
-
-
+<div class="title-table">
+  <h3>Resume</h3>
+</div>
 <table class="table">
   
   <thead>
-    <h3>Resume</h3>
+    
     <tr>
       <th scope="col">No.</th>
       <th scope="col">Name</th>
@@ -165,7 +166,7 @@ export default {
       await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant/${id}`)
       .then((data)=>{
         this.views=data.data.data
-        console.log(id)
+        console.log(data)
       })
     }
   },
@@ -294,7 +295,7 @@ span{
 }
 .table{
   margin-left: 310px;
-  margin-top: 20px;
+  margin-top: 60px;
   width: 52.5%;
   background: white;
 }
@@ -316,5 +317,14 @@ span{
   font-size: 13px;
   text-align: center;
 }
-
+.title-table{
+  position: fixed;
+  margin-left: 20.3%;
+  background: white;
+  width: max-content;
+  padding: 8px;
+  margin-top: 15px;
+  border-radius: 10px 50px 10px 0px;
+  padding-right: 40px;
+}
 </style>
