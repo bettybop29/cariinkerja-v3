@@ -8,6 +8,7 @@
     <router-link class="link-back" to="/post  job"><i class="bi bi-arrow-left-circle-fill"></i>Post job</router-link>
   </div> -->
   <div class="main">
+   
     <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
     <div class="row">
       <div class="col-md-12">
@@ -18,6 +19,7 @@
                 alt="...">
                   <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="img-fluid rounded-start img-thumbnail"
                   alt="...">
+                
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -30,6 +32,7 @@
                 <label class="label">Address :</label>
                 <p class="card-text">{{job.jobAddress}}</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+              
                   <router-link class="btn btn-danger" to="/postjob"><i class="bi bi-arrow-left-circle-fill"></i>Post job
                   </router-link>
                 </p>

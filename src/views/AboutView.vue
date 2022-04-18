@@ -20,6 +20,10 @@
                     src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 20%">
                     
                 </div>
+                <label class="custom-file-upload">
+                <input type="file" v-on:click="uploadImg" class="btn new position-absolute top-0 end-0 m-3 ">
+                  <i class="bi bi-pencil-square"></i>Edit/upload
+                </label>
               </div>
 
               <p class="card-text">{{profile.recruiterIndustry}}</p>
@@ -76,6 +80,9 @@
       }
     },
     methods: {
+      uploadImg(){
+        console.log("saduk")
+      },
       fetchData() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
         axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
@@ -156,5 +163,30 @@
 
   .btn {
     text-align: center;
+  }
+  .new{
+    padding-top: 30px;
+    padding-bottom: 38px;
+    align-items: center;
+    width: 20%;
+    background: transparent;
+    color: transparent;
+    transition: 1s;
+    
+  }
+  input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+  .new:hover{
+    color: white;
+    background: rgba(0, 0, 0, 0.525);
+    transition: 1s;
+
   }
 </style>

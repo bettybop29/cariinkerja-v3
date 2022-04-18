@@ -30,7 +30,9 @@
                     class="form-control"
                     placeholder="Password must contain at least one number, one capital letter and one special character"
                     required
+                    id="myInput"
                   />
+                  <input class="mt-2" type="checkbox" v-on:click="myFunction"> <small class="text-muted">show Password</small> <br>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Company</label>
@@ -105,6 +107,14 @@ export default {
     };
   },
   methods: {
+    myFunction(){
+      var x = document.getElementById("myInput");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+    },
    
     async signUp() {
       try {

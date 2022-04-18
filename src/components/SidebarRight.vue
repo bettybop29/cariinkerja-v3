@@ -46,15 +46,18 @@
 
 <script>
 import axios from "axios";
-
+import "mosha-vue-toastify/dist/style.css";
+import { createToast } from "mosha-vue-toastify";
 export default {
     name:"SidebarRight",
     props:['view','id'],
     methods:{
+      
       async accepted(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
         location.reload(true)
         console.log(id)
+        createToast(`Accepted`, { type: "success" });
       },
       async rejected(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
@@ -95,6 +98,7 @@ export default {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         height: 97vh;
         width: 100%;
+        transition: ease-in-out 1s;
         /* padding-right: 250px; */
 
     }

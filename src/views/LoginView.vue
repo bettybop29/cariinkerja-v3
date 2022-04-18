@@ -35,10 +35,12 @@
                   type="password"
                   v-model="password"
                   class="form-control"
-                  id="exampleInputPassword1"
+                  id="myInput"
                   placeholder="password"
                   required
+                  
                 />
+                <input class="mt-2" type="checkbox" v-on:click="myFunction"> <small class="text-muted">show Password</small> <br>
                  <button type="submit" class="btn btn-primary">login</button>
               </form>
               
@@ -138,9 +140,13 @@ export default {
     };
   },
   methods: {
-    test(){
-      console.log("test")
-      
+    myFunction(){
+       var x = document.getElementById("myInput");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
     },
     async login() {
       try {
