@@ -216,12 +216,14 @@ export default {
       display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
   }
   .card-title {
     font-weight: bold;
   }
   .card {
     border-radius: 20px;
+    padding: 10px;
   }
   .card-text {
     padding: 0;
@@ -259,6 +261,27 @@ export default {
   }
   .label{
      background:rgb(139, 139, 139); 
+  }
+
+  .card-img-top{
+    margin-top: 10px;
+  }
+
+  .card-body h5{
+    margin-bottom: 20px;
+  }
+
+  .card-body span{
+    margin-bottom: 10px;
+  }
+
+  .card-body p{
+    padding-bottom: 10px;
+  }
+
+  .card-body p i{
+    
+    color: blue;
   }
 
 </style>
