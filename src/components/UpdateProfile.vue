@@ -2,41 +2,42 @@
 <sidebarcomponent/>
 <div class="bg-color">
   <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
-  <div class="container">
+
+  <div class="container section-first">
     
-    <form class="row" @submit.prevent="updateProfile" type="multipart">
-      <h1>Update Profile</h1>
-      <div class="col-md-5">
+    <form @submit.prevent="updateProfile" type="multipart">
+      <h1 class="mb-5">Update Profile</h1>
+      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Email:</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterEmail" disabled>
       </div>
-      <div class="col-md-5 mb-3">
+      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Culture</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCulture" required>
       </div>
-      <div class="col-md-5 mb-3">
+      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Industry</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry" required>
       </div>
-      <div class="col-md-5 mb-3">
+      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Benefit</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterBenefit"  required>
       </div>
      
-      <div class="col-md-5 mb-3">
+      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Company</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany" required>
       </div>
     
-      <div class="col-md-5 mb-3">
+      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Staff</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterStaff" required>
       </div>    
-      <div class="col-md-5 mb-3">
+      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Description</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterDesc"></textarea>
       </div>
-      <div class="col-md-5 mb-3">
+      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Address</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterAddress"></textarea>
       </div>
@@ -44,32 +45,35 @@
  
     </form>
   </div>
+
   <div class="container bottom">
-    <h1>Contact</h1>
-     <form class="row" @submit.prevent="updateProfile">
- <div class="col-md-5 mb-3">
+    
+     <form @submit.prevent="updateProfile">
+       <h1 class="mb-5">Contact</h1>
+ <div class="col-md-10 mb-4">
   
         <label for="validationDefault03" class="form-label">Phone</label>
         <input type="number" class="form-control" id="validationDefault03" v-model="profile.recruiterPhone" required>
       </div>
-      <div class="col-md-5 mb-3">
+      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Facebook</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb" required>
       </div>
-      <div class="col-md-5 mb-3">
+      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Instagram</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg" required>
       </div>
-       <div class="col-md-5 mb-3">
+       <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Linkedin</label>
         <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin" required>
       </div>
-       <div class="col-md-5 mb-3">
+       <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Website</label>
         <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite">
       </div>
-      <button class="btn btn-success" type="submit">Edit</button>
+      
      </form>
+     <button class="btn btn-success" type="submit">Update</button>
   </div>
   
 </div>
@@ -135,20 +139,21 @@ export default {
 <style scoped>
 .bg-color{
   background-color: #f3f3f3;
-  height: 117vh;
+  min-height: 140vh;
   
 }
   h1 {
     text-align: left;
     padding: 0;
     margin-bottom: 20px;
+    margin-top: 10px;
   }
   
   .container{
     background: white;
     padding: 20px;
     border-radius: 20px;
-    position: absolute;
+    /* position: absolute; */
     margin: 1.5%;
     width: 60%;
     padding-right: 0;
@@ -157,7 +162,9 @@ export default {
   }
   .btn{
     width: 81%;
-    margin-left: 12px;
+    margin-left: 70px;
+    margin-top: 30px;
+    margin-bottom: 10px;
   }
   .new{
     background: transparent;
@@ -177,9 +184,13 @@ export default {
     
   }
   .bottom{
-    margin-top: 35%;
+    margin-top: 2%;
+    margin-bottom: 10px;
   }
 
-  
- 
+  form{
+    margin-left: 80px;
+  }
+
+   
 </style>
