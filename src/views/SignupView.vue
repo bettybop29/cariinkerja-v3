@@ -126,7 +126,7 @@ export default {
           );
           createToast("Sign up sukses", {type: "success"} )
           localStorage.setItem("user-info", JSON.stringify(result.data));
-          this.$router.push("/login");
+          this.$router.push("/activation");
          } else {
            createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
          }

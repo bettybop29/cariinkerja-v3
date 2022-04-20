@@ -135,13 +135,14 @@ export default {
 <style scoped>
 .bg-color{
   background-color: #f3f3f3;
-  height: 117vh;
+  min-height: 140vh;
   
 }
   h1 {
     text-align: left;
     padding: 0;
     margin-bottom: 20px;
+    
   }
   
   .container{

@@ -18,9 +18,9 @@
                 <li>
                    <router-link class="" to="/about"><i class="bi bi-person-fill"></i>Company profile</router-link>
                 </li>
-                <li>
+                <!-- <li>
                    <router-link class="" to="/credit"><i class="bi bi-newspaper"></i>Credit</router-link>
-                </li>
+                </li> -->
             </ul>
             <button class="icon-link">
             <li class="image">

@@ -21,9 +21,10 @@
                     
                 </div>
                 <label class="custom-file-upload">
-                <input type="file" v-on:click="uploadImg" class="btn new position-absolute top-0 end-0 m-3 ">
-                  <i class="bi bi-pencil-square"></i>Edit/upload
+                   <input type="file" id="89" ref="file" v-on:change="onChangeFileUpload()"/>
                 </label>
+                <button type="file" v-on:click="submitForm" class="btn new position-absolute top-0 end-0 m-3 ">
+                  <i class="bi bi-pencil-square"></i>Edit/upload</button>
               </div>
 
               <p class="card-text">{{profile.recruiterIndustry}}</p>
@@ -80,9 +81,27 @@
       }
     },
     methods: {
-      uploadImg(){
-        console.log("saduk")
+      submitForm(){
+            let formData = new FormData();
+            formData.append('file', this.file);
+  
+            this.axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`,
+                formData,
+                {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+              }
+            ).then(function(data){
+              console.log(data.data);
+            })
+            .catch(function(){
+              console.log('FAILURE!!');
+            });
       },
+       onChangeFileUpload(){
+        this.file = this.$refs.file.files[0];
+      }, 
       fetchData() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
         axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
@@ -164,29 +183,11 @@
   .btn {
     text-align: center;
   }
-  .new{
-    padding-top: 30px;
-    padding-bottom: 38px;
-    align-items: center;
-    width: 20%;
-    background: transparent;
-    color: transparent;
-    transition: 1s;
-    
-  }
-  input[type="file"] {
-    display: none;
-}
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-}
-  .new:hover{
-    color: white;
-    background: rgba(0, 0, 0, 0.525);
-    transition: 1s;
-
-  }
+ .new{
+   width: 130px;
+   padding-top: 120px;
+ }
+ /* .custom-file-upload{
+   
+ } */
 </style>
