@@ -9,6 +9,7 @@ import JobDetail from '../components/JobDetail.vue'
 import UpdateProfile from '../components/UpdateProfile.vue'
 import CreditView from '../views/CreditView'
 import AplicantDetail from '../components/AplicantDetail.vue'
+import ResetPasswordView from '../views/ResetPasswordView.vue'
 
 const routes = [
   {
@@ -60,6 +61,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignupView 
+  },
+  {
+    path: '/resetpassword',
+    name: 'resetpassword',
+    component: ResetPasswordView
   }
 ]
 

@@ -50,6 +50,9 @@
             <br />
             Jika anda belum memiliki akun
             <router-link class="signup" to="/signup">Signup</router-link>
+            <br>
+            forgot password
+            <router-link class="resetpassword" to="/resetpassword">Forgot password</router-link>
           </div>
         </div>
       </div>

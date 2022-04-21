@@ -35,7 +35,7 @@
               <p class="card-text">{{profile.recruiterBenefit}}</p>
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
-              <router-link class="btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile
+              <router-link class="btn-update btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile
               </router-link>
             </div>
           </div>
@@ -154,7 +154,8 @@
     margin-right: 10px;
   }
 
-  .btn {
+  .btn-update {
     text-align: center;
+    color: #fff;
   }
 </style>

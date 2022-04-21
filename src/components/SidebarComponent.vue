@@ -2,6 +2,7 @@
 <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
+            
             <div class="sidebar-header">
                 <img src="http://54.255.4.75:9091/resources/meta.png" alt="">
                 <span>Cariinkerja</span>
@@ -13,10 +14,10 @@
                     <router-link class="" to="/dashboard"><i class="bi bi-house-fill"></i>Dashboard</router-link>
                 </li>
                 <li>
-                   <router-link class="" to="/postjob"><i class="bi bi-sticky-fill"></i>Postjob</router-link>
+                   <router-link class="" to="/postjob"><i class="bi bi-sticky-fill"></i>Post Job</router-link>
                 </li>
                 <li>
-                   <router-link class="" to="/about"><i class="bi bi-person-fill"></i>Company profile</router-link>
+                   <router-link class="" to="/about"><i class="bi bi-person-fill"></i>Company Profile</router-link>
                 </li>
                 <li>
                    <router-link class="" to="/credit"><i class="bi bi-newspaper"></i>Credit</router-link>
