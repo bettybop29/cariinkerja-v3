@@ -10,6 +10,7 @@ import moshaToast from 'mosha-vue-toastify';
 import 'mosha-vue-toastify/dist/style.css';
 import JlDatatable from 'jl-datatable'
 
+import CKEditor from '@ckeditor/ckeditor5-vue';
 
 const app = createApp(App);
 
@@ -18,6 +19,7 @@ app.use(store);
 app.use(VueAxios,axios);
 app.use(moshaToast);
 app.use(JlDatatable);
+app.use(CKEditor);
 
 
 

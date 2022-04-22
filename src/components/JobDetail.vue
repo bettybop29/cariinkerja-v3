@@ -238,8 +238,8 @@
         // const url = this.apiUrl + this.id
         await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)
           .then((data) => {
-            this.job = data.data
-            // console.log(this.jobDesc)
+            this.job = data.data.data
+           console.log(this.job)
           })
       },
       async getResume(jobseekerResume) {

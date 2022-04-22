@@ -41,6 +41,7 @@
                   
                 />
                 <input class="mt-2" type="checkbox" v-on:click="myFunction"> <small class="text-muted">show Password</small> <br>
+                <p><router-link to="/resetpassword">Forgot Password?</router-link></p>
                  <button type="submit" class="btn btn-primary">login</button>
               </form>
               

@@ -10,6 +10,8 @@ import UpdateProfile from '../components/UpdateProfile.vue'
 import CreditView from '../views/CreditView'
 import AplicantDetail from '../components/AplicantDetail.vue'
 import ActivationView from '@/views/ActivationView.vue'
+import ResetPassword from '@/views/ResetPassword.vue'
+
 
 const routes = [
   {
@@ -61,6 +63,11 @@ const routes = [
     path: '/activation',
     name: 'activation',
     component: ActivationView, 
+  },
+  {
+    path: '/resetpassword',
+    name: 'ResetPassword',
+    component: ResetPassword, 
   },
   {
     path: '/signup',
