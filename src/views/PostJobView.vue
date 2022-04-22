@@ -4,7 +4,7 @@
   <div class="main">
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
       data-bs-whatever="@getbootstrap">
-      <i class="bi bi-plus-circle"></i>
+      <i class="bi bi-plus-circle me-2"></i>
       Add New Job
     </button>
 
