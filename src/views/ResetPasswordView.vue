@@ -1,23 +1,38 @@
 <template>
     <div class="reset">
         <!-- navbar -->
-    <div class="container">
+    <div class="container-fluid">
+        
         <nav class="row navbar navbar-expand-lg navbar-light bg-white">
-            <div class="navbar-nav ml-auto mr-auto mr-sm-auto mr-lg-0 mr-md-auto">
-                <a href="#" class="navbar-brand">
-                    <img class="logo" src="frontend/images/logo.png" alt="logo" />
-                </a>
+            <div class="d-flex justify-content-center">
+            <!-- <div class="navbar-nav ms-auto me-auto ms-sm-auto ms-lg-0 ms-md-auto"> -->
+            <ul class="navbar-nav ms-auto me-auto d-none d-lg-block">
+                <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
+                    
+                        
+                    
+                    
+                    
+                        <li class="nav-item">
+                            <a class="navbar-brand me-auto" href="#" style="text-align: right;">
+                            <img class="logo" src="frontend/images/logo.png" width="30" alt="logo" />
+                        </a>
+                            <span class="text-muted">
+                                | &nbsp; Find The Best Fit
+                            </span>
+
+                            
+                        </li>
+                        
+                    </ul>
+                <!-- </div> -->
+            <!-- </div> -->
             </div>
-            <ul class="navbar-nav mr-auto d-none d-lg-block">
-                <li>
-                    <span class="text-muted">
-                        | &nbsp; Find The Best Fit
-                    </span>
-                </li>
-            </ul>
         </nav>
+        
     </div>
 
+    
     <main>
         <section class="section-verify d-flex align-items-center">
             <div class="col text-center">
