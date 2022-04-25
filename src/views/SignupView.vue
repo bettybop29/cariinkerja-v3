@@ -90,7 +90,7 @@
 <script>
 import axios from "axios";
 import "mosha-vue-toastify/dist/style.css";
-import { createToast } from "mosha-vue-toastify";
+// import { createToast } from "mosha-vue-toastify";
 import NavLogin from '../components/NavLogin.vue'
 
 export default {
@@ -116,25 +116,37 @@ export default {
           }
     },
    
-    async signUp() {
-      try {
-        const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)     
-        if(passwordCheck != null){
-            const result = await axios.post(
-         
-          `http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`
-          );
-          createToast("Sign up sukses", {type: "success"} )
-          localStorage.setItem("user-info", JSON.stringify(result.data));
-          this.$router.push("/activation");
-         } else {
-           createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
-         }
-      } catch (errorCode) {
-        console.log(errorCode);
-        this.$router.push("/signup");
-        createToast("please, fill blank form", { type: "danger" });
-      }
+     async signUp() {
+      // try {
+      //   const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)     
+      //   if(passwordCheck != null){
+      //       await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`)
+      //     .then((data)=>{
+      //       this.sign = data.data
+      //       console.log(data)
+      //     })
+          
+      //     createToast("Sign up sukses", {type: "success"} )
+      //     // localStorage.setItem("user-info", JSON.stringify(result.data));
+      //     this.$router.push("/activation");
+      //     // if(result.message == 'User already exists' ){
+      //     //   createToast("User already exists",{type:"success"})
+      //     // }
+      //     // console.log(result)
+      //    } else {
+      //      createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
+      //    }
+      // } catch (errorCode) {
+      //   console.log(errorCode);
+      //   this.$router.push("/signup");
+      //   createToast("please, fill blank form", { type: "danger" });
+      // }
+      await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`)
+      .then((data)=>{
+        this.sign=data.data
+        console.log(data)
+      })
+      
     },
   },
 };

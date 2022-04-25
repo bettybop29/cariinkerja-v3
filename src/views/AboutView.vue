@@ -20,11 +20,13 @@
                     src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 20%">
                     
                 </div>
+                <form action="" @submit.prevent="onUpload" enctype="multipart/formdata">
                 <label class="custom-file-upload">
-                   <input type="file" id="89" ref="file" v-on:change="onChangeFileUpload()"/>
+                   <input type="file" ref="file" @change="onFileSelected"/>
                 </label>
-                <button type="file" v-on:click="submitForm" class="btn new position-absolute top-0 end-0 m-3 ">
+                <button type="submit" class="btn new position-absolute top-0 end-0 m-3 ">
                   <i class="bi bi-pencil-square"></i>Edit/upload</button>
+                  </form>
               </div>
 
               <p class="card-text">{{profile.recruiterIndustry}}</p>
@@ -76,32 +78,45 @@
     data() {
 
       return {
-        profile: []
-
+        profile: [],
+        selectedFile:null
       }
     },
     methods: {
-      submitForm(){
-            let formData = new FormData();
-            formData.append('file', this.file);
-  
-            this.axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`,
-                formData,
-                {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-              }
-            ).then(function(data){
-              console.log(data.data);
-            })
-            .catch(function(){
-              console.log('FAILURE!!');
-            });
-      },
-       onChangeFileUpload(){
-        this.file = this.$refs.file.files[0];
-      }, 
+     onFileSelected(Event){
+       this.selectedFile = Event.target.files[0]
+     },
+      onUpload(){
+       console.log(this.selectedFile.name)
+       const fd = new FormData();
+       fd.append('file',this.selectedFile,this.selectedFile.name)
+       const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+       fd.append('recruiterId', recruiterId)
+      //  const article = { file:fd, recruiterId:103 };
+      //  let config = {
+      //   header : {
+      //     'Content-Type' : 'multipart/form-data'
+      //   }
+      // }
+     axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`, fd)
+     .then(res=>{
+       console.log(res)
+       location.reload(true)
+     })
+       
+      //  const fd = new FormData();
+      //  fd.append('image', this.selectedFile,  this.selectedFile.name)
+      //  await axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`,fd)
+      //  .then(res =>{
+      //    console.log(res)
+      //  })
+     },
+     created() {
+  // Simple POST request with a JSON body using axios
+  const article = { title: "Vue POST Request Example" };
+  axios.post("https://reqres.in/api/articles", article)
+    .then(response => this.articleId = response.data.id);
+},
       fetchData() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
         axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)

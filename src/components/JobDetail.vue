@@ -131,6 +131,27 @@
   // import JlDatatable from 'jl-datatable';
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from 'axios'
+  import {decode} from 'html-entities';
+
+
+decode('&lt; &gt; &quot; &apos; &amp; &#169; &#8710;');
+// -> '< > " \' & © ∆'
+
+decode('&copy;', {level: 'html5'});
+// -> '©'
+
+decode('&copy;', {level: 'xml'});
+// -> '&copy;'
+import {decodeEntity} from 'html-entities';
+
+decodeEntity('&lt;');
+// -> '<'
+
+decodeEntity('&copy;', {level: 'html5'});
+// -> '©'
+
+decodeEntity('&copy;', {level: 'xml'});
+// -> '&copy;'
   export default {
     components: {
       // JlDatatable

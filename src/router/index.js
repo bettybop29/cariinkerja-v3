@@ -70,7 +70,7 @@ const routes = [
     component: ResetPassword, 
   },
   {
-    path: '/changepassword',
+    path: '/changepassword/:token',
     name: 'ChangePassword',
     component: ChangePassword, 
   },

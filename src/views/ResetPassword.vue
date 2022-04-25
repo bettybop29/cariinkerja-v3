@@ -9,16 +9,24 @@
             <div class="content1 col">
                 <h1>Reset Password</h1>
                 <span class="label text-muted">The verification email will be sent into mailbox<br>Please check it</span>
+                 <form action="" @submit.prevent="resetPass">
                 <div class="form-floating mb-3">
+                   
                     <input type="email" 
                     class="form-control" 
                     id="floatingInput" 
                     placeholder="name@example.com"
-                    v-model="recruiterEmail">
+                    v-model="recruiterEmail"
+                    required>
                     <label for="floatingInput">Email address</label>
+                    
                 </div>
-                <button v-on:click="resetPass" class="btn btn-primary">Reset</button>
+                <button type="submit" class="btn btn-primary">Reset</button>
+                </form>
+                
+                
             </div>
+            
             <div class="content2 col">
                 
                 <img src="http://54.255.4.75:9091/resources/kurtb4zq5unn0md.gif" alt="">

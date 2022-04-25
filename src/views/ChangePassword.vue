@@ -1,5 +1,8 @@
 <template>
-  <h1>Page Reset Password</h1>
+  <h1> change Password</h1>
+  <form action="">
+      
+  </form>
 </template>
 
 <script>
