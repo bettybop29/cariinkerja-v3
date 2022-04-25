@@ -92,12 +92,6 @@
        fd.append('file',this.selectedFile,this.selectedFile.name)
        const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
        fd.append('recruiterId', recruiterId)
-      //  const article = { file:fd, recruiterId:103 };
-      //  let config = {
-      //   header : {
-      //     'Content-Type' : 'multipart/form-data'
-      //   }
-      // }
      axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`, fd)
      .then(res=>{
        console.log(res)
