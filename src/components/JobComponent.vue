@@ -1,4 +1,5 @@
 <template>
+
   <div class="card">
     <div class="dropdown">
       <a class="bi bi-three-dots-vertical" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
@@ -122,9 +123,11 @@
       <button class="btn btn-success" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
     </div>
   </div>
+
   <!-- </router-link> -->
 </template>
 <script>
+
 import axios from 'axios'
 import "mosha-vue-toastify/dist/style.css";
 import { createToast } from "mosha-vue-toastify";

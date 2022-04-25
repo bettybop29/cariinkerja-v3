@@ -20,6 +20,11 @@
                     src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 20%">
                     
                 </div>
+                <label class="custom-file-upload">
+                   <input type="file" id="89" ref="file" v-on:change="onChangeFileUpload()"/>
+                </label>
+                <button type="file" v-on:click="submitForm" class="btn new position-absolute top-0 end-0 m-3 ">
+                  <i class="bi bi-pencil-square"></i>Edit/upload</button>
               </div>
 
               <p class="card-text">{{profile.recruiterIndustry}}</p>
@@ -76,6 +81,27 @@
       }
     },
     methods: {
+      submitForm(){
+            let formData = new FormData();
+            formData.append('file', this.file);
+  
+            this.axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`,
+                formData,
+                {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+              }
+            ).then(function(data){
+              console.log(data.data);
+            })
+            .catch(function(){
+              console.log('FAILURE!!');
+            });
+      },
+       onChangeFileUpload(){
+        this.file = this.$refs.file.files[0];
+      }, 
       fetchData() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
         axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
@@ -158,4 +184,11 @@
     text-align: center;
     color: #fff;
   }
+ .new{
+   width: 130px;
+   padding-top: 120px;
+ }
+ /* .custom-file-upload{
+   
+ } */
 </style>

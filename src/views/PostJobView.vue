@@ -38,16 +38,20 @@
               </div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Job Requirement:</label>
-                <input type="text" class="form-control" id="recipient-name" v-model="jobRequirement" />
+                <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig"></ckeditor>
+                
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Job Desc:</label>
-                <textarea class="form-control" id="message-text" v-model="jobDesc"></textarea>
+                <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="jobDesc" :config="editorConfig"></ckeditor>
+                <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
+              <code>{{this.jobDesc}}</code>
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Job Address:</label>
                 <textarea class="form-control" id="message-text" v-model="jobAddress"></textarea>
               </div>
+              
             </form>
           </div>
           <div class="modal-footer">
@@ -64,14 +68,19 @@
     </div>
 
     <div class="row">
+     
       <div class="col-md-3 mt-3" v-for="item in list" v-bind:key="item.id">
+        
         <job-component class="job-component" :item="item"></job-component>
+        
       </div>
+      
     </div>
   </div>
   </div>
 </template>
 <script>
+  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import JobComponent from '../components/JobComponent.vue'
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from "axios";
@@ -79,6 +88,7 @@
     createToast
   } from "mosha-vue-toastify";
   import 'boxicons';
+
 
   export default {
     name: "PostJob",
@@ -88,6 +98,12 @@
     },
     data() {
       return {
+        editor: ClassicEditor,
+        editorData: '',
+        editorConfig: {
+         // The configuration of the editor.
+         
+        },
         jobName: "",
         jobSalary: "",
         jobPosition: "",

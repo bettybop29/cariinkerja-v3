@@ -3,10 +3,11 @@
 <sidebar-component></sidebar-component>
 
   <sidebar-right :view="views"></sidebar-right>
-
+ 
 <div class="main">
 
   <div class="container">
+    
     <div class="logo-main">
 
     </div>
@@ -23,9 +24,13 @@
                 
               </div>
               <button class="btn">See all</button>
+              
             </div>
+            
         </div>
+       
         <div class="card-monitor">
+          
           <div class="card-approve">
             <div class="card-title">
                 <h4>Summary of approve</h4>
@@ -38,7 +43,7 @@
               
           </div>
         </div>
-         
+         <img src="http://54.255.4.75:9091/resources/qnry9dzt9q8lym8.png" alt="">
     </div> 
 <div class="title-table">
   <h3>Resume</h3>
@@ -70,7 +75,7 @@
         <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
         <p v-else class="position2">{{resume.jobPosition}}</p>
       </td>
-      <td><button class="btn-primary" @click="getView(resume.jobseekerId)">view</button></td>
+      <td><button class="btn-primary" @click="getView(resume.applicationId)">view</button></td>
       
     </tr>
   </tbody>  
@@ -162,8 +167,9 @@ export default {
       this.reject=data.data
       })
     },
-    async getView(id){
-      await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant/${id}`)
+    async getView(applicationId){
+      // await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?jobseekerId=${jobseekerId}&applicationId=${applicationId}`)
+       await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${applicationId}`)
       .then((data)=>{
         this.views=data.data.data
         console.log(data)
@@ -236,11 +242,12 @@ export default {
 }
 img{
   position: fixed;
-  margin-top: 0;
-  margin-top: 10px;
-  margin-left: 0px;
-  width: 291px;
-  height: 291px;
+display: block;
+ margin-left: 0;
+  margin-right: 40px;
+  width: 270px;
+  height: 270px;
+  overflow-x: hidden;
   
   
 }
