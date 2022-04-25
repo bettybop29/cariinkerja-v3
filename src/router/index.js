@@ -12,7 +12,7 @@ import AplicantDetail from '../components/AplicantDetail.vue'
 import ResetPasswordView from '../views/ResetPasswordView.vue'
 import ActivationView from '@/views/ActivationView.vue'
 import ResetPassword from '@/views/ResetPassword.vue'
-
+import ChangePassword from '@/views/ChangePassword.vue'
 
 const routes = [
   {
@@ -69,6 +69,11 @@ const routes = [
     path: '/resetpassword',
     name: 'ResetPassword',
     component: ResetPassword, 
+  },
+  {
+    path: '/changepassword',
+    name: 'ChangePassword',
+    component: ChangePassword, 
   },
   {
     path: '/signup',

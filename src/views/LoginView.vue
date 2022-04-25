@@ -162,9 +162,8 @@ export default {
         localStorage.setItem("user-info", JSON.stringify(result.data.data.registerDTO));
         this.$router.push("/dashboard");
         createToast(`Welcome back!! ${result.data.data.registerDTO.recruiterCompany}`, { type: "success" });
-       
         
-      } catch (error) {
+      } catch(error) {
         createToast("Wrong Email or Password!", { type: "danger" });
       }
     },
