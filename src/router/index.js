@@ -15,6 +15,7 @@ import ResetPassword from '@/views/ResetPassword.vue'
 import ChangePassword from '@/views/ChangePassword.vue'
 import VerificationPassword from '@/views/VerificationPassword.vue'
 import ExpiredView from '@/views/ExpiredForgotView.vue'
+import ExpiredSignup from '@/views/ExpiredSignup.vue'
 
 const routes = [
   {
@@ -91,6 +92,11 @@ const routes = [
     path: '/expiredforgot',
     name: 'ExpiredView',
     component: ExpiredView
+  },
+  {
+    path: '/expiredsignup',
+    name: 'ExpiredSignup',
+    component: ExpiredSignup
   },
   {
     path: '/resetpassword',

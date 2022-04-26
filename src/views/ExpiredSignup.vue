@@ -38,8 +38,8 @@
             <div class="col text-center">
                 <img class="forgot" src="http://54.255.4.75:9091/resources/r8jfpc0fx95da5w.png" alt="" style="width:500px;">
                 <h1>Your link is expired,
-                Please repeat the forgot password step</h1>
-                <router-link to="/resetpassword">Resend Email</router-link>
+                Please repeat the Sign up step</h1>
+                <router-link to="/siignup">Resend Email</router-link>
             </div>
         </section>
     </main>

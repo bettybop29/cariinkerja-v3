@@ -3,8 +3,8 @@
   <div class="position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 bg-body rounded-3" style="width:500px;">
   <form @submit.prevent="resetPass">
     <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="decoded.email" required>
+    <label for="exampleInputEmai2" class="form-label" >Email</label>
+    <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" v-model="decoded.email" required >
     
   </div>
   <div class="mb-3">
@@ -26,17 +26,14 @@
 <script>
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
-var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTA5NDM0MjUsImVtYWlsIjoiZnJpdHphZ3JpY2lhLmFzQGdtYWlsLmNvbSJ9.doW9oDmQ9AvU5T8IrOQNwG4hBnyqGTvfMEdbrfhB48k";
-var decoded = jwt_decode(token);
- 
-console.log(decoded);
+import "mosha-vue-toastify/dist/style.css";
+import { createToast } from "mosha-vue-toastify";
 export default {
     name:"ChangePassword",
     data(){
         return{
             password:"",
             password_Confirm:"",
-            // email:jwt_decode(this.$route.params.email)
             decoded:""
             
         }
@@ -47,27 +44,30 @@ export default {
  
 
 
-       async resetPass(){
+        async resetPass(){
           
-          // const fd = new FormData(
-          //   this.password,
-          //   this.password_Confirm
-          // );
+          const fd = new FormData(
+            'password',this.password,
+            'passwordConfirm', this.password_Confirm,
+            'email', this.decoded.email
+          );
           
-          // console.log(fd)
-          //  const response = await axios.patch(`http://54.255.4.75/:9091/api/v1/auth/change-password`,fd);
-           const response = await axios.patch(`http://54.255.4.75/:9091/api/v1/auth/change-password`,{
-               password: this.password,
-               passwordConfirm: this.password_Confirm,
-               email: this.decoded
-           });
+          console.log(fd)
+           const response = await axios.patch(`http://54.255.4.75/:9091/api/v1/auth/change-password`,fd);
            console.log(response)
-           this.$router.push("/login")
+           createToast("Password Changed", { type: "Success" });
+          //  const response = await axios.patch(`http://54.255.4.75/:9091/api/v1/auth/change-password`,{
+          //      password: this.password,
+          //      passwordConfirm: this.password_Confirm,
+          //      email: this.decoded.email
+          //  });
+          //  console.log(response)
+          //   createToast("Password Changed", { type: "Success" });
            
         }
     },
     mounted(){
-      var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTA5NDM0MjUsImVtYWlsIjoiZnJpdHphZ3JpY2lhLmFzQGdtYWlsLmNvbSJ9.doW9oDmQ9AvU5T8IrOQNwG4hBnyqGTvfMEdbrfhB48k";
+      var token = this.$route.params.token;
       var decoded = jwt_decode(token);
       this.decoded = decoded
     }
