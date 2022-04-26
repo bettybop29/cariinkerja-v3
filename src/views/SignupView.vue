@@ -89,9 +89,12 @@
 
 <script>
 import axios from "axios";
-import "mosha-vue-toastify/dist/style.css";
+// import "mosha-vue-toastify/dist/style.css";
 // import { createToast } from "mosha-vue-toastify";
 import NavLogin from '../components/NavLogin.vue'
+
+
+
 
 export default {
   name: "SignupView",
@@ -125,10 +128,14 @@ export default {
       //       this.sign = data.data
       //       console.log(data)
       //     })
-          
-      //     createToast("Sign up sukses", {type: "success"} )
-      //     // localStorage.setItem("user-info", JSON.stringify(result.data));
-      //     this.$router.push("/activation");
+      //     .then(response => {
+      //       if( response.code === "400" ){
+      //         throw new Error(response.message);
+      //       }
+      //     })
+      //     // createToast("Sign up sukses", {type: "success"} )
+      //     // // localStorage.setItem("user-info", JSON.stringify(result.data));
+      //     // this.$router.push("/activation");
       //     // if(result.message == 'User already exists' ){
       //     //   createToast("User already exists",{type:"success"})
       //     // }
@@ -136,16 +143,23 @@ export default {
       //    } else {
       //      createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
       //    }
-      // } catch (errorCode) {
-      //   console.log(errorCode);
-      //   this.$router.push("/signup");
-      //   createToast("please, fill blank form", { type: "danger" });
+      // } catch (err) {
+      //   console.log(err);
+      //   // this.$router.push("/signup");
+      //   // createToast("please, fill blank form", { type: "danger" });
       // }
-      await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`)
-      .then((data)=>{
-        this.sign=data.data
-        console.log(data)
-      })
+      try {
+        await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`)
+        .then((data)=>{
+            this.sign = data.data 
+            if(data.status === "FAILED"){
+              throw new Error(data.message)
+            }
+          })
+        
+      } catch (err) {
+        console.log(err)
+      }
       
     },
   },

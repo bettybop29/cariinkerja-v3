@@ -2,7 +2,8 @@
 <sidebarcomponent/>
 <div class="bg-color">
   <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
-  <div class="container">
+
+  <div class="container section-first">
     
     <form class="row" @submit.prevent="updateProfile" type="multipart">
       <h1 class="mb-5">Update Profile</h1>
@@ -44,6 +45,7 @@
  
     </form>
   </div>
+
   <div class="container bottom">
     <h1 class="mb-5">Contact</h1>
      <form class="row" @submit.prevent="updateProfile">
@@ -68,8 +70,9 @@
         <label for="validationDefault03" class="form-label">Website</label>
         <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite">
       </div>
-      <button class="btn btn-success" type="submit">Update</button>
+       <button class="btn btn-success" type="submit">Update</button>
      </form>
+     
   </div>
   
 </div>
@@ -142,14 +145,14 @@ export default {
     text-align: left;
     padding: 0;
     margin-bottom: 20px;
-    
+    margin-top: 10px;
   }
   
   .container{
     background: white;
     padding: 20px;
     border-radius: 20px;
-    position: absolute;
+    /* position: absolute; */
     margin: 1.5%;
     width: 60%;
     padding-right: 0;
@@ -180,13 +183,13 @@ export default {
     
   }
   .bottom{
-   margin-top: 2%;
-   margin-bottom: 10px;
+    margin-top: 2%;
+    margin-bottom: 10px;
   }
+
   form{
     margin-left: 80px;
   }
 
-  
- 
+   
 </style>

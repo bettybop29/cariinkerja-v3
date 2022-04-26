@@ -9,9 +9,12 @@ import JobDetail from '../components/JobDetail.vue'
 import UpdateProfile from '../components/UpdateProfile.vue'
 import CreditView from '../views/CreditView'
 import AplicantDetail from '../components/AplicantDetail.vue'
+import ResetPasswordView from '../views/VerificationPassword.vue'
 import ActivationView from '@/views/ActivationView.vue'
 import ResetPassword from '@/views/ResetPassword.vue'
 import ChangePassword from '@/views/ChangePassword.vue'
+import VerificationPassword from '@/views/VerificationPassword.vue'
+import ExpiredView from '@/views/ExpiredForgotView.vue'
 
 const routes = [
   {
@@ -78,6 +81,21 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignupView 
+  },
+  {
+    path: '/verificationpassword',
+    name: 'VerificationPassword',
+    component: VerificationPassword
+  },
+  {
+    path: '/expiredforgot',
+    name: 'ExpiredView',
+    component: ExpiredView
+  },
+  {
+    path: '/resetpassword',
+    name: 'resetpassword',
+    component: ResetPasswordView
   }
 ]
 

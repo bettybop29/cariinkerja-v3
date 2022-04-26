@@ -1,9 +1,6 @@
 <template>
 
   <div class="card">
-    <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark" alt="...">
-    <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="...">
-
     <div class="dropdown">
       <a class="bi bi-three-dots-vertical" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
         aria-expanded="false"></a>
@@ -17,6 +14,11 @@
         <button v-else disabled class="dropdown-item">Visible</button>
       </ul>
     </div>
+
+    <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark" alt="...">
+    <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="...">
+
+    
 
     <div class="card-body dark" v-if="item.jobStatus !='visible'">
       <h5 class="card-title">{{item.jobName}}</h5>
@@ -219,12 +221,14 @@ export default {
       display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
   }
   .card-title {
     font-weight: bold;
   }
   .card {
     border-radius: 20px;
+    padding: 10px;
   }
   .card-text {
     padding: 0;
@@ -232,10 +236,10 @@ export default {
     
   }
   .dropdown{
-    float: right;
-    position: absolute;
+    /* float: right; */
+    /* position: absolute; */
     margin: 10px;
-    margin-left:90%;
+    margin-left:85%;
   }
   .card-link {
     text-decoration: none;
@@ -262,6 +266,27 @@ export default {
   }
   .label{
      background:rgb(139, 139, 139); 
+  }
+
+  .card-img-top{
+    margin-top: -30px;
+  }
+
+  .card-body h5{
+    margin-bottom: 20px;
+  }
+
+  .card-body span{
+    margin-bottom: 10px;
+  }
+
+  .card-body p{
+    padding-bottom: 10px;
+  }
+
+  .card-body p i{
+    
+    color: blue;
   }
 
 </style>

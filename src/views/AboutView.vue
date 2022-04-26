@@ -42,7 +42,7 @@
               <p class="card-text">{{profile.recruiterBenefit}}</p>
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
-              <router-link class="btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile
+              <router-link class="btn-update btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile
               </router-link>
             </div>
           </div>
@@ -97,7 +97,7 @@
        console.log(res)
        location.reload(true)
      })
-       
+        
       //  const fd = new FormData();
       //  fd.append('image', this.selectedFile,  this.selectedFile.name)
       //  await axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`,fd)
@@ -189,8 +189,9 @@
     margin-right: 10px;
   }
 
-  .btn {
+  .btn-update {
     text-align: center;
+    color: #fff;
   }
  .new{
    width: 130px;

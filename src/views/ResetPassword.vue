@@ -52,6 +52,7 @@ export default {
             try{
                 await axios.post(`http://54.255.4.75:9091/api/v1/auth/reset?recruiterEmail=${this.recruiterEmail}`)
                 createToast("Verification has been sent", {type:"success"});
+                this.$router.push("/VerificationPassword")
             }catch{
                 createToast("Failed", {type:"danger"});
             }
