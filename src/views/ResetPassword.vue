@@ -20,6 +20,7 @@
                     required>
                     <label for="floatingInput">Email address</label>
                     
+                    
                 </div>
                 <button type="submit" class="btn btn-primary">Reset</button>
                 </form>
@@ -50,7 +51,7 @@ export default {
     methods:{
         async resetPass(){
             try{
-                await axios.post(`http://54.255.4.75:9091/api/v1/auth/reset?recruiterEmail=${this.recruiterEmail}`)
+                await axios.post(`http://54.255.4.75:9091/api/v1/auth/resend?email=${this.recruiterEmail}&recruiterCompany=Spotify`)
                 createToast("Verification has been sent", {type:"success"});
                 this.$router.push("/VerificationPassword")
             }catch{

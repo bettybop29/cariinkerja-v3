@@ -174,7 +174,7 @@ export default {
 
       }
       if(response.status === 200){
-        
+        this.$router.push('/activation')
         createToast(`Signup Sukses`, { type: "success" });
       }
     },

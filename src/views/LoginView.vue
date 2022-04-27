@@ -173,6 +173,7 @@ export default {
         createToast(`${err.response.data.message}`, { type: "danger" });
       }
       if( response.status === 200 ) {
+        console.log(response)
          localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
          createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
          this.$router.push("/dashboard");
