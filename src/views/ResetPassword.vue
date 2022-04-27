@@ -19,10 +19,11 @@
                     v-model="recruiterEmail"
                     required>
                     <label for="floatingInput">Email address</label>
-                    
-                    
+                         
                 </div>
-                <button type="submit" class="btn btn-primary">Reset</button>
+                
+               
+                <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="reset">
                 </form>
                 
                 
@@ -45,16 +46,19 @@ export default {
     name:"ResetPassword",
     data(){
         return{
-            recruiterEmail:""
+            recruiterEmail:"",
+            searchDisabled:false  
         }
     },
     methods:{
         async resetPass(){
             try{
-                await axios.post(`http://54.255.4.75:9091/api/v1/auth/resend?email=${this.recruiterEmail}&recruiterCompany=Spotify`)
+                this.searchDisabled = true;
+                await axios.post(`http://54.255.4.75:9091/api/v1/auth/reset?recruiterEmail=${this.recruiterEmail}`)
                 createToast("Verification has been sent", {type:"success"});
-                this.$router.push("/VerificationPassword")
+                this.$router.push("/VerificationPassword")               
             }catch{
+                location.reload(true)
                 createToast("Failed", {type:"danger"});
             }
         }
@@ -63,6 +67,9 @@ export default {
 </script>
 
 <style scoped>
+    .btn{
+        width: 100%;
+    }
     .back{
         position: fixed;
         margin: 20px;  

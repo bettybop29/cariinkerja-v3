@@ -55,7 +55,7 @@
                 <button
                   type="submit"
                   class="btn btn-success"
-
+                  :disabled="searchDisabled"
                 >
                   Signup
                 </button>
@@ -107,6 +107,7 @@ export default {
       recruiterPassword: "",
       recruiterCompany: "",
       recruiterIndustry: "",
+      searchDisabled:false
     };
   },
   methods: {
@@ -164,6 +165,7 @@ export default {
         if (passwordCheck != null){
         response = await axios.post(
           `http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`);
+        this.searchDisabled = true;
         }else {
            createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
          }

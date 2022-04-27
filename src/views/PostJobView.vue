@@ -159,8 +159,7 @@
       const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
       axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
         .then((resp) => {
-          this.list = resp.data
-          localStorage.setItem("job-info", JSON.stringify(resp.data));
+          this.list = resp.data   
         })
 
     }

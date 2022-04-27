@@ -27,7 +27,7 @@
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
 import "mosha-vue-toastify/dist/style.css";
-// import { createToast } from "mosha-vue-toastify";
+import { createToast } from "mosha-vue-toastify";
 export default {
     name:"ChangePassword",
     data(){
@@ -47,13 +47,17 @@ export default {
          resetPass(){
            let response = '';
             try {
-              response = axios.post(`http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`)
-              
+              response =  axios.post(`http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`)
+              this.$router.push('/login')
+              console.log(response)
+              console.log('agri')
+              createToast("Password Changed", { type: "Success" });
             } catch (err) {
               console.log(response)
             }
             if(response.status === 200){
               console.log(response)
+              
             }
 
 
