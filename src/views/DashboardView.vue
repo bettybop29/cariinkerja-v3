@@ -244,13 +244,13 @@ img{
   position: fixed;
   display: block;
   left: 250px;
-  top: 100px;
+  top: 50px;
   margin-left: 0;
   margin-right: 40px;
   /*width: 270px;*/
   /*height: 270px;*/
-  width: 200px;
-  height: 200px;
+  width: 270px;
+  height: 270px;
   overflow-x: hidden;
   
   
