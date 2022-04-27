@@ -80,8 +80,9 @@
         },
         methods: {
 
-            async aplicantDetail() {
-                await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant/` + this.$route.params.id)
+            async aplicantDetail(applicationId) {
+                // await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant/` + this.$route.params.id)
+                await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${applicationId}`)
                     .then((data) => {
                         this.aplicant = data.data.data
 

@@ -247,8 +247,6 @@ img{
   top: 50px;
   margin-left: 0;
   margin-right: 40px;
-  /*width: 270px;*/
-  /*height: 270px;*/
   width: 270px;
   height: 270px;
   overflow-x: hidden;
