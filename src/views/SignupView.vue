@@ -174,7 +174,7 @@ export default {
 
       }
       if(response.status === 200){
-        console.log(response)
+        
         createToast(`Signup Sukses`, { type: "success" });
       }
     },
