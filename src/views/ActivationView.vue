@@ -26,7 +26,7 @@ export default {
         }
     },
     mounted(){
-        this.email = JSON.parse(localStorage.getItem("user-info")).data.recruiterEmail   
+        this.email = JSON.parse(localStorage.getItem("sign-info")).data.recruiterEmail   
     }
 }
 </script>

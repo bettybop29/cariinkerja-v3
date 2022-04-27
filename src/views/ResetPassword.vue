@@ -21,11 +21,12 @@
                     <label for="floatingInput">Email address</label>
                          
                 </div>
-                
+                <div v-if="this.searchDisabled == true">
+                    <beat-loader class="pulse" :loading="loading" :color="color" :size="size"></beat-loader>
+                </div>
                
                 <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="reset">
                 </form>
-                
                 
             </div>
             
@@ -35,15 +36,19 @@
             </div>
         </div>
     </div>
+    
 </template>
 
 <script>
 import axios from 'axios'
 import "mosha-vue-toastify/dist/style.css";
 import { createToast } from "mosha-vue-toastify";
-
+import BeatLoader from 'vue-spinner/src/BeatLoader.vue'
 export default {
     name:"ResetPassword",
+    components:{
+        BeatLoader
+    },
     data(){
         return{
             recruiterEmail:"",
@@ -56,7 +61,8 @@ export default {
                 this.searchDisabled = true;
                 await axios.post(`http://54.255.4.75:9091/api/v1/auth/reset?recruiterEmail=${this.recruiterEmail}`)
                 createToast("Verification has been sent", {type:"success"});
-                this.$router.push("/VerificationPassword")               
+                this.$router.push("/VerificationPassword")   
+                            
             }catch{
                 location.reload(true)
                 createToast("Failed", {type:"danger"});
@@ -67,6 +73,11 @@ export default {
 </script>
 
 <style scoped>
+    .pulse{
+        text-align: center;
+        margin: 2px;
+        transition: 1s;
+    }
     .btn{
         width: 100%;
     }
