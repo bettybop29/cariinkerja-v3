@@ -242,11 +242,15 @@ export default {
 }
 img{
   position: fixed;
-display: block;
- margin-left: 0;
+  display: block;
+  left: 250px;
+  top: 100px;
+  margin-left: 0;
   margin-right: 40px;
-  width: 270px;
-  height: 270px;
+  /*width: 270px;*/
+  /*height: 270px;*/
+  width: 200px;
+  height: 200px;
   overflow-x: hidden;
   
   

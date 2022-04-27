@@ -29,7 +29,7 @@
                   </form>
               </div>
 
-              <span class="mb-3 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
+              <span class="mb-4 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
               <p class="card-span">Staff: </p>
               <p class="card-text"><i class="bi bi-person-fill me-0"></i> {{profile.recruiterStaff}}</p>
               <p class="card-span">Description: </p>
