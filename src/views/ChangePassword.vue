@@ -44,20 +44,18 @@ export default {
  
 
 
-         resetPass(){
+         async resetPass(){
+           
            let response = '';
             try {
-              response =  axios.post(`http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`)
-              this.$router.push('/login')
-              console.log(response)
-              console.log('agri')
-              createToast("Password Changed", { type: "Success" });
+              response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`)
+
             } catch (err) {
-              console.log(response)
+              console.log(err.response.data.message)
             }
             if(response.status === 200){
-              console.log(response)
-              
+              createToast("Password Changed", { type: "Success" });
+              this.$router.push('/login')
             }
 
 
@@ -91,6 +89,6 @@ export default {
 } 
 </script>
 
-<style>
+<style scoped>
     
 </style>

@@ -81,7 +81,9 @@
         methods: {
 
             async aplicantDetail() {
-                await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant/` + this.$route.params.id)
+                console.log('ee')
+                await axios.get(`http://54.255.4.75:9091/api/v1/application/applicants/` + this.$route.params.id)
+                
                     .then((data) => {
                         this.aplicant = data.data.data
 
