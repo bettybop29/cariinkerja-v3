@@ -52,13 +52,15 @@
                     required
                   />
                 </div>
-                <button
+                <input
                   type="submit"
                   class="btn btn-success"
                   :disabled="searchDisabled"
+                  value="SignUp"
                 >
-                  Signup
-                </button>
+                  <div v-if="this.searchDisabled == true">
+                   <beat-loader class="pulse" :loading="loading" :color="color" :size="size"></beat-loader>
+                  </div>
                 
                 <router-link to="/login" class="btn btn-danger">Back to Login</router-link>
               </div>
@@ -92,14 +94,15 @@ import axios from "axios";
 import "mosha-vue-toastify/dist/style.css";
 import { createToast } from "mosha-vue-toastify";
 import NavLogin from '../components/NavLogin.vue'
-
+import BeatLoader from 'vue-spinner/src/BeatLoader.vue'
 
 
 
 export default {
   name: "SignupView",
   components: {
-    NavLogin : NavLogin
+    NavLogin : NavLogin,
+    BeatLoader
   },
   data() {
     return {
@@ -121,51 +124,16 @@ export default {
     },
    
      async signUp() {
-      // try {
-      //   const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)     
-      //   if(passwordCheck != null){
-      //       await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`)
-      //     .then((data)=>{
-      //       this.sign = data.data
-      //       console.log(data)
-      //     })
-      //    
-      //     // createToast("Sign up sukses", {type: "success"} )
-      //     // // localStorage.setItem("user-info", JSON.stringify(result.data));
-      //     // this.$router.push("/activation");
-      //     // if(result.message == 'User already exists' ){
-      //     //   createToast("User already exists",{type:"success"})
-      //     // }
-      //     // console.log(result)
-      //    } else {
-      //      createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
-      //    }
-      // } catch (err) {
-      //   console.log(err);
-      //   // this.$router.push("/signup");
-      //   // createToast("please, fill blank form", { type: "danger" });
-      // }
-
-      // try {
-      //   await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`)
-      //   .then((data)=>{
-      //       this.sign = data.data 
-      //       if(data.status === "FAILED"){
-      //         throw new Error(data.message)
-      //       }
-      //     })
-        
-      // } catch (err) {
-      //   console.log(err)
-      // }
-
+    
       let response = '';
       try {
+        console.log(this.searchDisabled)
+        this.searchDisabled = true;
         const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)
         if (passwordCheck != null){
         response = await axios.post(
           `http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`);
-        this.searchDisabled = true;
+        
         }else {
            createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
          }
@@ -178,6 +146,7 @@ export default {
       if(response.status === 200){
         this.$router.push('/activation')
         createToast(`Signup Sukses`, { type: "success" });
+        localStorage.setItem("sign-info", JSON.stringify(response.data));
       }
     },
   },
@@ -185,6 +154,11 @@ export default {
 </script>
 
 <style scoped>
+.pulse{
+  text-align: center;
+  margin: 2px;
+  transition: 1s;
+}
 .container-fluid {
   margin-top: 3rem;
   background-color: #060684;

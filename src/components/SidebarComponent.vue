@@ -53,7 +53,9 @@ export default {
     methods:{
         logout(){
         try {
-        localStorage.removeItem("user-info" , "job-info")
+        localStorage.removeItem("user-info")
+        localStorage.removeItem("job-info")
+        localStorage.removeItem("sign-info")
        
         this.$router.push("/login");
         createToast("logout success!", { type: "success" });
