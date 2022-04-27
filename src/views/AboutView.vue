@@ -87,16 +87,15 @@
        this.selectedFile = Event.target.files[0]
      },
       onUpload(){
-       console.log(this.selectedFile.name)
        const fd = new FormData();
        fd.append('file',this.selectedFile,this.selectedFile.name)
        const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
        fd.append('recruiterId', recruiterId)
-     axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`, fd)
-     .then(res=>{
-       console.log(res)
-       location.reload(true)
-     })
+        axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`, fd)
+        .then(res=>{
+          console.log(res)
+          location.reload(true)
+        })
         
       //  const fd = new FormData();
       //  fd.append('image', this.selectedFile,  this.selectedFile.name)

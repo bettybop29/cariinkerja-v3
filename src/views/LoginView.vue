@@ -150,19 +150,32 @@ export default {
             x.type = "password";
           }
     },
+    
     async login() {
-      try {
-        const result = await axios.post(
-          `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`
-          // `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=fauziahaulia21@gmail.com&recruiterPassword=Superadmin1.`
-        );
-         console.log("test")
-        localStorage.setItem("user-info", JSON.stringify(result.data.data.registerDTO));
-        this.$router.push("/dashboard");
-        createToast(`Welcome back!! ${result.data.data.registerDTO.recruiterCompany}`, { type: "success" });
+      // try {
+      //   const result = await axios.post(
+      //     `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`
+      //     // `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=fauziahaulia21@gmail.com&recruiterPassword=Superadmin1.`
+      //   );
+      //    console.log("test")
+      //   localStorage.setItem("user-info", JSON.stringify(result.data.data.registerDTO));
+      //   this.$router.push("/dashboard");
+      //   createToast(`Welcome back!! ${result.data.data.registerDTO.recruiterCompany}`, { type: "success" });
         
-      } catch(error) {
-        createToast("Wrong Email or Password!", { type: "danger" });
+      // } catch(error) {
+      //   createToast("Wrong Email or Password!", { type: "danger" });
+      // }
+      let response = '';
+      try {
+        response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`);
+      } catch(err) {
+        console.log(err.response.data.message)
+        createToast(`${err.response.data.message}`, { type: "danger" });
+      }
+      if( response.status === 200 ) {
+         localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
+         createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
+         this.$router.push("/dashboard");
       }
     },
   },

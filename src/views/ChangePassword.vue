@@ -44,18 +44,26 @@ export default {
  
 
 
-        async resetPass(){
+         resetPass(){
+            try {
+               axios.patch(`http://54.255.4.75/:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`)
+              createToast("Password Changed", { type: "Success" });
+            } catch (error) {
+              console.log(error)
+            }
+
+
           
-          const fd = new FormData(
-            'password',this.password,
-            'passwordConfirm', this.password_Confirm,
-            'email', this.decoded.email
-          );
-          
-          console.log(fd)
-           const response = await axios.patch(`http://54.255.4.75/:9091/api/v1/auth/change-password`,fd);
-           console.log(response)
-           createToast("Password Changed", { type: "Success" });
+          // const fd = new FormData();
+          // fd.append('newPassword',this.password)
+          // fd.append('confirmPassword',this.password_Confirm)
+          // fd.append('email', this.decoded.email)
+    
+          //  const response = await axios.patch(`http://54.255.4.75/:9091/api/v1/auth/change-password`,fd);
+          //  console.log(response)
+          //  createToast("Password Changed", { type: "Success" });
+
+
           //  const response = await axios.patch(`http://54.255.4.75/:9091/api/v1/auth/change-password`,{
           //      password: this.password,
           //      passwordConfirm: this.password_Confirm,
