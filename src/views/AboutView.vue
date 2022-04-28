@@ -17,7 +17,7 @@
                   <img v-if="profile.recruiterImage != null" class="img-thumbnail position-absolute top-0 end-0 m-3"
                   :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 20%">
                     <img v-else class="img-thumbnail position-absolute top-0 end-0 m-3"
-                    src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 20%">
+                    src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 20% height:40%;">
                     
                 </div>
                 
@@ -40,13 +40,10 @@
                                          <input type="file" ref="file" @change="onFileSelected"/>
                                         </label>
                                         <button type="submit" class="btn btn-primary ">
-                                       <i class="bi bi-pencil-square"></i>Edit/upload</button>
+                                       <i class="bi bi-pencil-square"></i>Save Changes</button>
                                     </form>
                           </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                          </div>
+                          
                         </div>
                       </div>
                     </div>

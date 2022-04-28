@@ -41,11 +41,11 @@
               <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Job Name:</label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
+                  <input type="text" class="form-control" id="" v-model="edit.jobName">
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">job Position: </label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
+                  <input type="text" class="form-control" id="" v-model="edit.jobPosition">
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">job Address: </label>
@@ -104,12 +104,14 @@
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">job Requirement: </label>
-                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
+                    <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
+                    <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
                   </div>
                   
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label">job Description:</label>
-                    <textarea class="form-control" id="message-text" v-model="edit.jobDesc"/>
+                    <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig"></ckeditor>
+                    <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc"/> -->
                   </div>
                   <div class="modal-footer">
                 
@@ -132,12 +134,21 @@ import axios from 'axios'
 import "mosha-vue-toastify/dist/style.css";
 import { createToast } from "mosha-vue-toastify";
 import { warn } from '@vue/runtime-core';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+
 export default {
     name:"JobComponent",
     props:['item','id',],
     
     data(){
       return {
+         editor: ClassicEditor,
+        editorData: '',
+        editorConfig: {
+         // The configuration of the editor.
+         
+        },
         edit:[]
       }
     },
@@ -167,11 +178,16 @@ export default {
       },
       
         async getDetail(id){
-        
+        try{
+        console.log(id)
         await axios.get(`http://54.255.4.75:9091/api/v1/job/${id}`)
         .then((data)=>{
-          this.edit=data.data
+          this.edit=data.data.data
+          console.log(data.data)
         })
+        } catch{
+          console.log(Error)
+        }
       },
      async updateJobData(id){
         try{

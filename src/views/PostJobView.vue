@@ -45,7 +45,7 @@
                 <label for="message-text" class="col-form-label">Job Desc:</label>
                 <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="jobDesc" :config="editorConfig"></ckeditor>
                 <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
-              <code>{{this.jobDesc}}</code>
+              
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Job Address:</label>
