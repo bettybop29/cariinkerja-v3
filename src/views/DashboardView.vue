@@ -168,11 +168,11 @@ export default {
       })
     },
     async getView(applicationId){
-      // await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?jobseekerId=${jobseekerId}&applicationId=${applicationId}`)
+     
        await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${applicationId}`)
       .then((data)=>{
         this.views=data.data.data
-        console.log(data)
+        // console.log(data)
       })
     }
   },
