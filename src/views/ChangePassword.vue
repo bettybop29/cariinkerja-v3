@@ -109,9 +109,5 @@ export default {
       position: absolute;
       margin-left: 37%;
       margin-top: 7%;
-     
-    background: -webkit-linear-gradient(rgb(23, 228, 232), rgb(29, 34, 131));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     }
 </style>
