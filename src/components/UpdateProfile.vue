@@ -161,7 +161,7 @@ export default {
   }
   .btn{
     width: 81%;
-    margin-left: 70px;
+    margin-left: 10px;
     margin-top: 30px;
     margin-bottom: 10px;
   }

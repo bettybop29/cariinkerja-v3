@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-md-6">
                   <img v-if="profile.recruiterImage != null" class="img-thumbnail position-absolute top-0 end-0 m-3"
-                  :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 20%">
+                  :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 125px; height:120px;">
                     <img v-else class="img-thumbnail position-absolute top-0 end-0 m-3"
                     src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 20% height:40%;">
                     
@@ -43,7 +43,9 @@
                                        <i class="bi bi-pencil-square"></i>Save Changes</button>
                                     </form>
                           </div>
-                          
+                          <div class="modal-footer">
+                            <p class="text-muted">recomended size 120px x 120px</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -62,7 +64,7 @@
               <p class="card-text">{{profile.recruiterBenefit}}</p>
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
-              <router-link class="btn-update btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile
+              <router-link class="btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile
               </router-link>
             </div>
           </div>
@@ -208,8 +210,8 @@
     margin-right: 10px;
   }
 
-  .btn-update {
-    text-align: center;
+  .btn{
+    
     color: #fff;
   }
  .new{
