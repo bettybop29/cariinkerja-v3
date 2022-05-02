@@ -42,9 +42,12 @@
                 />
                 <input class="mt-2" type="checkbox" v-on:click="myFunction"> <small class="text-muted">show Password</small> <br>
                 <p><router-link class="forgot" to="/resetpassword">Forgot Password?</router-link></p>
-                 <button type="submit" class="btn btn-primary">login</button>
+                 <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
+                 
               </form>
-              
+              <div v-if="this.searchDisabled == true">
+                   <beat-loader class="pulse" :loading="loading" :color="color" :size="size"></beat-loader>
+                  </div>
             </div>
             <div>
              
@@ -129,16 +132,19 @@ import axios from "axios";
 import "mosha-vue-toastify/dist/style.css";
 import { createToast } from "mosha-vue-toastify";
 import NavComponent from '../components/NavLogin.vue'
+import BeatLoader from 'vue-spinner/src/BeatLoader.vue'
 
 export default {
   name: "LoginView",
   components: {
-    NavComponent : NavComponent
+    NavComponent : NavComponent,
+    BeatLoader
   },
   data() {
     return {
       email: "",
       password: "",
+      searchDisabled:false
     };
   },
   methods: {
@@ -152,28 +158,18 @@ export default {
     },
     
     async login() {
-      // try {
-      //   const result = await axios.post(
-      //     `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`
-      //     // `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=fauziahaulia21@gmail.com&recruiterPassword=Superadmin1.`
-      //   );
-      //    console.log("test")
-      //   localStorage.setItem("user-info", JSON.stringify(result.data.data.registerDTO));
-      //   this.$router.push("/dashboard");
-      //   createToast(`Welcome back!! ${result.data.data.registerDTO.recruiterCompany}`, { type: "success" });
-        
-      // } catch(error) {
-      //   createToast("Wrong Email or Password!", { type: "danger" });
-      // }
       let response = '';
       try {
+        this.searchDisabled = true;
         response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`);
       } catch(err) {
+         this.searchDisabled = false;
         console.log(err.response.data.message)
         createToast(`${err.response.data.message}`, { type: "danger" });
       }
       if( response.status === 200 ) {
         console.log(response)
+        this.searchDisabled = true;
          localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
          createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
          this.$router.push("/dashboard");

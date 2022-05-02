@@ -19,6 +19,7 @@
                     v-model="recruiterEmail"
                     type="email"
                     class="form-control"
+                    placeholder="xxxxx@gmail.com"
                     required
                   />
                 </div>
@@ -31,6 +32,7 @@
                     placeholder="Password must contain at least one number, one capital letter and one special character"
                     required
                     id="myInput"
+                     data-bs-toggle="tooltip" data-bs-placement="left" title="Password must contain at least one number, one capital letter and one special character"
                   />
                   <input class="mt-2" type="checkbox" v-on:click="myFunction"> <small class="text-muted">show Password</small> <br>
                 </div>
@@ -40,6 +42,7 @@
                     v-model="recruiterCompany"
                     type="text"
                     class="form-control"
+                    placeholder="PT.yourcompany"
                     required
                   />
                 </div>
@@ -49,6 +52,7 @@
                     v-model="recruiterIndustry"
                     type="text"
                     class="form-control"
+                    placeholder="ex:Game, technology"
                     required
                   />
                 </div>
@@ -127,18 +131,19 @@ export default {
     
       let response = '';
       try {
-        console.log(this.searchDisabled)
-        this.searchDisabled = true;
+        
         const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)
         if (passwordCheck != null){
+        this.searchDisabled = true;
         response = await axios.post(
           `http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`);
-        
+       
         }else {
            createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
          }
-        
+     
       } catch (err) {
+        this.searchDisabled = false;
         console.log(err.response.data.message)
         createToast(`Sorry ${err.response.data.message}`, { type: "danger" });
 
@@ -161,7 +166,8 @@ export default {
 }
 .container-fluid {
   margin-top: 3rem;
-  background-color: #060684;
+   background: linear-gradient(138deg, rgba(238,238,249,1) 0%, rgba(73,186,224,1) 54%, rgba(0,212,255,1) 100%);
+  /* background-color: #060684; */
   padding-bottom: 50px;
 }
 .form-signup {

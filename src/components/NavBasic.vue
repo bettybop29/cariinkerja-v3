@@ -2,11 +2,9 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
       <div class="logo">
-        <router-link class="text-decoration-none" to="/"
-          >Cariinkerja</router-link
-        >
+        <router-link class="navbar-brand text-decoration-none" to="/"><img src="" alt=""></router-link>
       </div>
-      <!-- <a class="navbar-brand" href="#" style="font-weight: 700; color: blue;">CariinKerja</a> -->
+      <!-- <router-link class="navbar-brand" href="#" style="font-weight: 700; color: blue;">CariinKerja</router-link> -->
       <button
         class="navbar-toggler"
         type="button"

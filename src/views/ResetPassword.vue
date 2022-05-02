@@ -1,4 +1,5 @@
 <template>
+
     <p class="back">
         <router-link class="back-link" to="/login">
             <i class="bi bi-arrow-left-circle"></i> Back
@@ -36,7 +37,7 @@
             </div>
         </div>
     </div>
-    
+   
 </template>
 
 <script>
@@ -73,6 +74,7 @@ export default {
 </script>
 
 <style scoped>
+    
     .pulse{
         text-align: center;
         margin: 2px;
