@@ -95,7 +95,6 @@ import SidebarRight from '../components/SidebarRight.vue'
 
 
 
-
 export default {
   
   

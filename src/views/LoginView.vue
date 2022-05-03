@@ -160,16 +160,21 @@ export default {
     async login() {
       let response = '';
       try {
-        this.searchDisabled = true;
+        
         response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`);
+        
       } catch(err) {
-         this.searchDisabled = false;
+        if(err){
+            this.searchDisabled = false;
+        }
+         
         console.log(err.response.data.message)
         createToast(`${err.response.data.message}`, { type: "danger" });
       }
       if( response.status === 200 ) {
-        console.log(response)
         this.searchDisabled = true;
+        console.log(this.searchDisabled)
+        
          localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
          createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
          this.$router.push("/dashboard");
