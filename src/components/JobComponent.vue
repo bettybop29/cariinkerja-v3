@@ -23,9 +23,9 @@
     <div class="card-body dark" v-if="item.jobStatus !='visible'">
       <h5 class="card-title">{{item.jobName}}</h5>
       <span class="badge bg-secondary">{{item.jobStatus}}</span>
-      <p class="card-text"><i class="bi-clock hidden"></i> {{ item.jobPosition }}</p>
-      <p class="card-text"><i class="bi-cash hidden"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
-      <p class="card-text"><i class="bi-geo-alt hidden"></i> {{ item.jobAddress }}</p>
+      <p class="card-text"><i class="bi-clock" style="color:grey;"></i> {{ item.jobPosition }}</p>
+      <p class="card-text"><i class="bi-cash" style="color:grey;"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
+      <p class="card-text"><i class="bi-geo-alt" style="color:grey;"></i> {{ item.jobAddress }}</p>
       <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
       <router-link class="btn btn-secondary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
       <button class="btn btn-secondary" v-on:click="deleteJob(item.jobId)">Delete</button>
@@ -305,7 +305,7 @@ export default {
     color: blue;
   }
   .hidden{
-    color: rgb(67, 67, 67);
+    color: grey;
   }
 
 </style>
