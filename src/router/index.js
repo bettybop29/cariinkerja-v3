@@ -26,7 +26,8 @@ const routes = [
   {
     path: '/postjob',
     name: 'postjob',
-    component: PostJobView
+    component: PostJobView,
+    meta: { transition: 'slide-left' }
   },
   {
     path: '/about',

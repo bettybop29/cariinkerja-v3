@@ -19,13 +19,13 @@
     <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="...">
 
     
-
+    <!-- html for hidden job component -->
     <div class="card-body dark" v-if="item.jobStatus !='visible'">
       <h5 class="card-title">{{item.jobName}}</h5>
-      <span class="badge bg-primary">{{item.jobStatus}}</span>
-      <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
-      <p class="card-text"><i class="bi-cash"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
-      <p class="card-text"><i class="bi-geo-alt"></i> {{ item.jobAddress }}</p>
+      <span class="badge bg-secondary">{{item.jobStatus}}</span>
+      <p class="card-text"><i class="bi-clock hidden"></i> {{ item.jobPosition }}</p>
+      <p class="card-text"><i class="bi-cash hidden"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
+      <p class="card-text"><i class="bi-geo-alt hidden"></i> {{ item.jobAddress }}</p>
       <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
       <router-link class="btn btn-secondary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
       <button class="btn btn-secondary" v-on:click="deleteJob(item.jobId)">Delete</button>
@@ -303,6 +303,9 @@ export default {
   .card-body p i{
     
     color: blue;
+  }
+  .hidden{
+    color: rgb(67, 67, 67);
   }
 
 </style>

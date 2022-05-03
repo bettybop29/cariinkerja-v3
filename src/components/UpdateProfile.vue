@@ -45,7 +45,7 @@
  
     </form>
   </div>
-
+<div class="content-2">
   <div class="container bottom">
     <h1 class="mb-5">Contact</h1>
      <form class="row" @submit.prevent="updateProfile">
@@ -76,7 +76,7 @@
   </div>
   
 </div>
-
+</div>
 </template>
 
 <script>
@@ -158,6 +158,7 @@ export default {
     padding-right: 0;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     margin-left: 20%;
+    
   }
   .btn{
     width: 81%;
@@ -185,10 +186,14 @@ export default {
   .bottom{
     margin-top: 2%;
     margin-bottom: 10px;
+    padding-bottom: 30px;
   }
-
+  
   form{
     margin-left: 80px;
+  }
+  .content-2{
+    padding-bottom: 40px;
   }
 
    

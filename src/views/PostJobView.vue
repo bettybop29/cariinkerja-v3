@@ -66,16 +66,17 @@
       </div>
 
     </div>
-
+  
     <div class="row">
      
       <div class="col-md-3 mt-3" v-for="item in list" v-bind:key="item.id">
-        
+        <transition name="fade">
         <job-component class="job-component" :item="item"></job-component>
-        
+        </transition>
       </div>
       
     </div>
+    
   </div>
   </div>
 </template>
@@ -183,5 +184,17 @@
   }
   .job-component{
     margin-top: 15px;
+  }
+
+  /* transition */
+
+  .fade-enter-from{
+    opacity: 0;
+  }
+  .fade-enter-to{
+    opacity: 1;
+  }
+  .fade-enter.active{
+    transition: all 2s ease;
   }
 </style>

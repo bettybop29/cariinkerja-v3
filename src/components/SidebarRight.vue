@@ -3,7 +3,7 @@
     <div class="side-content">
       <ul>
           <li class="li-foto">
-            <img v-if="view.jobseekerImage == null" src="http://54.255.4.75:9091/resources/meta.png" alt="">
+            <img v-if="view.jobseekerImage == null" src="http://54.255.4.75:9091/resources/pfekimaggdc7k9r.png" alt="">
             <img v-else :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
           </li>
           <li class="li-header fw-bold">
