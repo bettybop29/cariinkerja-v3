@@ -34,8 +34,49 @@
           <li><button class="btn-portofolio">Portofolio <i class="bi bi-box-arrow-up-right"></i></button></li>
           <li> 
             <div class="action">
-              <button class="acc" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i>accept</button>
-              <button class="rej" v-on:click="rejected(view.applicationId)"><i class="bi bi-x-lg"></i>reject</button>
+              <!-- <button class="acc" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i>accept</button> -->
+               <button type="button" class="acc" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="bi bi-check2"></i>accept
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
+                    <div class="modal-body">
+                      <h4> are you sure? </h4>
+                    </div>
+                    <div class="select-button">
+                      <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+                      <button type="button" class="btn btn-primary pop" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+              <!-- <button class="rej" v-on:click="rejected(view.applicationId)"><i class="bi bi-x-lg"></i>reject</button> -->
+               <button type="button" class="rej" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="bi bi-x-lg"></i>reject
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
+                    <div class="modal-body">
+                      <h4> are you sure? </h4>
+                    </div>
+                    <div class="select-button">
+                      <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+                      <button type="button" class="btn btn-primary pop" v-on:click="rejected(view.applicationId)"><i class="bi bi-check2"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </li>
 
@@ -199,5 +240,22 @@ export default {
       border-radius: 50%;
       border: 3px solid #f3f3f3;
     }
-    
+    .pop{
+     
+     
+      
+      text-align: center;
+      margin: 0;
+    }
+    .select-button{
+      display: flex;
+      text-align: center;
+      justify-content: center;
+    }
+    .modal-body{
+      text-align: center;
+    }
+    .modal-content{
+      background: red;
+    }
 </style>

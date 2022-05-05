@@ -194,7 +194,16 @@
   .fade-enter-to{
     opacity: 1;
   }
-  .fade-enter.active{
+  .fade-enter-active{
+    transition: all 2s ease;
+  }
+  .fade-leave-from{
+    opacity: 1;
+  }
+  .fade-leave-to{
+    opacity: 0;
+  }
+  .fade-leave-active{
     transition: all 2s ease;
   }
 </style>
