@@ -68,7 +68,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
                     <div class="modal-body">
-                      <h4> are you sure to rejected {{view.jobseekerName}}??</h4>
+                      <h4> are you sure to rejecsted {{view.jobseekerName}}??</h4>
                     </div>
                     <div class="select-button">
                       <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
