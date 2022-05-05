@@ -66,7 +66,7 @@
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                  <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
+                  <div class="modal-content">
                     <div class="modal-body">
                       <h4>are you sure to rejected {{view.jobseekerName}}??</h4>
                     </div>
@@ -256,6 +256,10 @@ export default {
       text-align: center;
     }
     .modal-content{
-      background: red;
+      border-radius:20px;  
+      margin:auto; 
+      width:300px; 
+      margin-top:200px; 
+      padding-bottom:20px;
     }
 </style>
