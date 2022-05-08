@@ -65,6 +65,7 @@ export default {
                 this.$router.push("/VerificationPassword")   
                             
             }catch{
+                this.searchDisabled = false;
                 location.reload(true)
                 createToast("Failed", {type:"danger"});
             }

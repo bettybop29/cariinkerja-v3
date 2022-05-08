@@ -65,6 +65,7 @@
                   <div v-if="this.searchDisabled == true">
                    <beat-loader class="pulse" :loading="loading" :color="color" :size="size"></beat-loader>
                   </div>
+                  <div v-if="this.searchDisabled == false"></div>
                 
                 <router-link to="/login" class="btn btn-danger">Back to Login</router-link>
               </div>
@@ -114,7 +115,8 @@ export default {
       recruiterPassword: "",
       recruiterCompany: "",
       recruiterIndustry: "",
-      searchDisabled:false
+      searchDisabled:false,
+      err:""
     };
   },
   methods: {
@@ -127,28 +129,28 @@ export default {
           }
     },
    
-     async signUp() {
+    async signUp() {
     
       let response = '';
       try {
-        
+        // this.searchDisabled = true;
         const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)
         if (passwordCheck != null){
         this.searchDisabled = true;
         response = await axios.post(
           `http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`);
-       
+          
         }else {
            createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
          }
-     
+            
       } catch (err) {
         this.searchDisabled = false;
         console.log(err.response.data.message)
         createToast(`Sorry ${err.response.data.message}`, { type: "danger" });
 
       }
-      if(response.status === 200){
+      if(response.status == 200){
         this.$router.push('/activation')
         createToast(`Signup Sukses`, { type: "success" });
         localStorage.setItem("sign-info", JSON.stringify(response.data));
