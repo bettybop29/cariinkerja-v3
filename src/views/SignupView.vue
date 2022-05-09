@@ -2,10 +2,12 @@
 <nav-login></nav-login>
   <div class="signup">
     <div class="container-fluid">
+      <div class="animated-background">
       <div class="content1">
         <div class="container">
           <div class="row">
             <div class="col-5">
+              
               <form @submit.prevent="signUp">
               <div class="form-signup">
                 <div class="mb-3">
@@ -22,6 +24,9 @@
                     placeholder="xxxxx@gmail.com"
                     required
                   />
+                    <div v-if="this.err == 'User already exists'">
+                      <p class="alert alert-danger mt-2">{{err}}</p>
+                    </div>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Password</label>
@@ -34,6 +39,12 @@
                     id="myInput"
                      data-bs-toggle="tooltip" data-bs-placement="left" title="Password must contain at least one number, one capital letter and one special character"
                   />
+                  <div v-if="this.err == 'Password must be at least 8 characters'">
+                      <p class="alert alert-danger mt-2">{{err}}</p>
+                    </div>
+                    <div v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
+                      <p class="alert alert-danger mt-2">{{err}}</p>
+                    </div>
                   <input class="mt-2" type="checkbox" v-on:click="myFunction"> <small class="text-muted">show Password</small> <br>
                 </div>
                 <div class="mb-3">
@@ -62,14 +73,14 @@
                   :disabled="searchDisabled"
                   value="SignUp"
                 >
-                  <div v-if="this.searchDisabled == true">
+                  <div v-if="this.searchDisabled === true">
                    <beat-loader class="pulse" :loading="loading" :color="color" :size="size"></beat-loader>
                   </div>
                   <div v-if="this.searchDisabled == false"></div>
-                
                 <router-link to="/login" class="btn btn-danger">Back to Login</router-link>
               </div>
               </form>
+              
             </div>
             
             <img src="../assets/Saly.png" alt="" />
@@ -88,6 +99,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -116,7 +128,8 @@ export default {
       recruiterCompany: "",
       recruiterIndustry: "",
       searchDisabled:false,
-      err:""
+      err:"",
+      ress:""
     };
   },
   methods: {
@@ -133,27 +146,35 @@ export default {
     
       let response = '';
       try {
-        // this.searchDisabled = true;
-        const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)
-        if (passwordCheck != null){
+        
         this.searchDisabled = true;
+        // const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)
+        // if (passwordCheck != null){
+       
         response = await axios.post(
           `http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`);
+           
           
-        }else {
-           createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
-         }
+        // }else {
+        //    createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
+        //  }
             
       } catch (err) {
+        this.err = err.response.data.message
         this.searchDisabled = false;
-        console.log(err.response.data.message)
-        createToast(`Sorry ${err.response.data.message}`, { type: "danger" });
+        console.log(this.searchDisabled)
+        console.log(err.response.data.errorCode)
+        createToast(`${err.response.data.message}`, { type: "danger" });
 
       }
       if(response.status == 200){
-        this.$router.push('/activation')
+        this.searchDisabled = true;
+        console.log(this.searchDisabled)
+        this.ress = response.status
+        console.log(this.ress)
         createToast(`Signup Sukses`, { type: "success" });
         localStorage.setItem("sign-info", JSON.stringify(response.data));
+        this.$router.push('/activation')
       }
     },
   },
@@ -168,9 +189,24 @@ export default {
 }
 .container-fluid {
   margin-top: 3rem;
-   background: linear-gradient(138deg, rgba(238,238,249,1) 0%, rgba(73,186,224,1) 54%, rgba(0,212,255,1) 100%);
+   background: linear-gradient(
+    to right, rgba(238,238,249,1), rgba(73,186,224,1), rgba(0,212,255,1));
+    background-size: 400% 400%;
+  animation: animate-background 10s infinite ease-in-out;
   /* background-color: #060684; */
   padding-bottom: 50px;
+}
+
+@keyframes animate-background{
+  0% {
+    background-position: 0 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0 50%;
+  }
 }
 .form-signup {
   background: white;

@@ -28,6 +28,7 @@
                   placeholder="email"
                   required
                 />
+                
                 <label for="floatingInput" class="form-label"
                   >Password</label
                 >
@@ -47,7 +48,16 @@
               </form>
               <div v-if="this.searchDisabled == true">
                    <beat-loader class="pulse" :loading="loading" :color="color" :size="size"></beat-loader>
-                  </div>
+              </div>
+              <div v-if="this.err == 'Email not found'">
+                   <p class="alert alert-danger mt-2">{{err}}</p>
+                </div>
+                <div v-if="this.err == 'Your email is not verified'">
+                   <p class="alert alert-danger mt-2">{{err}}</p>
+                </div>
+                <div v-if="this.err == 'Wrong email or password'">
+                   <p class="alert alert-danger mt-2">{{err}}</p>
+                </div>
             </div>
             <div>
              
@@ -144,7 +154,8 @@ export default {
     return {
       email: "",
       password: "",
-      searchDisabled:false
+      searchDisabled:false,
+      err:''
     };
   },
   methods: {
@@ -160,19 +171,18 @@ export default {
     async login() {
       let response = '';
       try {
-        
+        this.searchDisabled = true;
         response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`);
         
       } catch(err) {
-        if(err){
-            this.searchDisabled = false;
-        }
-         
+        this.err = err.response.data.message
+        this.searchDisabled = false;
+        console.log(this.searchDisabled) 
         console.log(err.response.data.message)
         createToast(`${err.response.data.message}`, { type: "danger" });
       }
       if( response.status === 200 ) {
-        this.searchDisabled = true;
+        
         console.log(this.searchDisabled)
         
          localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
