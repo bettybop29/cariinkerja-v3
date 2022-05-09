@@ -14,21 +14,21 @@
         <button v-else disabled class="dropdown-item">Visible</button>
       </ul>
     </div>
-
-    <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark" alt="...">
+  <div class="card-body dark" v-if="item.jobStatus !='visible'">
+    <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark" style="filter: grayscale(100%)"  alt="...">
     <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="...">
 
     
     <!-- html for hidden job component -->
-    <div class="card-body dark" v-if="item.jobStatus !='visible'">
+    
       <h5 class="card-title">{{item.jobName}}</h5>
       <span class="badge bg-secondary">{{item.jobStatus}}</span>
       <p class="card-text"><i class="bi-clock" style="color:grey;"></i> {{ item.jobPosition }}</p>
       <p class="card-text"><i class="bi-cash" style="color:grey;"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
       <p class="card-text"><i class="bi-geo-alt" style="color:grey;"></i> {{ item.jobAddress }}</p>
       <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
-      <router-link class="btn btn-secondary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
-      <button class="btn btn-secondary" v-on:click="deleteJob(item.jobId)">Delete</button>
+      <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
+      <button class="btn btn-danger" v-on:click="deleteJob(item.jobId)">Delete</button>
 
       <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-xl">
@@ -61,17 +61,19 @@
                   <textarea class="form-control" id="message-text" v-model="edit.jobDesc" />
                 </div>
                 <div class="modal-footer">
-                  <button class="btn btn-secondary" v-on:click="updateJobData(edit.jobId)">Update</button>
+                  <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <button class="btn btn-secondary" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
+      <button class="btn btn-success" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
     </div>
     
-    <div class="card-body" v-else>   
+    <div class="card-body" v-else> 
+      <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark"  alt="...">
+    <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="..."> 
       <h5 class="card-title">{{item.jobName}}</h5>
       <span class="badge bg-primary">{{item.jobStatus}}</span>
       <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
