@@ -35,12 +35,12 @@
           <li> 
             <div class="action">
               <!-- <button class="acc" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i>accept</button> -->
-               <button type="button" class="acc" data-bs-toggle="modal" data-bs-target="#exampleModal">
+               <button type="button" class="acc" data-bs-toggle="modal" data-bs-target="#popUp1">
                 <i class="bi bi-check2"></i>accept
               </button>
 
               <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="popUp1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
                     <div class="modal-body">
@@ -59,14 +59,14 @@
 
 
               <!-- <button class="rej" v-on:click="rejected(view.applicationId)"><i class="bi bi-x-lg"></i>reject</button> -->
-               <button type="button" class="rej" data-bs-toggle="modal" data-bs-target="#exampleModal">
+               <button type="button" class="rej" data-bs-toggle="modal" data-bs-target="#popUp2">
                 <i class="bi bi-x-lg"></i>reject
               </button>
 
               <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="popUp2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                  <div class="modal-content">
+                  <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
                     <div class="modal-body">
                       <h4>are you sure to rejected {{view.jobseekerName}}??</h4>
                     </div>
@@ -123,7 +123,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
     .sidebar-right{
         float: right;
         display: flex;

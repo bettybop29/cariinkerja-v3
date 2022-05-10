@@ -2,13 +2,13 @@
   <sidebar-component></sidebar-component>
   <div class="container">
   <div class="main">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#jobModal"
       data-bs-whatever="@getbootstrap">
       <i class="bi bi-plus-circle me-2"></i>
       Add New Job
     </button>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -58,14 +58,33 @@
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
               X
             </button>
-            <button v-on:click="addjob" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
-          </div>
+            <!-- <button v-on:click="addjob" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button> -->
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Create</button>
 
+
+
+          </div>
+            
         </div>
 
       </div>
 
     </div>
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px; text-align:center; padding:30px;">
+     
+      
+        <h3>are you sure to create job??</h3>
+      
+     <div class="select-button">
+        <button class="btn btn-primary pop" data-bs-target="#jobModal" data-bs-toggle="modal">Back to create</button>
+        <button v-on:click="addjob" type="button" class="btn btn-success pop" data-bs-dismiss="modal">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   
     <div class="row">
      
@@ -185,6 +204,18 @@
   .job-component{
     margin-top: 15px;
   }
+
+   .pop{
+      padding: 10px;
+      text-align: center;
+      margin: 0;
+    }
+    .select-button{
+      display: flex;
+      text-align: center;
+      justify-content: space-evenly;
+      margin: 10px;
+    }
 
   /* transition */
 
