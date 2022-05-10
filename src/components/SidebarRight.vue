@@ -220,7 +220,7 @@ export default {
     }
     .text-side{
       position: absolute;
-      padding-left: 100px;
+      padding-left: 80px;
       text-align: right;
       justify-content: right;
       
