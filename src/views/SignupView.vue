@@ -13,7 +13,7 @@
                 <div class="mb-3">
                   
                   <h2 style="padding-bottom: 20px; font-weight: bold">
-                    Sign Up
+                    Sign up
                   </h2>
                   
                   <label class="form-label">Email</label>
@@ -25,7 +25,7 @@
                     required
                   />
                     <div v-if="this.err == 'User already exists'">
-                      <p class="alert alert-danger mt-2">{{err}}</p>
+                      <span class="badge bg-danger">{{err}}</span>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -34,16 +34,17 @@
                     v-model="recruiterPassword"
                     type="password"
                     class="form-control"
-                    placeholder="Password must contain at least one number, one capital letter and one special character"
+                    placeholder="Password123."
                     required
                     id="myInput"
                      data-bs-toggle="tooltip" data-bs-placement="left" title="Password must contain at least one number, one capital letter and one special character"
                   />
+                  <span class="text-muted sm">*Password must contain at least one number, one capital letter and one special character</span><br>
                   <div v-if="this.err == 'Password must be at least 8 characters'">
-                      <p class="alert alert-danger mt-2">{{err}}</p>
+                      <span class="badge bg-danger">{{err}}</span>
                     </div>
                     <div v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
-                      <p class="alert alert-danger mt-2">{{err}}</p>
+                      <span class="badge bg-danger">{{err}}</span>
                     </div>
                   <input class="mt-2" type="checkbox" v-on:click="myFunction"> <small class="text-muted">show Password</small> <br>
                 </div>
@@ -162,9 +163,9 @@ export default {
       } catch (err) {
         this.err = err.response.data.message
         this.searchDisabled = false;
-        console.log(this.searchDisabled)
-        console.log(err.response.data.errorCode)
-        createToast(`${err.response.data.message}`, { type: "danger" });
+        // console.log(this.searchDisabled)
+        // console.log(err.response.data.errorCode)
+        // createToast(`${err.response.data.message}`, { type: "danger" });
 
       }
       if(response.status == 200){

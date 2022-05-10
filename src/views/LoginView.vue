@@ -49,7 +49,7 @@
               <div v-if="this.searchDisabled == true">
                    <beat-loader class="pulse" :loading="loading" :color="color" :size="size"></beat-loader>
               </div>
-              <div v-if="this.err == 'Email not found'">
+              <!-- <div v-if="this.err == 'Email not found'">
                    <p class="alert alert-danger mt-2">{{err}}</p>
                 </div>
                 <div v-if="this.err == 'Your email is not verified'">
@@ -57,7 +57,7 @@
                 </div>
                 <div v-if="this.err == 'Wrong email or password'">
                    <p class="alert alert-danger mt-2">{{err}}</p>
-                </div>
+                </div> -->
             </div>
             <div>
              
