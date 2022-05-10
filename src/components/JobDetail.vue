@@ -74,7 +74,7 @@
                   v-on:click="rejected(item.applicationId)" id="button">Reject</button>
                 <button v-else disabled class="btn btn-danger" v-on:click="rejected(item.applicationId)"
                   id="button">Reject</button>
-                <router-link class="btn btn-primary" :to="{name:'aplicantdetail', params:{id:item.jobseekerId}}">view
+                <router-link class="btn btn-primary" :to="{name:'aplicantdetail', params:{id:item.applicationId}}">view
                 </router-link>
               </td>
 

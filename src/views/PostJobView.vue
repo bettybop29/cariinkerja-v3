@@ -7,7 +7,7 @@
       <i class="bi bi-plus-circle me-2"></i>
       Add New Job
     </button>
-
+<form>
     <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -16,7 +16,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
+            
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Job Name:</label>
                 <input type="text" class="form-control" id="recipient-name" v-model="jobName" />
@@ -52,40 +52,30 @@
                 <textarea class="form-control" id="message-text" v-model="jobAddress"></textarea>
               </div>
               
-            </form>
+            
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-              X
-            </button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">X</button>
             <!-- <button v-on:click="addjob" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button> -->
               <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Create</button>
-
-
-
-          </div>
-            
+          </div>  
         </div>
-
       </div>
-
     </div>
     <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px; text-align:center; padding:30px;">
-     
-      
-        <h3>are you sure to create job??</h3>
-      
+        <h3>Are you sure to create job ?</h3>     
      <div class="select-button">
+       <button v-on:click="addjob" type="button" class="btn btn-success pop" data-bs-dismiss="modal">Add</button>
         <button class="btn btn-primary pop" data-bs-target="#jobModal" data-bs-toggle="modal">Back to create</button>
-        <button v-on:click="addjob" type="button" class="btn btn-success pop" data-bs-dismiss="modal">Add</button>
+        
       </div>
     </div>
   </div>
 </div>
 
-  
+ </form> 
     <div class="row">
      
       <div class="col-md-3 mt-3" v-for="item in list" v-bind:key="item.id">
