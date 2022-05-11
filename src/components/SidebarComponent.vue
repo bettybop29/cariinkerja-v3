@@ -4,8 +4,8 @@
         <nav id="sidebar">
             
             <div class="sidebar-header">
-                <img src="http://54.255.4.75:9091/resources/meta.png" alt="">
-                <span>Cariinkerja</span>
+               
+                <span><img src="http://54.255.4.75:9091/resources/lnp4av9z3ceiw06.png" alt="" style="width:150px; height:30px;"></span>
             </div>
 
             <ul class="list-unstyled components">

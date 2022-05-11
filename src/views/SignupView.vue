@@ -2,16 +2,18 @@
 <nav-login></nav-login>
   <div class="signup">
     <div class="container-fluid">
+      <div class="animated-background">
       <div class="content1">
         <div class="container">
           <div class="row">
             <div class="col-5">
+              
               <form @submit.prevent="signUp">
               <div class="form-signup">
                 <div class="mb-3">
                   
                   <h2 style="padding-bottom: 20px; font-weight: bold">
-                    Sign Up
+                    Sign up
                   </h2>
                   
                   <label class="form-label">Email</label>
@@ -19,8 +21,12 @@
                     v-model="recruiterEmail"
                     type="email"
                     class="form-control"
+                    placeholder="xxxxx@gmail.com"
                     required
                   />
+                    <div v-if="this.err == 'User already exists'">
+                      <span class="badge bg-danger">{{err}}</span>
+                    </div>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Password</label>
@@ -28,10 +34,18 @@
                     v-model="recruiterPassword"
                     type="password"
                     class="form-control"
-                    placeholder="Password must contain at least one number, one capital letter and one special character"
+                    placeholder="Password123."
                     required
                     id="myInput"
+                     data-bs-toggle="tooltip" data-bs-placement="left" title="Password must contain at least one number, one capital letter and one special character"
                   />
+                  <span class="text-muted sm">*Password must contain at least one number, one capital letter and one special character</span><br>
+                  <div v-if="this.err == 'Password must be at least 8 characters'">
+                      <span class="badge bg-danger">{{err}}</span>
+                    </div>
+                    <div v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
+                      <span class="badge bg-danger">{{err}}</span>
+                    </div>
                   <input class="mt-2" type="checkbox" v-on:click="myFunction"> <small class="text-muted">show Password</small> <br>
                 </div>
                 <div class="mb-3">
@@ -40,6 +54,7 @@
                     v-model="recruiterCompany"
                     type="text"
                     class="form-control"
+                    placeholder="PT.yourcompany"
                     required
                   />
                 </div>
@@ -49,6 +64,7 @@
                     v-model="recruiterIndustry"
                     type="text"
                     class="form-control"
+                    placeholder="ex:Game, technology"
                     required
                   />
                 </div>
@@ -58,13 +74,14 @@
                   :disabled="searchDisabled"
                   value="SignUp"
                 >
-                  <div v-if="this.searchDisabled == true">
+                  <div v-if="this.searchDisabled === true">
                    <beat-loader class="pulse" :loading="loading" :color="color" :size="size"></beat-loader>
                   </div>
-                
+                  <div v-if="this.searchDisabled == false"></div>
                 <router-link to="/login" class="btn btn-danger">Back to Login</router-link>
               </div>
               </form>
+              
             </div>
             
             <img src="../assets/Saly.png" alt="" />
@@ -83,6 +100,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -110,7 +128,9 @@ export default {
       recruiterPassword: "",
       recruiterCompany: "",
       recruiterIndustry: "",
-      searchDisabled:false
+      searchDisabled:false,
+      err:"",
+      ress:""
     };
   },
   methods: {
@@ -123,30 +143,39 @@ export default {
           }
     },
    
-     async signUp() {
+    async signUp() {
     
       let response = '';
       try {
-        console.log(this.searchDisabled)
+        
         this.searchDisabled = true;
-        const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)
-        if (passwordCheck != null){
+        // const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)
+        // if (passwordCheck != null){
+       
         response = await axios.post(
           `http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`);
-        
-        }else {
-           createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
-         }
-        
+           
+          
+        // }else {
+        //    createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
+        //  }
+            
       } catch (err) {
-        console.log(err.response.data.message)
-        createToast(`Sorry ${err.response.data.message}`, { type: "danger" });
+        this.err = err.response.data.message
+        this.searchDisabled = false;
+        // console.log(this.searchDisabled)
+        // console.log(err.response.data.errorCode)
+        // createToast(`${err.response.data.message}`, { type: "danger" });
 
       }
-      if(response.status === 200){
-        this.$router.push('/activation')
+      if(response.status == 200){
+        this.searchDisabled = true;
+        console.log(this.searchDisabled)
+        this.ress = response.status
+        console.log(this.ress)
         createToast(`Signup Sukses`, { type: "success" });
         localStorage.setItem("sign-info", JSON.stringify(response.data));
+        this.$router.push('/activation')
       }
     },
   },
@@ -161,8 +190,24 @@ export default {
 }
 .container-fluid {
   margin-top: 3rem;
-  background-color: #060684;
+   background: linear-gradient(
+    to right, rgba(238,238,249,1), rgba(73,186,224,1), rgba(0,212,255,1));
+    background-size: 400% 400%;
+  animation: animate-background 10s infinite ease-in-out;
+  /* background-color: #060684; */
   padding-bottom: 50px;
+}
+
+@keyframes animate-background{
+  0% {
+    background-position: 0 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0 50%;
+  }
 }
 .form-signup {
   background: white;

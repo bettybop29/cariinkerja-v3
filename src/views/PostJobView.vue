@@ -2,32 +2,32 @@
   <sidebar-component></sidebar-component>
   <div class="container">
   <div class="main">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#jobModal"
       data-bs-whatever="@getbootstrap">
       <i class="bi bi-plus-circle me-2"></i>
       Add New Job
     </button>
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+<form @submit.prevent="addjob">
+    <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel1">Add Job</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
+            
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Job Name:</label>
-                <input type="text" class="form-control" id="recipient-name" v-model="jobName" />
+                <input type="text" class="form-control" id="recipient-name" v-model="jobName" required/>
               </div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Job Salary:</label>
-                <input type="number" class="form-control" id="recipient-name" v-model="jobSalary" />
+                <input type="number" class="form-control" id="recipient-name" v-model="jobSalary" required/>
               </div>
               <div class="mb-3">
                 <label for="inputState">Job Position</label>
-                <select class="form-control" id="inputState" v-model="jobPosition">
+                <select class="form-control" id="inputState" v-model="jobPosition" required>
                   <option selected>Choose..</option>
                   <option>Internship</option>
                   <option>Full time</option>
@@ -45,37 +45,46 @@
                 <label for="message-text" class="col-form-label">Job Desc:</label>
                 <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="jobDesc" :config="editorConfig"></ckeditor>
                 <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
-              <code>{{this.jobDesc}}</code>
+              
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Job Address:</label>
-                <textarea class="form-control" id="message-text" v-model="jobAddress"></textarea>
+                <textarea class="form-control" id="message-text" v-model="jobAddress" required></textarea>
               </div>
               
-            </form>
+            
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-              X
-            </button>
-            <button v-on:click="addjob" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
-          </div>
-
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">X</button>
+            <!-- <button v-on:click="addjob" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button> -->
+              <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Create</button>
+          </div>  
         </div>
-
       </div>
-
     </div>
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px; text-align:center; padding:30px;">
+      <h3>Publish Job?</h3>
+     <div class="select-button">
+       <button class="btn btn-primary pop" data-bs-target="#jobModal" data-bs-toggle="modal">Back to create</button>
+       <button v-on:click="addjob" type="button" class="btn btn-success pop" data-bs-dismiss="modal">Confirm</button>        
+      </div>
+    </div>
+  </div>
+</div>
 
+ </form> 
     <div class="row">
      
       <div class="col-md-3 mt-3" v-for="item in list" v-bind:key="item.id">
-        
+        <transition name="fade">
         <job-component class="job-component" :item="item"></job-component>
-        
+        </transition>
       </div>
       
     </div>
+    
   </div>
   </div>
 </template>
@@ -183,5 +192,38 @@
   }
   .job-component{
     margin-top: 15px;
+  }
+
+   .pop{
+      padding: 10px;
+      text-align: center;
+      margin: 0 ;
+    }
+    .select-button{
+      display: flex;
+      text-align: center;
+      justify-content: space-evenly;
+      margin: 10px ;
+    }
+
+  /* transition */
+
+  .fade-enter-from{
+    opacity: 0;
+  }
+  .fade-enter-to{
+    opacity: 1;
+  }
+  .fade-enter-active{
+    transition: all 2s ease;
+  }
+  .fade-leave-from{
+    opacity: 1;
+  }
+  .fade-leave-to{
+    opacity: 0;
+  }
+  .fade-leave-active{
+    transition: all 2s ease;
   }
 </style>

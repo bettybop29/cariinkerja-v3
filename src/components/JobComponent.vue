@@ -14,21 +14,21 @@
         <button v-else disabled class="dropdown-item">Visible</button>
       </ul>
     </div>
-
-    <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark" alt="...">
+  <div class="card-body dark" v-if="item.jobStatus !='visible'">
+    <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark" style="filter: grayscale(100%)"  alt="...">
     <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="...">
 
     
-
-    <div class="card-body dark" v-if="item.jobStatus !='visible'">
+    <!-- html for hidden job component -->
+    
       <h5 class="card-title">{{item.jobName}}</h5>
-      <span class="badge bg-primary">{{item.jobStatus}}</span>
-      <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
-      <p class="card-text"><i class="bi-cash"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
-      <p class="card-text"><i class="bi-geo-alt"></i> {{ item.jobAddress }}</p>
+      <span class="badge bg-secondary">{{item.jobStatus}}</span>
+      <p class="card-text"><i class="bi-clock" style="color:grey;"></i> {{ item.jobPosition }}</p>
+      <p class="card-text"><i class="bi-cash" style="color:grey;"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
+      <p class="card-text"><i class="bi-geo-alt" style="color:grey;"></i> {{ item.jobAddress }}</p>
       <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
-      <router-link class="btn btn-secondary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
-      <button class="btn btn-secondary" v-on:click="deleteJob(item.jobId)">Delete</button>
+      <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
+      <button class="btn btn-danger" v-on:click="deleteJob(item.jobId)">Delete</button>
 
       <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-xl">
@@ -41,37 +41,39 @@
               <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Job Name:</label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
+                  <input type="text" class="form-control" id="" v-model="edit.jobName">
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">job Position: </label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
+                  <label for="recipient-name" class="col-form-label">Job Position edit: </label>
+                  <input type="text" class="form-control" id="" v-model="edit.jobPosition">
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">job Address: </label>
+                  <label for="recipient-name" class="col-form-label">Job Address: </label>
                   <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">job Requirement: </label>
+                  <label for="recipient-name" class="col-form-label">Job Requirement: </label>
                   <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
                 </div>
 
                 <div class="mb-3">
-                  <label for="message-text" class="col-form-label">job Description:</label>
+                  <label for="message-text" class="col-form-label">Job Description:</label>
                   <textarea class="form-control" id="message-text" v-model="edit.jobDesc" />
                 </div>
                 <div class="modal-footer">
-                  <button class="btn btn-secondary" v-on:click="updateJobData(edit.jobId)">Update</button>
+                  <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <button class="btn btn-secondary" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
+      <button class="btn btn-success" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)">Edit</button>
     </div>
     
-    <div class="card-body" v-else>   
+    <div class="card-body" v-else> 
+      <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark"  alt="...">
+    <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="..."> 
       <h5 class="card-title">{{item.jobName}}</h5>
       <span class="badge bg-primary">{{item.jobStatus}}</span>
       <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
@@ -95,21 +97,23 @@
                     <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">job Position: </label>
+                    <label for="recipient-name" class="col-form-label">Job Position: </label>
                     <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">job Address: </label>
+                    <label for="recipient-name" class="col-form-label">Job Address: </label>
                     <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">job Requirement: </label>
-                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
+                    <label for="recipient-name" class="col-form-label">Job Requirement: </label>
+                    <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
+                    <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
                   </div>
                   
                   <div class="mb-3">
-                    <label for="message-text" class="col-form-label">job Description:</label>
-                    <textarea class="form-control" id="message-text" v-model="edit.jobDesc"/>
+                    <label for="message-text" class="col-form-label">Job Description:</label>
+                    <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig"></ckeditor>
+                    <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc"/> -->
                   </div>
                   <div class="modal-footer">
                 
@@ -132,12 +136,21 @@ import axios from 'axios'
 import "mosha-vue-toastify/dist/style.css";
 import { createToast } from "mosha-vue-toastify";
 import { warn } from '@vue/runtime-core';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+
 export default {
     name:"JobComponent",
     props:['item','id',],
     
     data(){
       return {
+         editor: ClassicEditor,
+        editorData: '',
+        editorConfig: {
+         // The configuration of the editor.
+         
+        },
         edit:[]
       }
     },
@@ -175,11 +188,16 @@ export default {
       },
       
         async getDetail(id){
-        
+        try{
+        console.log(id)
         await axios.get(`http://54.255.4.75:9091/api/v1/job/${id}`)
         .then((data)=>{
-          this.edit=data.data
+          this.edit=data.data.data
+          console.log(data.data)
         })
+        } catch{
+          console.log(Error)
+        }
       },
      async updateJobData(id){
         try{
@@ -295,6 +313,9 @@ export default {
   .card-body p i{
     
     color: blue;
+  }
+  .hidden{
+    color: grey;
   }
 
 </style>

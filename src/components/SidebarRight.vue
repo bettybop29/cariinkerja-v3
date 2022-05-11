@@ -3,7 +3,7 @@
     <div class="side-content">
       <ul>
           <li class="li-foto">
-            <img v-if="view.jobseekerImage == null" src="http://54.255.4.75:9091/resources/meta.png" alt="">
+            <img v-if="view.jobseekerImage == null" src="http://54.255.4.75:9091/resources/pfekimaggdc7k9r.png" alt="">
             <img v-else :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
           </li>
           <li class="li-header fw-bold">
@@ -14,14 +14,37 @@
           </li>
           
           <li class="li-title">Basic Information</li>
+          <!-- tabel untuk data jobseeker -->
+          <table class="jobseeker-informations ">
+            <tbody>
+              <tr>
+                <th style="width: 25%;">Birthdate</th>
+                <td v-if="view.jobseekerDateOfBirth == null" class="text-side text-muted">-</td>
+                <td v-else class="text-side">{{view.jobseekerDateOfBirth}}</td>
+              </tr>
+              <tr>
+                <th>Phone</th>
+                <td v-if="view.jobseekerPhone == null" class="text-side text-muted">-</td>
+                <td class="text-side">{{view.jobseekerPhone}}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td v-if="view.jobseekerEmail == null" class="text-side text-muted">-</td>
+                <td class="text-side">{{view.jobseekerEmail}}</td>
+              </tr>
+              <tr>
+                <th>Address</th>
+                <td v-if="view.jobseekerAddress == null" class="text-side text-muted">-</td>
+                <td class="text-side">{{view.jobseekerAddress}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <br><br>
           <li>birthdate:
             <p v-if="view.jobseekerDateOfBirth == null" class="text-side text-muted" >---</p>
             <p v-else class="text-side">{{view.jobseekerDateOfBirth}}</p>
           </li>
-          <li>City:
-            <p v-if="view.jobseekerAddress == null" class="text-side text-muted">---</p>
-             <p class="text-side">{{view.jobseekerAddress}}</p>
-            </li>
+          
           <li>Phone:
               <p v-if="view.jobseekerPhone == null" class="text-side text-muted">---</p>
               <p class="text-side">{{view.jobseekerPhone}}</p>
@@ -30,12 +53,57 @@
             <p v-if="view.jobseekerEmail == null" class="text-side text-muted">---</p>
             <p  class="text-side">{{view.jobseekerEmail}}</p>
           </li>
+          <li>Address:
+            <p v-if="view.jobseekerAddress == null" class="text-side text-muted">---</p>
+             <p class="text-side">{{view.jobseekerAddress}}</p>
+            </li>
           <li><button class="btn-resume" v-on:click="getResume(view.jobseekerResume)">Resume <i class="bi bi-cloud-arrow-down-fill"></i></button></li>
           <li><button class="btn-portofolio">Portofolio <i class="bi bi-box-arrow-up-right"></i></button></li>
           <li> 
             <div class="action">
-              <button class="acc" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i>accept</button>
-              <button class="rej" v-on:click="rejected(view.applicationId)"><i class="bi bi-x-lg"></i>reject</button>
+              <!-- <button class="acc" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i>accept</button> -->
+               <button type="button" class="acc" data-bs-toggle="modal" data-bs-target="#popUp1">
+                <i class="bi bi-check2"></i>accept
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="popUp1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
+                    <div class="modal-body">
+                      <h4>Are you sure want to accept {{view.jobseekerName}}?</h4>
+                    </div>
+                    <div class="select-button">
+                      <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+                      <button type="button" class="btn btn-primary pop" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+              <!-- <button class="rej" v-on:click="rejected(view.applicationId)"><i class="bi bi-x-lg"></i>reject</button> -->
+               <button type="button" class="rej" data-bs-toggle="modal" data-bs-target="#popUp2">
+                <i class="bi bi-x-lg"></i>reject
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="popUp2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
+                    <div class="modal-body">
+                      <h4>Are you sure want to reject {{view.jobseekerName}}?</h4>
+                    </div>
+                    <div class="select-button">
+                      <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+                      <button type="button" class="btn btn-primary pop" v-on:click="rejected(view.applicationId)"><i class="bi bi-check2"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </li>
 
@@ -55,14 +123,13 @@ export default {
       
       async accepted(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
-        location.reload(true)
-        console.log(id)
         createToast(`Accepted`, { type: "success" });
+        location.reload(true)
       },
       async rejected(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
+         createToast(`Reject`, { type: "danger" });
         location.reload(true)
-        console.log(id)
       },
      async getResume(jobseekerResume){
          await axios({
@@ -83,7 +150,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
     .sidebar-right{
         float: right;
         display: flex;
@@ -180,7 +247,7 @@ export default {
     }
     .text-side{
       position: absolute;
-      padding-left: 100px;
+      padding-left: 80px;
       text-align: right;
       justify-content: right;
       
@@ -200,5 +267,29 @@ export default {
       border-radius: 50%;
       border: 3px solid #f3f3f3;
     }
-    
+    .pop{
+     
+     
+      
+      text-align: center;
+      margin: 0;
+    }
+    .select-button{
+      display: flex;
+      text-align: center;
+      justify-content: center;
+    }
+    .modal-body{
+      text-align: center;
+    }
+    .modal-content{
+      border-radius:20px;  
+      margin:auto; 
+      width:300px; 
+      margin-top:200px; 
+      padding-bottom:20px;
+    }
+    .jobseeker-informations td{
+      height: 40px;
+    }
 </style>

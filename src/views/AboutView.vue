@@ -15,18 +15,40 @@
                 </div>
                 <div class="col-md-6">
                   <img v-if="profile.recruiterImage != null" class="img-thumbnail position-absolute top-0 end-0 m-3"
-                  :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 20%">
+                  :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 125px; height:120px;">
                     <img v-else class="img-thumbnail position-absolute top-0 end-0 m-3"
-                    src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 20%">
+                    src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 20% height:40%;">
                     
                 </div>
-                <form action="" @submit.prevent="onUpload" enctype="multipart/formdata">
-                <label class="custom-file-upload">
-                   <input type="file" ref="file" @change="onFileSelected"/>
-                </label>
-                <button type="submit" class="btn  new position-absolute top-0 end-0 m-3 ">
-                  <i class="bi bi-pencil-square"></i>SAVE</button>
-                  </form>
+                
+                  <!-- Button trigger modal -->
+                    <button type="button" class="btn new position-absolute top-0 end-0 m-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <i class="bi bi-pencil-square"></i>Edit/upload
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Image Profile</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                                    <form action="" @submit.prevent="onUpload" enctype="multipart/formdata">
+                                        <label class="custom-file-upload">
+                                         <input type="file" ref="file" @change="onFileSelected"/>
+                                        </label>
+                                        <button type="submit" class="btn btn-primary ">
+                                       <i class="bi bi-pencil-square"></i>Save Changes</button>
+                                    </form>
+                          </div>
+                          <div class="modal-footer">
+                            <p class="text-muted">recomended size 120px x 120px</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
               </div>
 
               <span class="mb-4 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
@@ -42,7 +64,7 @@
               <p class="card-text">{{profile.recruiterBenefit}}</p>
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
-              <router-link class="btn-update btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile
+              <router-link class="btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile
               </router-link>
             </div>
           </div>
@@ -190,15 +212,22 @@
     margin-right: 10px;
   }
 
-  .btn-update {
-    text-align: center;
+  .btn{
+    
     color: #fff;
     margin-top: 30px;
   }
 
  .new{
-   width: 130px;
-   padding-top: 120px;
+   width: auto;
+   padding-top: 7%;
+   padding-bottom: 8%;
+   color: transparent;
+ }
+ .new:hover{
+   padding: auto;
+   color: white;
+   background: rgba(0, 0, 0, 0.285);
  }
 
  .category{

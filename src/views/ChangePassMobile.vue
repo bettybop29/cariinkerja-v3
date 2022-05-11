@@ -26,7 +26,7 @@
             <!-- </div> -->
             </div>
         </nav>
-    <h1>Create New Password</h1>
+    <h1>Create New Password for mobile</h1>
   <div class="position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 bg-body rounded-3" style="width:500px;">
   <form @submit.prevent="resetPass">
     <div class="mb-3">
@@ -56,7 +56,7 @@ import jwt_decode from "jwt-decode";
 import "mosha-vue-toastify/dist/style.css";
 import { createToast } from "mosha-vue-toastify";
 export default {
-    name:"ChangePassword",
+    name:"ChangePassMobile",
     data(){
         return{
             password:"",
@@ -75,14 +75,15 @@ export default {
            
            let response = '';
             try {
-              response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`)
+              response = await axios.post(`http://54.255.4.75:9091/api/v1/jobseeker/change-password?email=${this.decoded.email}&password=${this.password}&confirmPassword=${this.password_Confirm}`)
+            //   response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`)
 
             } catch (err) {
               console.log(err.response.data.message)
             }
             if(response.status === 200){
               createToast("Password Changed", { type: "Success" });
-              this.$router.push('/login')
+              window.open("http://www.cariinkerja.com/api/v1/jobseeker","_self")
             }
         }
     },

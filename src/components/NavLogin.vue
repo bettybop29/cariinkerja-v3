@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="logo">
         <router-link class="text-decoration-none" to="/"
-          >Cariinkerja</router-link
+          ><img src="http://54.255.4.75:9091/resources/lnp4av9z3ceiw06.png" alt="" style="width:117px; height:20px;"></router-link
         >
       </div>
       <!-- <a class="navbar-brand" href="#" style="font-weight: 700; color: blue;">CariinKerja</a> -->

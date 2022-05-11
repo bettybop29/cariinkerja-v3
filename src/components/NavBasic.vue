@@ -2,11 +2,11 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
       <div class="logo">
-        <router-link class="text-decoration-none" to="/"
-          >Cariinkerja</router-link
-        >
+        <!-- <router-link class="navbar-brand text-decoration-none" to="/">
+        <img src="http://54.255.4.75:9091/resources/lnp4av9z3ceiw06.png" alt="" style="width:150px; height:30px;"></router-link> -->
+        <a href="/"><img src="http://54.255.4.75:9091/resources/lnp4av9z3ceiw06.png" alt="" style="width:150px; height:30px;"></a>
       </div>
-      <!-- <a class="navbar-brand" href="#" style="font-weight: 700; color: blue;">CariinKerja</a> -->
+      <!-- <router-link class="navbar-brand" href="#" style="font-weight: 700; color: blue;">CariinKerja</router-link> -->
       <button
         class="navbar-toggler"
         type="button"
@@ -42,6 +42,6 @@ export default {
 
 <style scoped>
   .btn {
-      margin-left: 770px;
+      margin-left: 670px;
   }
 </style>

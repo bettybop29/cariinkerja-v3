@@ -16,6 +16,7 @@ import ChangePassword from '@/views/ChangePassword.vue'
 import VerificationPassword from '@/views/VerificationPassword.vue'
 import ExpiredView from '@/views/ExpiredForgotView.vue'
 import ExpiredSignup from '@/views/ExpiredSignup.vue'
+import ChangePassMobile from  '@/views/ChangePassMobile.vue'
 
 const routes = [
   {
@@ -26,7 +27,8 @@ const routes = [
   {
     path: '/postjob',
     name: 'postjob',
-    component: PostJobView
+    component: PostJobView,
+    meta: { transition: 'slide-left' }
   },
   {
     path: '/about',
@@ -57,6 +59,11 @@ const routes = [
     path: '/aplicantdetail/:id',
     name: 'aplicantdetail',
     component: AplicantDetail, 
+  },
+  {
+    path: '/changepassmobile/:token',
+    name: 'changepassmobile',
+    component: ChangePassMobile, 
   },
   {
     path: '/updateprofile/:id',

@@ -1,4 +1,5 @@
 <template>
+
     <p class="back">
         <router-link class="back-link" to="/login">
             <i class="bi bi-arrow-left-circle"></i> Back
@@ -36,7 +37,7 @@
             </div>
         </div>
     </div>
-    
+   
 </template>
 
 <script>
@@ -60,10 +61,11 @@ export default {
             try{
                 this.searchDisabled = true;
                 await axios.post(`http://54.255.4.75:9091/api/v1/auth/reset?recruiterEmail=${this.recruiterEmail}`)
-                createToast("Verification has been sent", {type:"success"});
+                createToast("E-mail has been sent", {type:"success"});
                 this.$router.push("/VerificationPassword")   
                             
             }catch{
+                this.searchDisabled = false;
                 location.reload(true)
                 createToast("Failed", {type:"danger"});
             }
@@ -73,6 +75,7 @@ export default {
 </script>
 
 <style scoped>
+    
     .pulse{
         text-align: center;
         margin: 2px;

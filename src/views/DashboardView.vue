@@ -5,30 +5,27 @@
   <sidebar-right :view="views"></sidebar-right>
  
 <div class="main">
-
+    <img src="http://54.255.4.75:9091/resources/qnry9dzt9q8lym8.png" alt="">
   <div class="container">
     
     <div class="logo-main">
 
     </div>
+    
         <div class="card">
-            <div class="card-title">
-              
-              <h2>Hi, {{recruiters.recruiterCompany}} !!</h2>
+            <div class="card-title">              
+              <h2>Hi, {{recruiters.recruiterCompany}}!</h2>
               <div class="card-text">
-                <h5>Welcome back you have<br>
-                  <span class="decor">{{edit.data}}</span>
-                  new resume
-                </h5>
-                
-                
+                <h5>Welcome Back</h5>
+                <h5>you have <span class="decor">{{edit.data}}</span> new
+                <br>resume.</h5>  
               </div>
               <button class="btn">See all</button>
               
             </div>
             
         </div>
-       
+     
         <div class="card-monitor">
           
           <div class="card-approve">
@@ -40,18 +37,18 @@
                 <div class="col card-reject">
                 <h4>Summary of reject</h4>
                 <h1>{{reject.data}}<span> / {{total.data}}</span></h1>
-              
+             
           </div>
+         
         </div>
-         <img src="http://54.255.4.75:9091/resources/qnry9dzt9q8lym8.png" alt="">
+         
     </div> 
-<div class="title-table">
-  <h3>Resume</h3>
-</div>
+
+
+
 <table class="table">
-  
   <thead>
-    
+      <h3>Resume</h3>
     <tr>
       <th scope="col">No.</th>
       <th scope="col">Name</th>
@@ -91,7 +88,6 @@ import axios from "axios";
 import 'boxicons';
 import sidebarcomponent from '../components/SidebarComponent.vue'
 import SidebarRight from '../components/SidebarRight.vue'
-
 
 
 
@@ -168,11 +164,11 @@ export default {
       })
     },
     async getView(applicationId){
-      // await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?jobseekerId=${jobseekerId}&applicationId=${applicationId}`)
+     
        await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${applicationId}`)
       .then((data)=>{
         this.views=data.data.data
-        console.log(data)
+        // console.log(data)
       })
     }
   },
@@ -238,9 +234,11 @@ export default {
 .card-text {
   padding: 10px;
   margin: 0;
+  padding-left: 40px;
   text-align: left;
 }
 img{
+  z-index: 1;
   position: fixed;
   display: block;
   left: 250px;
@@ -249,8 +247,7 @@ img{
   margin-right: 40px;
   width: 270px;
   height: 270px;
-  overflow-x: hidden;
-  
+    
   
 }
 h5{
@@ -260,7 +257,7 @@ h5{
 }
 .decor{
   font-size: 17px;
-  color: orange;
+  color: rgb(37, 37, 37);
 }
 .card-approve {
  background-image: url("../assets/approve.png");
@@ -282,6 +279,7 @@ h5{
 }
 .card-title{
   padding: 10px;
+  padding-left: 10px;
 }
 span{
   font-size: 26px;
@@ -292,10 +290,13 @@ span{
   
 }
 .btn{
+  font-size: 12px;
+  padding: 8px;
   border-radius: 30px;
   background: orange;
   color: white;
-  margin-top: 70px;
+  margin-top: 30px;
+  width: 190px;
 
 }
 .btn:hover{
@@ -310,20 +311,22 @@ span{
 }
 .position{
   background: #E2E3F6;
-  padding: 3px;
-  width: 65px;
+  padding: 5px;
+  width: 100%;
+  font-weight: bold;
   border-radius: 10px;
   color: #7D8CD1;
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
 }
 .position2{
   background: #e3fe9f;
-  padding: 3px;
-  width: 65px;
+  padding: 5px;
+  width: 100%;
+  font-weight: bold;
   border-radius: 10px;
   color: #b4bf1b;
-  font-size: 13px;
+  font-size: 11px;
   text-align: center;
 }
 .title-table{
@@ -336,4 +339,6 @@ span{
   border-radius: 10px 50px 10px 0px;
   padding-right: 40px;
 }
+
+
 </style>
