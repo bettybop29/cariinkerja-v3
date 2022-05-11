@@ -26,9 +26,11 @@
                 <h4 class="card-title1">{{job.jobName}}</h4>
                 <h6 class="card-title">{{job.jobPosition}} | Rp. {{formatPrice(job.jobSalary)}}</h6>
                 <label class="label mt-3">Description job : </label>
-                <p class="card-text">{{escapeHtml(job.jobDesc)}}</p>
+                <!-- <p class="card-text">{{escapeHtml(job.jobDesc)}}</p> -->
+                <p class="card-text">{{(job.jobDesc)}}</p>
                 <label class="label">Job Requirement :</label>
-                <p class="card-text">{{escapeHtml(job.jobRequirement)}}</p>
+                <!-- <p class="card-text">{{escapeHtml(job.jobRequirement)}}</p> -->
+                <p class="card-text">{{(job.jobRequirement)}}</p>
                 <label class="label">Address :</label>
                 <p class="card-text">{{job.jobAddress}}</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
@@ -255,19 +257,19 @@ decodeEntity('&copy;', {level: 'xml'});
         let val = (value / 1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
       },
-      escapeHtml(text) {
-        var map = {
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          '"': '&quot;',
-          '<p>': '&nbsp',
-          '</p>': '&nbsp',
-          "'": '&#039;'
-        };
+      // escapeHtml(text) {
+      //   var map = {
+      //     '&': '&amp;',
+      //     '<': '&lt;',
+      //     '>': '&gt;',
+      //     '"': '&quot;',
+      //     '<p>': '&nbsp',
+      //     '</p>': '&nbsp',
+      //     "'": '&#039;'
+      //   };
         
-        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
-      },
+      //   return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+      // },
       async fetchData() {
         // const url = this.apiUrl + this.id
         await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)

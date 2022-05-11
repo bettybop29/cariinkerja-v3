@@ -17,6 +17,7 @@
           <!-- tabel untuk data jobseeker -->
           <table class="jobseeker-informations ">
             <tbody>
+              
               <tr>
                 <th style="width: 25%;">Birthdate</th>
                 <td v-if="view.jobseekerDateOfBirth == null" class="text-side text-muted">-</td>
@@ -32,31 +33,10 @@
                 <td v-if="view.jobseekerEmail == null" class="text-side text-muted">-</td>
                 <td class="text-side">{{view.jobseekerEmail}}</td>
               </tr>
-              <tr>
-                <th>Address</th>
-                <td v-if="view.jobseekerAddress == null" class="text-side text-muted">-</td>
-                <td class="text-side">{{view.jobseekerAddress}}</td>
-              </tr>
+              
             </tbody>
           </table>
-          <br><br>
-          <li>birthdate:
-            <p v-if="view.jobseekerDateOfBirth == null" class="text-side text-muted" >---</p>
-            <p v-else class="text-side">{{view.jobseekerDateOfBirth}}</p>
-          </li>
           
-          <li>Phone:
-              <p v-if="view.jobseekerPhone == null" class="text-side text-muted">---</p>
-              <p class="text-side">{{view.jobseekerPhone}}</p>
-          </li>
-          <li>Email:
-            <p v-if="view.jobseekerEmail == null" class="text-side text-muted">---</p>
-            <p  class="text-side">{{view.jobseekerEmail}}</p>
-          </li>
-          <li>Address:
-            <p v-if="view.jobseekerAddress == null" class="text-side text-muted">---</p>
-             <p class="text-side">{{view.jobseekerAddress}}</p>
-            </li>
           <li><button class="btn-resume" v-on:click="getResume(view.jobseekerResume)">Resume <i class="bi bi-cloud-arrow-down-fill"></i></button></li>
           <li><button class="btn-portofolio">Portofolio <i class="bi bi-box-arrow-up-right"></i></button></li>
           <li> 
@@ -185,6 +165,9 @@ export default {
     .li-title{
       padding: 0;
       font-weight: bold;
+      margin-left: -5px !important;
+      color: #6476c8;
+      
     }
     .action button{
       margin: 5px;
@@ -289,7 +272,15 @@ export default {
       margin-top:200px; 
       padding-bottom:20px;
     }
+    .jobseeker-informations{
+      margin-left: -20px;
+    }
     .jobseeker-informations td{
       height: 40px;
+      padding: 15px;
+    }
+    .jobseeker-informations th{
+      height: 40px;
+      padding: 15px;
     }
 </style>
