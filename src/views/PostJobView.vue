@@ -64,11 +64,11 @@
     </div>
     <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px; text-align:center; padding:30px;">
-        <h3>Are you sure to create job ?</h3>     
+    <div class="modal-content" style="border-radius:20px; margin:auto; width:400px; margin-top:200px; padding-bottom:20px; text-align:center; padding:50px;">
+        <h5 style="padding-bottom:30px; font-size:18px; font-weigh:bolder;">Are you sure want to post<br>this job?</h5>     
      <div class="select-button">
-       <button v-on:click="addjob" type="button" class="btn btn-success pop" data-bs-dismiss="modal">Add</button>
-        <button class="btn btn-primary pop" data-bs-target="#jobModal" data-bs-toggle="modal">Back to create</button>
+       <button v-on:click="addjob" type="button" class="btn btn-primary pop" data-bs-dismiss="modal">Yes, post it!</button>
+        <button class="btn btn-outline-danger pop" data-bs-target="#jobModal" data-bs-toggle="modal">Cancel</button>
         
       </div>
     </div>
@@ -201,12 +201,14 @@
       padding: 10px;
       text-align: center;
       margin: 0;
+      width: 125px;
     }
     .select-button{
       display: flex;
       text-align: center;
-      justify-content: space-evenly;
+      justify-content: space-between;
       margin: 10px;
+      padding-top: 30px;
     }
 
   /* transition */

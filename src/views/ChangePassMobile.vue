@@ -79,6 +79,7 @@ export default {
             //   response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`)
 
             } catch (err) {
+              createToast(`${err.response.data.message}`, { type: "danger " });
               console.log(err.response.data.message)
             }
             if(response.status === 200){
@@ -108,7 +109,7 @@ export default {
     h1{
       text-align: center;
       position: absolute;
-      margin-left: 37%;
+      margin-left: 480px;
       margin-top: 7%;
     }
 </style>

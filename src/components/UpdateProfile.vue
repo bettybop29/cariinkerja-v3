@@ -52,9 +52,11 @@
  <div class="col-md-10 mb-4">
   
         <label for="validationDefault03" class="form-label">Phone</label>
-        <!-- <input v-model="value" type="text" @input="acceptNumber"> -->
+        <!-- <input v-model="profile.recruiterPhone" type="text" @input="acceptNumber"> -->
        
-        <!-- <input type="number" class="form-control" id="validationDefault03" v-model="profile.recruiterPhone"  required> -->
+        <input type="tel" class="form-control" @input="acceptNumber" id="validationDefault03" v-model="profile.recruiterPhone"  
+        placeholder="Ex: 0855-1111-2222" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" required>
+        <small>Format: 0888-1111-2222</small>
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Facebook</label>
@@ -98,14 +100,14 @@ export default {
       return {
         profile:[],
         previewImage:null,
-        // value:''
+        value:''
       }
     },
     methods:{
-      // acceptNumber() {
-      //   var x = this.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-      //   this.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-      //   },
+      acceptNumber() {
+        var x = this.profile.recruiterPhone.replace(/\D/g, '').match(/(\d{0,4})(\d{0,4})(\d{0,4})/);
+        this.profile.recruiterPhone = !x[2] ? x[1] : '' + x[1] + '-' + x[2] + (x[3] ? '-' + x[3] : '');
+        },
 
       onFileSelected(event){
         this.selectedFile = event.target.files[0]
