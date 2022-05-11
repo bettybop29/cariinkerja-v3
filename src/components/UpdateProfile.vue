@@ -52,7 +52,9 @@
  <div class="col-md-10 mb-4">
   
         <label for="validationDefault03" class="form-label">Phone</label>
-        <input type="number" class="form-control" id="validationDefault03" v-model="profile.recruiterPhone" required>
+        <!-- <input v-model="value" type="text" @input="acceptNumber"> -->
+       
+        <!-- <input type="number" class="form-control" id="validationDefault03" v-model="profile.recruiterPhone"  required> -->
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Facebook</label>
@@ -84,18 +86,27 @@ import axios from 'axios'
 import "mosha-vue-toastify"
 import { createToast } from "mosha-vue-toastify"
 import sidebarcomponent from '@/components/SidebarComponent.vue'
+
 export default {
     props:['id'],
+    
     components:{
-      sidebarcomponent
+      sidebarcomponent,
+      // VuePhoneNumberInput
     },
     data(){
       return {
         profile:[],
-        previewImage:null
+        previewImage:null,
+        // value:''
       }
     },
     methods:{
+      // acceptNumber() {
+      //   var x = this.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+      //   this.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+      //   },
+
       onFileSelected(event){
         this.selectedFile = event.target.files[0]
       },
