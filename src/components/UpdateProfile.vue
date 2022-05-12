@@ -53,9 +53,8 @@
   
         <label for="validationDefault03" class="form-label">Phone</label>
         <!-- <input v-model="profile.recruiterPhone" type="text" @input="acceptNumber"> -->
-       
         <input type="tel" class="form-control" @input="acceptNumber" id="validationDefault03" v-model="profile.recruiterPhone"  
-        placeholder="Ex: 0855-1111-2222" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" required>
+        placeholder="Ex: 0855-1111-2222" min="8" max="12" required>
         <small>Format: 0888-1111-2222</small>
       </div>
      <div class="col-md-10 mb-4">
@@ -76,9 +75,7 @@
       </div>
        <button class="btn btn-success" type="submit">Update</button>
      </form>
-     
   </div>
-  
 </div>
 </div>
 </template>

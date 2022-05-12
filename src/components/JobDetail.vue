@@ -26,9 +26,9 @@
                 <h4 class="card-title1">{{job.jobName}}</h4>
                 <h6 class="card-title">{{job.jobPosition}} | Rp. {{formatPrice(job.jobSalary)}}</h6>
                 <label class="label mt-3">Description job : </label>
-                <p class="card-text">{{job.jobDesc}}</p>
+                <p class="card-text" v-html="job.jobDesc"></p>
                 <label class="label">Job Requirement :</label>
-                <p class="card-text">{{job.jobRequirement}}</p>
+                <p class="card-text" v-html="job.jobRequirement"></p>
                 <label class="label">Address :</label>
                 <p class="card-text">{{job.jobAddress}}</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
@@ -131,27 +131,16 @@
   // import JlDatatable from 'jl-datatable';
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from 'axios'
-  import {decode} from 'html-entities';
+  
+      var codeHTML = document.getElementsByClassName('code-html')
+
+    for (var i = 0; i < codeHTML.length; i+=1) {
+
+        codeHTML[i].replace('<', '&lt;')
+    }
 
 
-decode('&lt; &gt; &quot; &apos; &amp; &#169; &#8710;');
-// -> '< > " \' & © ∆'
 
-decode('&copy;', {level: 'html5'});
-// -> '©'
-
-decode('&copy;', {level: 'xml'});
-// -> '&copy;'
-import {decodeEntity} from 'html-entities';
-
-decodeEntity('&lt;');
-// -> '<'
-
-decodeEntity('&copy;', {level: 'html5'});
-// -> '©'
-
-decodeEntity('&copy;', {level: 'xml'});
-// -> '&copy;'
   export default {
     components: {
       // JlDatatable
@@ -251,6 +240,7 @@ decodeEntity('&copy;', {level: 'xml'});
       // error(err){
       //   console.log(err);
       // },
+          
       formatPrice(value) {
         let val = (value / 1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")

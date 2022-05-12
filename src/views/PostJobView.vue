@@ -43,7 +43,7 @@
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Job Desc:</label>
-                <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="jobDesc" :config="editorConfig"></ckeditor>
+                <ckeditor :editor="editor" tag-name="textarea" id="jobDesc" :model-value="jobDesc" v-model="jobDesc" :config="editorConfig"></ckeditor>
                 <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
               
               </div>
@@ -94,10 +94,11 @@
   import JobComponent from '../components/JobComponent.vue'
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from "axios";
-  import {
-    createToast
-  } from "mosha-vue-toastify";
+  import {createToast} from "mosha-vue-toastify";
   import 'boxicons';
+
+    
+
 
 
   export default {
@@ -126,8 +127,7 @@
       };
     },
     methods: {
-       
-
+              
       formatPrice(value) {
         let val = (value / 1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
