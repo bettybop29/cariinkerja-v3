@@ -9,7 +9,7 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <div class="row">
+              <div class="row mb-5">
                 <div class="col-md-6">
                   <h5 class="card-title">{{profile.recruiterCompany}}</h5>
                 </div>
@@ -51,7 +51,7 @@
                     </div>
               </div>
 
-              <p class="card-text">{{profile.recruiterIndustry}}</p>
+              <span class="mb-4 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
               <p class="card-span">Staff: </p>
               <p class="card-text"><i class="bi bi-person-fill me-0"></i> {{profile.recruiterStaff}}</p>
               <p class="card-span">Description: </p>
@@ -72,7 +72,7 @@
         </div>
         <div class="col-md-6">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body section-contact">
               <h5 class="card-title">Contact</h5>
               <hr>
               <a class="card-text"><i class="bi bi-envelope"></i> {{profile.recruiterEmail}}</a>
@@ -182,11 +182,13 @@
   .card {
     border-radius: 20px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    padding: 20px;
   }
 
   .card-title {
     font-weight: bold;
-    font-size: 25px;
+    font-size: 36px;
+    margin-bottom: 30px;
   }
 
   .card-span {
@@ -213,7 +215,9 @@
   .btn{
     
     color: #fff;
+    margin-top: 30px;
   }
+
  .new{
    width: auto;
    padding-top: 7%;
@@ -225,6 +229,20 @@
    color: white;
    background: rgba(0, 0, 0, 0.285);
  }
+
+ .category{
+    height: 25px;
+    font-size: 14px;
+ }
+
+ .section-contact .card-text{
+    margin-bottom: 10px;
+ }
+
+ i{
+    color: #4296C7;
+ }
+
  /* .custom-file-upload{
    
  } */

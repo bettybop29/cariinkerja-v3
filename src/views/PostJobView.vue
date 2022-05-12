@@ -7,7 +7,7 @@
       <i class="bi bi-plus-circle me-2"></i>
       Add New Job
     </button>
-<form>
+<form @submit.prevent="addjob">
     <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -19,15 +19,15 @@
             
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Job Name:</label>
-                <input type="text" class="form-control" id="recipient-name" v-model="jobName" />
+                <input type="text" class="form-control" id="recipient-name" v-model="jobName" required/>
               </div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Job Salary:</label>
-                <input type="number" class="form-control" id="recipient-name" v-model="jobSalary" />
+                <input type="number" class="form-control" id="recipient-name" v-model="jobSalary" required/>
               </div>
               <div class="mb-3">
                 <label for="inputState">Job Position</label>
-                <select class="form-control" id="inputState" v-model="jobPosition">
+                <select class="form-control" id="inputState" v-model="jobPosition" required>
                   <option selected>Choose..</option>
                   <option>Internship</option>
                   <option>Full time</option>
@@ -49,7 +49,8 @@
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Job Address:</label>
-                <textarea class="form-control" id="message-text" v-model="jobAddress"></textarea>
+                <textarea class="form-control" id="message-text" v-model="jobAddress" maxlength="100" required></textarea>
+                <small>max.100 characters</small>
               </div>
               
             
@@ -57,7 +58,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">X</button>
             <!-- <button v-on:click="addjob" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button> -->
-              <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Create</button>
+              <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Create</button>
           </div>  
         </div>
       </div>
@@ -65,11 +66,11 @@
     <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="border-radius:20px; margin:auto; width:400px; margin-top:200px; padding-bottom:20px; text-align:center; padding:50px;">
-        <h5 style="padding-bottom:30px; font-size:18px; font-weigh:bolder;">Are you sure want to post<br>this job?</h5>     
+        <h5 style="padding-bottom:30px; font-size:18px; font-weigh:bolder;">Are you sure want to<br>publish job?</h5>     
      <div class="select-button">
-       <button v-on:click="addjob" type="button" class="btn btn-primary pop" data-bs-dismiss="modal">Yes, post it!</button>
+      
         <button class="btn btn-outline-danger pop" data-bs-target="#jobModal" data-bs-toggle="modal">Cancel</button>
-        
+         <button v-on:click="addjob" type="button" class="btn btn-primary pop" data-bs-dismiss="modal">Yes, post it!</button>
       </div>
     </div>
   </div>

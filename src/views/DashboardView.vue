@@ -238,11 +238,13 @@ export default {
   text-align: left;
 }
 img{
-
   z-index: 1;
-  margin-top: 30px;
-  position: absolute;
-  margin-left: 250px;
+  position: fixed;
+  display: block;
+  left: 250px;
+  top: 50px;
+  margin-left: 0;
+  margin-right: 40px;
   width: 270px;
   height: 270px;
     

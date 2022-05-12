@@ -244,6 +244,19 @@
         let val = (value / 1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
       },
+      // escapeHtml(text) {
+      //   var map = {
+      //     '&': '&amp;',
+      //     '<': '&lt;',
+      //     '>': '&gt;',
+      //     '"': '&quot;',
+      //     '<p>': '&nbsp',
+      //     '</p>': '&nbsp',
+      //     "'": '&#039;'
+      //   };
+        
+      //   return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+      // },
       async fetchData() {
         // const url = this.apiUrl + this.id
         await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)

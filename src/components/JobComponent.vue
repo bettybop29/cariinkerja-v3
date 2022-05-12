@@ -44,20 +44,20 @@
                   <input type="text" class="form-control" id="" v-model="edit.jobName">
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">job Position: </label>
+                  <label for="recipient-name" class="col-form-label">Job Position edit: </label>
                   <input type="text" class="form-control" id="" v-model="edit.jobPosition">
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">job Address: </label>
+                  <label for="recipient-name" class="col-form-label">Job Address: </label>
                   <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">job Requirement: </label>
+                  <label for="recipient-name" class="col-form-label">Job Requirement: </label>
                   <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
                 </div>
 
                 <div class="mb-3">
-                  <label for="message-text" class="col-form-label">job Description:</label>
+                  <label for="message-text" class="col-form-label">Job Description:</label>
                   <textarea class="form-control" id="message-text" v-model="edit.jobDesc" />
                 </div>
                 <div class="modal-footer">
@@ -97,21 +97,21 @@
                     <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">job Position: </label>
+                    <label for="recipient-name" class="col-form-label">Job Position: </label>
                     <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">job Address: </label>
+                    <label for="recipient-name" class="col-form-label">Job Address: </label>
                     <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">job Requirement: </label>
+                    <label for="recipient-name" class="col-form-label">Job Requirement: </label>
                     <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
                     <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
                   </div>
                   
                   <div class="mb-3">
-                    <label for="message-text" class="col-form-label">job Description:</label>
+                    <label for="message-text" class="col-form-label">Job Description:</label>
                     <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig"></ckeditor>
                     <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc"/> -->
                   </div>
@@ -159,6 +159,14 @@ export default {
        formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
+     escapeHtml(text) {
+      return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
     },
        async active(id){
         try{
