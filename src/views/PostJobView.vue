@@ -68,7 +68,7 @@
       <h3>Publish Job?</h3>
      <div class="select-button">
        <button class="btn btn-primary pop" data-bs-target="#jobModal" data-bs-toggle="modal">Back to create</button>
-       <button v-on:click="addjob" type="button" class="btn btn-success pop" data-bs-dismiss="modal">Confirm</button>        
+       <button v-on:click="addjob" type="submit" class="btn btn-success pop" data-bs-dismiss="modal">Confirm</button>        
       </div>
     </div>
   </div>
