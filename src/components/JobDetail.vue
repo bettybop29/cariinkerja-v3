@@ -22,18 +22,17 @@
                 
             </div>
             <div class="col-md-8">
-              <div class="card-body">
-                <h4 class="card-title1">{{job.jobName}}</h4>
-                <h6 class="card-title">{{job.jobPosition}} | Rp. {{formatPrice(job.jobSalary)}}</h6>
-                <label class="label mt-3">Description job : </label>
-                <p class="card-text" v-html="job.jobDesc"></p>
-                <label class="label">Job Requirement :</label>
-                <p class="card-text" v-html="job.jobRequirement"></p>
-                <label class="label">Address :</label>
-                <p class="card-text">{{job.jobAddress}}</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-              
-                  <router-link class="btn btn-danger" to="/postjob"><i class="bi bi-arrow-left-circle-fill"></i>Post job
+                <div class="card-body">
+                      <h4 class="card-title1">{{job.jobName}}</h4>
+                      <h6 class="card-title">{{job.jobPosition}} | Rp. {{formatPrice(job.jobSalary)}}</h6>
+                      <label class="label mt-3">Description job : </label>
+                      <p class="card-text" v-html="job.jobDesc"></p>
+                      <label class="label">Job Requirement :</label>
+                      <p class="card-text" v-html="job.jobRequirement"></p>
+                      <label class="label">Address :</label>
+                      <p class="card-text">{{job.jobAddress}}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                    <router-link class="btn btn-danger" to="/postjob"><i class="bi bi-arrow-left-circle-fill"></i>Post job
                   </router-link>
                 </p>
               </div>
