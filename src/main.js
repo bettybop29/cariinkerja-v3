@@ -12,7 +12,9 @@ import JlDatatable from 'jl-datatable'
 
 import CKEditor from '@ckeditor/ckeditor5-vue';
 
+
 const app = createApp(App);
+
 
 app.use(router);
 app.use(store);

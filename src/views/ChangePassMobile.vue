@@ -1,33 +1,28 @@
 <template>
-  <div class="container-fluid">
+  
     <nav class="row navbar navbar-expand-lg navbar-light bg-white">
             <div class="d-flex justify-content-center">
             <!-- <div class="navbar-nav ms-auto me-auto ms-sm-auto ms-lg-0 ms-md-auto"> -->
             <ul class="navbar-nav ms-auto me-auto d-none d-lg-block">
-                <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
-                    
-                        
-                    
-                    
-                    
+                <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --> 
                         <li class="nav-item">
                             <a class="navbar-brand me-auto" href="#" style="text-align: right;">
                             <img class="logo" src="frontend/images/logo.png" width="30" alt="logo" />
                         </a>
                             <span class="text-muted">
                                 | &nbsp; Find The Best Fit
-                            </span>
-
-                            
-                        </li>
-                        
+                            </span>                           
+                        </li>                     
                     </ul>
                 <!-- </div> -->
             <!-- </div> -->
             </div>
         </nav>
-    <h1>Create New Password for mobile</h1>
-  <div class="position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 bg-body rounded-3" style="width:500px;">
+        <div class="container-fluid">
+  <div class="justify-content-sm-center">
+   
+  <div class="position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 bg-body rounded-3" style="width:300px;">
+    <img src="http://54.255.4.75:9091/resources/lnp4av9z3ceiw06.png" alt="" style="width:50%; margin-left:56px;">
   <form @submit.prevent="resetPass">
     <div class="mb-3">
     <label for="exampleInputEmai2" class="form-label" hidden >Email</label>
@@ -35,6 +30,7 @@
     
   </div>
   <div class="mb-3">
+   
     <label for="exampleInputEmail1" class="form-label">New Password</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="password" required placeholder="Password must contain at least one number, one capital letter and one special character">
     
@@ -47,7 +43,7 @@
 </form>
 </div>
 </div>
-
+</div>
 </template>
 
 <script>
@@ -79,6 +75,7 @@ export default {
             //   response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`)
 
             } catch (err) {
+              createToast(`${err.response.data.message}`, { type: "danger " , position: 'top-center'});
               console.log(err.response.data.message)
             }
             if(response.status === 200){
@@ -97,18 +94,36 @@ export default {
 </script>
 
 <style scoped>
-    .container-fluid{
-      height: 100vh;
-      background: rgb(238,238,249);
-      background: linear-gradient(138deg, rgba(238,238,249,1) 0%, rgba(73,186,224,1) 54%, rgba(0,212,255,1) 100%);
-    }
+    
+    .container-fluid {
+  
+   background: linear-gradient(
+    to right, rgba(238,238,249,1), rgba(73,186,224,1), rgba(0,212,255,1));
+    background-size: 400% 400%;
+    min-height: 100vh;
+  animation: animate-background 10s infinite ease-in-out;
+  /* background-color: #060684; */
+  padding-bottom: 50px;
+}
+
+@keyframes animate-background{
+  0% {
+    background-position: 0 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0 50%;
+  }
+}
     .btn{
       width: 100%;
     }
     h1{
       text-align: center;
       position: absolute;
-      margin-left: 37%;
+      margin-left: 480px;
       margin-top: 7%;
     }
 </style>

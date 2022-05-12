@@ -43,7 +43,7 @@
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Job Desc:</label>
-                <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="jobDesc" :config="editorConfig"></ckeditor>
+                <ckeditor :editor="editor" tag-name="textarea" id="jobDesc" :model-value="jobDesc" v-model="jobDesc" :config="editorConfig"></ckeditor>
                 <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
               
               </div>
@@ -64,11 +64,12 @@
     </div>
     <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px; text-align:center; padding:30px;">
-      <h3>Publish Job?</h3>
+    <div class="modal-content" style="border-radius:20px; margin:auto; width:400px; margin-top:200px; padding-bottom:20px; text-align:center; padding:50px;">
+        <h5 style="padding-bottom:30px; font-size:18px; font-weigh:bolder;">Are you sure want to post<br>this job?</h5>     
      <div class="select-button">
-       <button class="btn btn-primary pop" data-bs-target="#jobModal" data-bs-toggle="modal">Back to create</button>
-       <button v-on:click="addjob" type="submit" class="btn btn-success pop" data-bs-dismiss="modal">Confirm</button>        
+       <button v-on:click="addjob" type="button" class="btn btn-primary pop" data-bs-dismiss="modal">Yes, post it!</button>
+        <button class="btn btn-outline-danger pop" data-bs-target="#jobModal" data-bs-toggle="modal">Cancel</button>
+        
       </div>
     </div>
   </div>
@@ -93,10 +94,11 @@
   import JobComponent from '../components/JobComponent.vue'
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from "axios";
-  import {
-    createToast
-  } from "mosha-vue-toastify";
+  import {createToast} from "mosha-vue-toastify";
   import 'boxicons';
+
+    
+
 
 
   export default {
@@ -125,6 +127,7 @@
       };
     },
     methods: {
+              
       formatPrice(value) {
         let val = (value / 1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -197,13 +200,15 @@
    .pop{
       padding: 10px;
       text-align: center;
-      margin: 0 ;
+      margin: 0;
+      width: 125px;
     }
     .select-button{
       display: flex;
       text-align: center;
-      justify-content: space-evenly;
-      margin: 10px ;
+      justify-content: space-between;
+      margin: 10px;
+      padding-top: 30px;
     }
 
   /* transition */

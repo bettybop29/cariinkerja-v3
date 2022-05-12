@@ -52,7 +52,10 @@
  <div class="col-md-10 mb-4">
   
         <label for="validationDefault03" class="form-label">Phone</label>
-        <input type="number" class="form-control" id="validationDefault03" v-model="profile.recruiterPhone" required>
+        <!-- <input v-model="profile.recruiterPhone" type="text" @input="acceptNumber"> -->
+        <input type="tel" class="form-control" @input="acceptNumber" id="validationDefault03" v-model="profile.recruiterPhone"  
+        placeholder="Ex: 0855-1111-2222" min="8" max="12" required>
+        <small>Format: 0888-1111-2222</small>
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Facebook</label>
@@ -72,9 +75,7 @@
       </div>
        <button class="btn btn-success" type="submit">Update</button>
      </form>
-     
   </div>
-  
 </div>
 </div>
 </template>
@@ -84,18 +85,27 @@ import axios from 'axios'
 import "mosha-vue-toastify"
 import { createToast } from "mosha-vue-toastify"
 import sidebarcomponent from '@/components/SidebarComponent.vue'
+
 export default {
     props:['id'],
+    
     components:{
-      sidebarcomponent
+      sidebarcomponent,
+      // VuePhoneNumberInput
     },
     data(){
       return {
         profile:[],
-        previewImage:null
+        previewImage:null,
+        value:''
       }
     },
     methods:{
+      acceptNumber() {
+        var x = this.profile.recruiterPhone.replace(/\D/g, '').match(/(\d{0,4})(\d{0,4})(\d{0,4})/);
+        this.profile.recruiterPhone = !x[2] ? x[1] : '' + x[1] + '-' + x[2] + (x[3] ? '-' + x[3] : '');
+        },
+
       onFileSelected(event){
         this.selectedFile = event.target.files[0]
       },
