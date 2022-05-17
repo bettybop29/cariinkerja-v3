@@ -1,9 +1,10 @@
 <template>
 <!-- <nav-component></nav-component> -->
 <sidebar-component></sidebar-component>
-
-  <sidebar-right :view="views"></sidebar-right>
- 
+<div>
+  <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
+  <sidebar-right-review v-else></sidebar-right-review>
+  </div>
 <div class="main">
     <img src="http://54.255.4.75:9091/resources/qnry9dzt9q8lym8.png" alt="">
   <div class="container">
@@ -20,10 +21,8 @@
                 <h5>you have <span class="decor">{{edit.data}}</span> new
                 <br>resume.</h5>  
               </div>
-              <button class="btn">See all</button>
-              
-            </div>
-            
+              <button class="btn">See all</button>    
+            </div>    
         </div>
      
         <div class="card-monitor">
@@ -62,7 +61,7 @@
   <tbody>
     <tr v-for="(resume, index) in list" :key="resume.id">
       <td scope="row">{{index + 1}}</td>
-      <td>{{resume.jobseekerName}}</td>
+      <td>{{resume.jobseekerName}}</td> 
       <td>{{resume.jobseekerEmail}}</td>
       <td>
         <p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
@@ -80,6 +79,11 @@
 
 </div>
 
+
+
+
+
+
 </template>
 
 <script>
@@ -88,7 +92,7 @@ import axios from "axios";
 import 'boxicons';
 import sidebarcomponent from '../components/SidebarComponent.vue'
 import SidebarRight from '../components/SidebarRight.vue'
-
+import SidebarRightReview from '../components/SidebarRightReview.vue'
 
 
 
@@ -100,7 +104,8 @@ export default {
     // NavComponent : navbar,
     // JobComponent : JobComponent,
     SidebarRight : SidebarRight,
-    SidebarComponent : sidebarcomponent
+    SidebarComponent : sidebarcomponent,
+    SidebarRightReview
   },
   data(){
     
@@ -112,7 +117,8 @@ export default {
       list:[],
       total:"",
       edit:"",
-      views:""
+      views:"",
+      sidepop:false
     };
   },
   methods : {
@@ -168,6 +174,8 @@ export default {
        await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${applicationId}`)
       .then((data)=>{
         this.views=data.data.data
+        this.sidepop = true
+        console.log(this.sidepop)
         // console.log(data)
       })
     }

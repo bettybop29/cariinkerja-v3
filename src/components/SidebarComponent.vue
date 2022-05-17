@@ -180,7 +180,7 @@ i {
 
 #sidebar ul li a {
     padding: 10px;
-    font-weight: 200;
+    font-weight: 500;
     display: block;
     text-decoration: none;
 }

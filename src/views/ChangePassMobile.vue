@@ -20,12 +20,21 @@
         </nav>
         <div class="container-fluid">
   <div class="justify-content-sm-center">
-   
+    
   <div class="position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 bg-body rounded-3" style="width:300px;">
     <img src="http://54.255.4.75:9091/resources/lnp4av9z3ceiw06.png" alt="" style="width:50%; margin-left:56px;">
+      
   <form @submit.prevent="resetPass">
+   <div class="form-label" v-if="this.err == 'Password must be at least 8 characters'">
+             <span class="badge bg-danger">{{err}}</span>
+      </div>
+      <div class="form-label" v-if="this.err == 'Password must be at least 8 characters and contain at least one number, one uppercase and one lowercase letter'">
+          <small class="alert-danger">{{err}}</small>
+      </div>
+    
+      
     <div class="mb-3">
-    <label for="exampleInputEmai2" class="form-label" hidden >Email</label>
+    <label for="exampleInputEmai2" class="form-label" hidden>Email</label>
     <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" v-model="decoded.email" required hidden>
     
   </div>
@@ -57,8 +66,8 @@ export default {
         return{
             password:"",
             password_Confirm:"",
-            decoded:""
-            
+            decoded:"",
+            err:""
         }
     }
     ,
@@ -75,10 +84,13 @@ export default {
             //   response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`)
 
             } catch (err) {
+              this.err = err.response.data.message;
+              console.log(err)
               createToast(`${err.response.data.message}`, { type: "danger " , position: 'top-center'});
               console.log(err.response.data.message)
             }
             if(response.status === 200){
+              
               createToast("Password Changed", { type: "Success" });
               window.open("http://www.cariinkerja.com/api/v1/jobseeker","_self")
             }

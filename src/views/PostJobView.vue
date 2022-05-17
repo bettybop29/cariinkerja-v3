@@ -58,12 +58,13 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">X</button>
             <!-- <button v-on:click="addjob" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button> -->
-              <button type="submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Create</button>
+              <button type="submit" class="btn btn-primary">Create</button>
           </div>  
         </div>
       </div>
     </div>
-    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    
+    <div class="modal fade" v-if="this.modalOpen = true" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="border-radius:20px; margin:auto; width:400px; margin-top:200px; padding-bottom:20px; text-align:center; padding:50px;">
         <h5 style="padding-bottom:30px; font-size:18px; font-weigh:bolder;">Are you sure want to<br>publish job?</h5>     
@@ -75,11 +76,11 @@
     </div>
   </div>
 </div>
-
- </form> 
+</form>
+  
     <div class="row">
      
-      <div class="col-md-3 mt-3" v-for="item in list" v-bind:key="item.id">
+      <div class="col-md-3 mt-3 col-12" v-for="item in list" v-bind:key="item.id">
         <transition name="fade">
         <job-component class="job-component" :item="item"></job-component>
         </transition>
@@ -123,7 +124,7 @@
         jobDesc: "",
         jobAddress: "",
         list: [],
-
+        modalOpen:false
 
       };
     },
@@ -143,6 +144,7 @@
           createToast("Job Successfully Created", {
             type: "success"
           });
+          this.modalOpen = true;
           location.reload(true)
 
         } catch (error) {

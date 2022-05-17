@@ -186,7 +186,7 @@ export default {
         console.log(this.searchDisabled)
         
          localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
-         createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
+         createToast(`Welcome back! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
          this.$router.push("/dashboard");
       }
     },

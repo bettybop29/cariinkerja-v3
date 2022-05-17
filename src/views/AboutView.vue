@@ -9,7 +9,7 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <div class="row mb-5">
+              <div class="row mb-1">
                 <div class="col-md-6">
                   <h5 class="card-title">{{profile.recruiterCompany}}</h5>
                 </div>
@@ -23,7 +23,7 @@
                 
                   <!-- Button trigger modal -->
                     <button type="button" class="btn new position-absolute top-0 end-0 m-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <i class="bi bi-pencil-square"></i>Edit/upload
+                      <i class=""></i>Edit/upload
                     </button>
 
                     <!-- Modal -->
@@ -64,15 +64,14 @@
               <p class="card-text">{{profile.recruiterBenefit}}</p>
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
-              <router-link class="btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile
-              </router-link>
+              <router-link class="btn btn-success" :to="'/updateprofile/'+ profile.recruiterId">Update Profile</router-link>
             </div>
           </div>
 
         </div>
         <div class="col-md-6">
           <div class="card">
-            <div class="card-body section-contact">
+            <div class="card-body section-contact panel-2">
               <h5 class="card-title">Contact</h5>
               <hr>
               <a class="card-text"><i class="bi bi-envelope"></i> {{profile.recruiterEmail}}</a>
@@ -153,6 +152,12 @@
   };
 </script>
 <style scoped>
+.btn-success{
+  width: 100%;
+}
+.panel-2{
+  display: grid;
+}
 .container{
   margin-left: 17%;
 }
@@ -198,7 +203,6 @@
   }
 
   a {
-    display: flex;
     text-decoration: none;
     color: black;
   }

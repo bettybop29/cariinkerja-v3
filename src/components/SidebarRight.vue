@@ -1,5 +1,6 @@
 <template>
   <div class="sidebar-right">
+
     <div class="side-content">
       <ul>
           <li class="li-foto">
@@ -7,7 +8,7 @@
             <img v-else :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
           </li>
           <li class="li-header fw-bold">
-            <p v-if="view.jobseekerImage == null">---</p>
+            <p v-if="view.jobseekerImage == null"></p>
             <p v-else>{{view.jobseekerName}}</p>
             <p v-if="view.jobseekerImage == null" class="fw-normal">---</p>
             <p v-else class="fw-normal">{{view.jobseekerProfession}}</p>
@@ -90,6 +91,12 @@
       </ul>
     </div>
   </div>
+
+
+
+
+  
+
 </template>
 
 <script>
@@ -131,6 +138,13 @@ export default {
 </script>
 
 <style scoped>
+    
+    .hide{
+      position: fixed;
+      justify-content: center;
+
+    }
+    
     .sidebar-right{
         float: right;
         display: flex;
