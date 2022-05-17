@@ -6,8 +6,8 @@
         <li class="li-title mt-5">
           <img src="http://54.255.4.75:9091/resources/mb3.png" alt=""></li>  
         <li>
-          <p>Some candidates<br>need to be reviewed!</p>
-          <button class="btn btn-primary">Review Now</button>
+          <p>There is no<br>candidate to be reviewed</p>
+          <router-link to="/postjob" class="btn btn-primary">Post a new job</router-link>
         </li>
 
       </ul>
@@ -26,7 +26,7 @@
 import "mosha-vue-toastify/dist/style.css";
 
 export default {
-    name:"SidebarRightReview",
+    name:"SidebarRightEmpty",
 }
 </script>
 
@@ -49,6 +49,7 @@ ul{
         float: right;
         display: flex;
         margin-top: 20px;
+        
         
     }
     .side-content{

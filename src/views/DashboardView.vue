@@ -1,10 +1,11 @@
 <template>
 <!-- <nav-component></nav-component> -->
 <sidebar-component></sidebar-component>
-<div>
-  <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
-  <sidebar-right-review v-else></sidebar-right-review>
-  </div>
+<sidebar-right-empty v-if="this.err =='400'"></sidebar-right-empty>
+
+    <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
+    <sidebar-right-review v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
+  
 <div class="main">
     <img src="http://54.255.4.75:9091/resources/qnry9dzt9q8lym8.png" alt="">
   <div class="container">
@@ -93,7 +94,7 @@ import 'boxicons';
 import sidebarcomponent from '../components/SidebarComponent.vue'
 import SidebarRight from '../components/SidebarRight.vue'
 import SidebarRightReview from '../components/SidebarRightReview.vue'
-
+import SidebarRightEmpty from '../components/SidebarRightEmpty.vue'
 
 
 export default {
@@ -105,7 +106,8 @@ export default {
     // JobComponent : JobComponent,
     SidebarRight : SidebarRight,
     SidebarComponent : sidebarcomponent,
-    SidebarRightReview
+    SidebarRightReview,
+    SidebarRightEmpty,
   },
   data(){
     
@@ -118,7 +120,8 @@ export default {
       total:"",
       edit:"",
       views:"",
-      sidepop:false
+      sidepop:'',
+      dashboardEmpty:'',
     };
   },
   methods : {
@@ -139,13 +142,35 @@ export default {
       this.total=data.data
     })
   },
+  // async newResume(){
+  //   const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+  //   await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
+  //   .then((resp)=>{
+  //     this.list = resp.data.data
+  //     console.log(this.list)
+  //     this.dashboardEmpty = resp.data.data.errorCode;
+  //     console.log(das)
+  //   })
+  // },
   async newResume(){
+    let response = '';
     const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-    await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
-    .then((resp)=>{
-      this.list = resp.data.data
-      
-    })
+    try{
+      response = await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
+      .then((resp)=>{
+        this.list = resp.data.data
+        console.log(resp.data.code)
+        this.err = resp.data.code
+        this.sidepop = false
+      })
+    } catch(err) {
+      this.err = err.response.data.code
+      console.log(err.response.data.code)
+      this.sidepop = false
+    }
+    if(response.status == 200){
+      console.log(response)
+    }
   },
    async recruiter(){
    const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId

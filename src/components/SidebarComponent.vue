@@ -183,6 +183,7 @@ i {
     font-weight: 500;
     display: block;
     text-decoration: none;
+    width: 220px;
 }
 
 #sidebar ul li a:hover {

@@ -21,6 +21,7 @@
     "core-js": "^3.8.3",
     "express": "^4.17.3",
     "html-entities": "^2.3.3",
+    "intl-tel-input": "^17.0.16",
     "jl-datatable": "^1.1.0",
     "jwt-decode": "^3.1.2",
     "mosha-vue-toastify": "^1.0.23",

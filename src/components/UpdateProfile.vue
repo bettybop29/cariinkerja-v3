@@ -53,8 +53,9 @@
   
         <label for="validationDefault03" class="form-label">Phone</label>
         <!-- <input v-model="profile.recruiterPhone" type="text" @input="acceptNumber"> -->
-        <input type="tel" class="form-control" @input="acceptNumber" id="validationDefault03" v-model="profile.recruiterPhone"  
-        placeholder="Ex: 0855-1111-2222" min="8" max="12" required>
+        <!-- <input type="tel" class="form-control" @input="acceptNumber" id="validationDefault03" v-model="profile.recruiterPhone"  
+        placeholder="Ex: 0855-1111-2222" min="10" max="12" required> -->
+       
         <small>Format: 0888-1111-2222</small>
       </div>
      <div class="col-md-10 mb-4">
@@ -86,11 +87,15 @@ import "mosha-vue-toastify"
 import { createToast } from "mosha-vue-toastify"
 import sidebarcomponent from '@/components/SidebarComponent.vue'
 
+
 export default {
     props:['id'],
     
     components:{
       sidebarcomponent,
+      
+
+     
       // VuePhoneNumberInput
     },
     data(){
