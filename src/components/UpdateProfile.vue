@@ -13,7 +13,9 @@
       </div>
       <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Culture</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCulture" required>
+        <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCulture" required> -->
+        <ckeditor :editor="editor" tag-name="textarea" :model-value="recruiterCulture" 
+        v-model="profile.recruiterCulture" :config="editorConfig"></ckeditor>
       </div>
       <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Industry</label>
@@ -21,7 +23,9 @@
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Benefit</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterBenefit"  required>
+        <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterBenefit"  required> -->
+        <ckeditor :editor="editor" tag-name="textarea" :model-value="recruiterBenefit" 
+        v-model="profile.recruiterBenefit" :config="editorConfig"></ckeditor>
       </div>
      
      <div class="col-md-10 mb-4">
@@ -30,8 +34,19 @@
       </div>
     
      <div class="col-md-10 mb-4">
-        <label for="validationDefault03" class="form-label">Staff</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterStaff" required>
+        <label for="inputState" class="form-label">Staff</label>
+        <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterStaff" required> -->
+        <select class="form-control" id="inputState" v-model="profile.recruiterStaff" required>
+                  <option selected>Choose..</option>
+                  <option>1</option>
+                  <option>2-10</option>
+                  <option>11-50</option>
+                  <option>51-200</option>
+                  <option>201-500</option>
+                  <option>501-1000</option>
+                  <option>1001-1000</option>
+                  <option>10000+</option>
+        </select>
       </div>    
       <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Description</label>
@@ -47,7 +62,7 @@
   </div>
 <div class="content-2">
   <div class="container bottom">
-    <h1 class="mb-5">Contact</h1>
+    <h1 class="mb-5" style="margin-left:90px;">Contact</h1>
      <form class="row" @submit.prevent="updateProfile">
  <div class="col-md-10 mb-4">
   
@@ -55,7 +70,8 @@
         <!-- <input v-model="profile.recruiterPhone" type="text" @input="acceptNumber"> -->
         <!-- <input type="tel" class="form-control" @input="acceptNumber" id="validationDefault03" v-model="profile.recruiterPhone"  
         placeholder="Ex: 0855-1111-2222" min="10" max="12" required> -->
-       
+        <input type="tel" class="form-control" @input="acceptNumber" id="telephone" v-model="profile.recruiterPhone" > 
+        <!-- <vue-tel-input v-model="profile.recruiterPhone" mode="international"></vue-tel-input>  -->
         <small>Format: 0888-1111-2222</small>
       </div>
      <div class="col-md-10 mb-4">
@@ -86,7 +102,10 @@ import axios from 'axios'
 import "mosha-vue-toastify"
 import { createToast } from "mosha-vue-toastify"
 import sidebarcomponent from '@/components/SidebarComponent.vue'
-
+import 'intl-tel-input/build/css/intlTelInput.css';
+import 'intl-tel-input/build/js/intlTelInput.js';
+import intlTelInput from 'intl-tel-input';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
     props:['id'],
@@ -100,6 +119,12 @@ export default {
     },
     data(){
       return {
+        editor: ClassicEditor,
+        editorData: '',
+        editorConfig: {
+         // The configuration of the editor.
+         
+        },
         profile:[],
         previewImage:null,
         value:''
@@ -145,8 +170,24 @@ export default {
     },
     //render func
     mounted(){
-      this.fetchData()
-    }
+      this.fetchData();
+
+        
+        const input = document.querySelector("#telephone");
+        intlTelInput(input, {
+        // any initialisation options go here
+            nationalMode: true,
+            hiddenInput: "full_phone",
+            preferredCountries: ["id"],
+            placeholderNumberType:"MOBILE",
+            autoPlaceholder:"polite",
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/utils.js",
+            
+        
+      });
+    
+    
+  }  
 }
 </script>
 
@@ -199,6 +240,7 @@ export default {
     
   }
   .bottom{
+
     margin-top: 2%;
     margin-bottom: 10px;
     padding-bottom: 30px;

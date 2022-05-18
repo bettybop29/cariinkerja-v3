@@ -11,7 +11,8 @@ import 'mosha-vue-toastify/dist/style.css';
 import JlDatatable from 'jl-datatable'
 
 import CKEditor from '@ckeditor/ckeditor5-vue';
-
+// import VueTelInput from 'vue-tel-input';
+// import 'vue-tel-input/dist/vue-tel-input.css';
 
 
 
@@ -24,6 +25,7 @@ app.use(VueAxios,axios);
 app.use(moshaToast);
 app.use(JlDatatable);
 app.use(CKEditor);
+// app.use(VueTelInput);
 
 
 

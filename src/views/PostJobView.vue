@@ -82,7 +82,8 @@
      
       <div class="col-md-3 mt-3 col-12" v-for="item in list" v-bind:key="item.id">
         <transition name="fade">
-        <job-component class="job-component" :item="item"></job-component>
+        <!-- <job-component class="job-component" :item="item"></job-component> -->
+        <jobcomponentnew class="job-component" :item="item"></jobcomponentnew>
         </transition>
       </div>
       
@@ -93,7 +94,8 @@
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  import JobComponent from '../components/JobComponent.vue'
+  // import JobComponent from '../components/JobComponent.vue';
+  import jobcomponentnew from '../components/JobComponentNew.vue';
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from "axios";
   import {createToast} from "mosha-vue-toastify";
@@ -107,7 +109,9 @@
     name: "PostJob",
     components: {
       SidebarComponent: sidebarcomponent,
-      JobComponent: JobComponent
+      // JobComponent: JobComponent,
+      jobcomponentnew
+
     },
     data() {
       return {

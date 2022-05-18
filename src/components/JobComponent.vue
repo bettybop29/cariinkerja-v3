@@ -44,8 +44,16 @@
                   <input type="text" class="form-control" id="" v-model="edit.jobName">
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Position edit: </label>
-                  <input type="text" class="form-control" id="" v-model="edit.jobPosition">
+                  <label for="inputState" class="col-form-label">Job Position: </label>
+                    <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition"> -->
+                    <select class="form-control" id="inputState" v-model="edit.jobPosition" required>
+                      <option selected>Choose..</option>
+                      <option>Internship</option>
+                      <option>Full time</option>
+                      <option>Part Time</option>
+                      <option>Contractual</option>
+                      <option>Freelance</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Job Address: </label>
@@ -77,7 +85,7 @@
       <h5 class="card-title">{{item.jobName}}</h5>
       <span class="badge bg-primary">{{item.jobStatus}}</span>
       <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
-      <p class="card-text"><i class="bi-cash"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
+      <p class="card-text"><i class="bi-cash"></i> Rp{{ formatPrice(item.jobSalary) }}</p>
       <p class="card-text"><i class="bi-geo-alt"></i> {{ item.jobAddress }}</p>
           <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
       <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
@@ -97,8 +105,16 @@
                     <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">Job Position: </label>
-                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
+                    <label for="inputState" class="col-form-label">Job Position: </label>
+                    <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition"> -->
+                    <select class="form-control" id="inputState" v-model="edit.jobPosition" required>
+                      <option selected>Choose..</option>
+                      <option>Internship</option>
+                      <option>Full time</option>
+                      <option>Part Time</option>
+                      <option>Contractual</option>
+                      <option>Freelance</option>
+                    </select>
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Job Address: </label>

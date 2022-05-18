@@ -17,7 +17,7 @@
                   <img v-if="profile.recruiterImage != null" class="img-thumbnail position-absolute top-0 end-0 m-3"
                   :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 125px; height:120px;">
                     <img v-else class="img-thumbnail position-absolute top-0 end-0 m-3"
-                    src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 20% height:40%;">
+                    src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 125px; height:120px;">
                     
                 </div>
                 
@@ -59,9 +59,9 @@
               <p class="card-span">Address: </p>
               <p class="card-text">{{profile.recruiterAddress}}</p>
               <p class="card-span">Culture: </p>
-              <p class="card-text">{{profile.recruiterCulture}}</p>
+              <p class="card-text" v-html="profile.recruiterCulture"></p>
               <p class="card-span">Benefit: </p>
-              <p class="card-text">{{profile.recruiterBenefit}}</p>
+              <p class="card-text" v-html="profile.recruiterBenefit"></p>
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
               <router-link class="btn btn-success" :to="'/updateprofile/'+ profile.recruiterId">Update Profile</router-link>
