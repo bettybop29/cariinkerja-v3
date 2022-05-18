@@ -17,6 +17,9 @@ import VerificationPassword from '@/views/VerificationPassword.vue'
 import ExpiredView from '@/views/ExpiredForgotView.vue'
 import ExpiredSignup from '@/views/ExpiredSignup.vue'
 import ChangePassMobile from  '@/views/ChangePassMobile.vue'
+import PostJobNew from '@/views/PostJobNew.vue'
+// component link 
+import JobComponentNew from '@/components/JobComponentNew.vue'
 
 const routes = [
   {
@@ -28,6 +31,19 @@ const routes = [
     path: '/postjob',
     name: 'postjob',
     component: PostJobView,
+    meta: { transition: 'slide-left' }
+  },
+  {
+    path: '/postjobnew',
+    name: 'postjobnew',
+    component: PostJobNew,
+    meta: { transition: 'slide-left' }
+  },
+  //component url
+  {
+    path: '/jobcomponent',
+    name: 'jobcomponent',
+    component: JobComponentNew,
     meta: { transition: 'slide-left' }
   },
   {
