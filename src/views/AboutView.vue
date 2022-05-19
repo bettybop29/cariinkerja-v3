@@ -9,7 +9,7 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <div class="row">
+              <div class="row mb-1">
                 <div class="col-md-6">
                   <h5 class="card-title">{{profile.recruiterCompany}}</h5>
                 </div>
@@ -17,13 +17,13 @@
                   <img v-if="profile.recruiterImage != null" class="img-thumbnail position-absolute top-0 end-0 m-3"
                   :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt="" style="width: 125px; height:120px;">
                     <img v-else class="img-thumbnail position-absolute top-0 end-0 m-3"
-                    src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 20% height:40%;">
+                    src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="" style="width: 125px; height:120px;">
                     
                 </div>
                 
                   <!-- Button trigger modal -->
                     <button type="button" class="btn new position-absolute top-0 end-0 m-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <i class="bi bi-pencil-square"></i>Edit/upload
+                      <i class=""></i>Edit/upload
                     </button>
 
                     <!-- Modal -->
@@ -51,7 +51,7 @@
                     </div>
               </div>
 
-              <p class="card-text">{{profile.recruiterIndustry}}</p>
+              <span class="mb-4 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
               <p class="card-span">Staff: </p>
               <p class="card-text"><i class="bi bi-person-fill me-0"></i> {{profile.recruiterStaff}}</p>
               <p class="card-span">Description: </p>
@@ -59,20 +59,19 @@
               <p class="card-span">Address: </p>
               <p class="card-text">{{profile.recruiterAddress}}</p>
               <p class="card-span">Culture: </p>
-              <p class="card-text">{{profile.recruiterCulture}}</p>
+              <p class="card-text" v-html="profile.recruiterCulture"></p>
               <p class="card-span">Benefit: </p>
-              <p class="card-text">{{profile.recruiterBenefit}}</p>
+              <p class="card-text" v-html="profile.recruiterBenefit"></p>
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
-              <router-link class="btn btn-success" :to="'/updateprofile/'+profile.recruiterId">Update Profile
-              </router-link>
+              <router-link class="btn btn-success" :to="'/updateprofile/'+ profile.recruiterId">Update Profile</router-link>
             </div>
           </div>
 
         </div>
         <div class="col-md-6">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body section-contact panel-2">
               <h5 class="card-title">Contact</h5>
               <hr>
               <a class="card-text"><i class="bi bi-envelope"></i> {{profile.recruiterEmail}}</a>
@@ -153,6 +152,12 @@
   };
 </script>
 <style scoped>
+.btn-success{
+  width: 100%;
+}
+.panel-2{
+  display: grid;
+}
 .container{
   margin-left: 17%;
 }
@@ -182,11 +187,13 @@
   .card {
     border-radius: 20px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    padding: 20px;
   }
 
   .card-title {
     font-weight: bold;
-    font-size: 25px;
+    font-size: 36px;
+    margin-bottom: 30px;
   }
 
   .card-span {
@@ -196,7 +203,6 @@
   }
 
   a {
-    display: flex;
     text-decoration: none;
     color: black;
   }
@@ -213,7 +219,9 @@
   .btn{
     
     color: #fff;
+    margin-top: 30px;
   }
+
  .new{
    width: auto;
    padding-top: 7%;
@@ -225,6 +233,20 @@
    color: white;
    background: rgba(0, 0, 0, 0.285);
  }
+
+ .category{
+    height: 25px;
+    font-size: 14px;
+ }
+
+ .section-contact .card-text{
+    margin-bottom: 10px;
+ }
+
+ i{
+    color: #4296C7;
+ }
+
  /* .custom-file-upload{
    
  } */

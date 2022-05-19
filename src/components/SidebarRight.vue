@@ -1,5 +1,6 @@
 <template>
   <div class="sidebar-right">
+
     <div class="side-content">
       <ul>
           <li class="li-foto">
@@ -7,29 +8,36 @@
             <img v-else :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
           </li>
           <li class="li-header fw-bold">
-            <p v-if="view.jobseekerImage == null">---</p>
+            <p v-if="view.jobseekerImage == null"></p>
             <p v-else>{{view.jobseekerName}}</p>
             <p v-if="view.jobseekerImage == null" class="fw-normal">---</p>
             <p v-else class="fw-normal">{{view.jobseekerProfession}}</p>
           </li>
           
           <li class="li-title">Basic Information</li>
-          <li>birthdate:
-            <p v-if="view.jobseekerDateOfBirth == null" class="text-side text-muted" >---</p>
-            <p v-else class="text-side">{{view.jobseekerDateOfBirth}}</p>
-          </li>
-          <li>City:
-            <p v-if="view.jobseekerAddress == null" class="text-side text-muted">---</p>
-             <p class="text-side">{{view.jobseekerAddress}}</p>
-            </li>
-          <li>Phone:
-              <p v-if="view.jobseekerPhone == null" class="text-side text-muted">---</p>
-              <p class="text-side">{{view.jobseekerPhone}}</p>
-          </li>
-          <li>Email:
-            <p v-if="view.jobseekerEmail == null" class="text-side text-muted">---</p>
-            <p  class="text-side">{{view.jobseekerEmail}}</p>
-          </li>
+          <!-- tabel untuk data jobseeker -->
+          <table class="jobseeker-informations ">
+            <tbody>
+              
+              <tr>
+                <th style="width: 25%;">Birthdate</th>
+                <td v-if="view.jobseekerDateOfBirth == null" class="text-side text-muted">-</td>
+                <td v-else class="text-side">{{view.jobseekerDateOfBirth}}</td>
+              </tr>
+              <tr>
+                <th>Phone</th>
+                <td v-if="view.jobseekerPhone == null" class="text-side text-muted">-</td>
+                <td class="text-side">{{view.jobseekerPhone}}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td v-if="view.jobseekerEmail == null" class="text-side text-muted">-</td>
+                <td class="text-side">{{view.jobseekerEmail}}</td>
+              </tr>
+              
+            </tbody>
+          </table>
+          
           <li><button class="btn-resume" v-on:click="getResume(view.jobseekerResume)">Resume <i class="bi bi-cloud-arrow-down-fill"></i></button></li>
           <li><button class="btn-portofolio">Portofolio <i class="bi bi-box-arrow-up-right"></i></button></li>
           <li> 
@@ -83,6 +91,12 @@
       </ul>
     </div>
   </div>
+
+
+
+
+  
+
 </template>
 
 <script>
@@ -124,6 +138,13 @@ export default {
 </script>
 
 <style scoped>
+    
+    .hide{
+      position: fixed;
+      justify-content: center;
+
+    }
+    
     .sidebar-right{
         float: right;
         display: flex;
@@ -158,6 +179,9 @@ export default {
     .li-title{
       padding: 0;
       font-weight: bold;
+      margin-left: -5px !important;
+      color: #6476c8;
+      
     }
     .action button{
       margin: 5px;
@@ -220,7 +244,7 @@ export default {
     }
     .text-side{
       position: absolute;
-      padding-left: 100px;
+      padding-left: 80px;
       text-align: right;
       justify-content: right;
       
@@ -261,5 +285,16 @@ export default {
       width:300px; 
       margin-top:200px; 
       padding-bottom:20px;
+    }
+    .jobseeker-informations{
+      margin-left: -20px;
+    }
+    .jobseeker-informations td{
+      height: 40px;
+      padding: 15px;
+    }
+    .jobseeker-informations th{
+      height: 40px;
+      padding: 15px;
     }
 </style>

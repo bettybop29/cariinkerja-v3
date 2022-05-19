@@ -14,7 +14,7 @@
                     <router-link class="" to="/dashboard"><i class="bi bi-house-fill"></i>Dashboard</router-link>
                 </li>
                 <li>
-                   <router-link class="" to="/postjob"><i class="bi bi-sticky-fill"></i>Post Job</router-link>
+                   <router-link class="" to="/postjobnew"><i class="bi bi-sticky-fill"></i>Post Job</router-link>
                 </li>
                 <li>
                    <router-link class="" to="/about"><i class="bi bi-person-fill"></i>Company Profile</router-link>
@@ -180,9 +180,10 @@ i {
 
 #sidebar ul li a {
     padding: 10px;
-    font-weight: 200;
+    font-weight: 500;
     display: block;
     text-decoration: none;
+    width: 220px;
 }
 
 #sidebar ul li a:hover {

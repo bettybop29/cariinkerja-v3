@@ -3,18 +3,18 @@
 
 <!-- banner -->
   <div class="section-2 my-6">
-  <div class="main" style="background-image: linear-gradient(#ffffff 30%,#434379); padding-top: 40px;">       
-  <div class="container-fluid pt-5 mt-5">
-    <div class="row p-5">
-      <div class="col-md-6">
-        <h1 class="display-2 pt-5">Find the best fit<br>for your team</h1>
-      </div>                
-      <div class="col-md-6">
-        <img class="img-fluid" src="../assets/banner.png" alt="">
-      </div>
-      </div>              
-  </div>            
-</div>
+    <div class="main" style="background-image: linear-gradient(#ffffff 30%,#434379); padding-top: 40px;">       
+      <div class="container-fluid pt-5 mt-5">
+         <div class="row p-5">
+           <div class="col-md-6">
+             <h1 class="display-2 pt-5">Find the best fit<br>for your team</h1>
+            </div>                
+            <div class="col-md-6">
+             <img class="img-fluid" src="../assets/banner.png" alt="">
+          </div>
+       </div>              
+    </div>            
+  </div>
 </div>
 
   <div class="main" style="background-image: linear-gradient(#434379,#131212);">
@@ -31,7 +31,7 @@
   <div class="main-card">
     <div class="container px-4">
       <div class="row gx-3">
-        <div class="col">
+        <div class="col col-md col-lg">
           <div class="p-3">
           <div class="card">
             <div class="card-body">

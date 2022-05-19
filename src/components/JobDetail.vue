@@ -12,7 +12,7 @@
     <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
     <div class="row">
       <div class="col-md-12">
-        <div class="card mb-3" style="max-width: 640px;">
+        <div class="card mb-3" style="max-width: 1240px;">
           <div class="row g-0">
             <div class="col-md-4">
               <img v-if="job.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+job.recruiterImage" class="img-fluid rounded-start img-thumbnail"
@@ -22,19 +22,17 @@
                 
             </div>
             <div class="col-md-8">
-              <div class="card-body">
-                <h4 class="card-title1">{{job.jobName}}</h4>
-                <h6 class="card-title">{{job.jobPosition}} | Rp. {{formatPrice(job.jobSalary)}}</h6>
-                <label class="label mt-3">Description job : </label>
-                <p class="card-text">{{job.jobDesc}}</p>
-                <label class="label">Job Requirement :</label>
-                <p class="card-text">{{job.jobRequirement}}</p>
-                <label class="label">Address :</label>
-                <p class="card-text">{{job.jobAddress}}</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-              
-                  <router-link class="btn btn-danger" to="/postjob"><i class="bi bi-arrow-left-circle-fill"></i>Post job
-                  </router-link>
+                <div class="card-body">
+                      <h4 class="card-title1">{{job.jobName}}</h4>
+                      <h6 class="card-title">{{job.jobPosition}} | Rp{{formatPrice(job.jobSalary)}}</h6>
+                      <label class="label mt-3">Description job : </label>
+                      <p class="card-text" v-html="job.jobDesc"></p>
+                      <label class="label">Job Requirement :</label>
+                      <p class="card-text" v-html="job.jobRequirement"></p>
+                      <label class="label">Address :</label>
+                      <p class="card-text">{{job.jobAddress}}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
+                   
                 </p>
               </div>
             </div>
@@ -131,27 +129,16 @@
   // import JlDatatable from 'jl-datatable';
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from 'axios'
-  import {decode} from 'html-entities';
+  
+      var codeHTML = document.getElementsByClassName('code-html')
+
+    for (var i = 0; i < codeHTML.length; i+=1) {
+
+        codeHTML[i].replace('<', '&lt;')
+    }
 
 
-decode('&lt; &gt; &quot; &apos; &amp; &#169; &#8710;');
-// -> '< > " \' & © ∆'
 
-decode('&copy;', {level: 'html5'});
-// -> '©'
-
-decode('&copy;', {level: 'xml'});
-// -> '&copy;'
-import {decodeEntity} from 'html-entities';
-
-decodeEntity('&lt;');
-// -> '<'
-
-decodeEntity('&copy;', {level: 'html5'});
-// -> '©'
-
-decodeEntity('&copy;', {level: 'xml'});
-// -> '&copy;'
   export default {
     components: {
       // JlDatatable
@@ -251,10 +238,24 @@ decodeEntity('&copy;', {level: 'xml'});
       // error(err){
       //   console.log(err);
       // },
+          
       formatPrice(value) {
-        let val = (value / 1).toFixed(2).replace('.', ',')
+        let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
       },
+      // escapeHtml(text) {
+      //   var map = {
+      //     '&': '&amp;',
+      //     '<': '&lt;',
+      //     '>': '&gt;',
+      //     '"': '&quot;',
+      //     '<p>': '&nbsp',
+      //     '</p>': '&nbsp',
+      //     "'": '&#039;'
+      //   };
+        
+      //   return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+      // },
       async fetchData() {
         // const url = this.apiUrl + this.id
         await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)
@@ -375,5 +376,6 @@ decodeEntity('&copy;', {level: 'xml'});
     color: red;
     
   }
+  
   
 </style>

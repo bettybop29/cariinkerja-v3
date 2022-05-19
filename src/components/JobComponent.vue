@@ -24,7 +24,7 @@
       <h5 class="card-title">{{item.jobName}}</h5>
       <span class="badge bg-secondary">{{item.jobStatus}}</span>
       <p class="card-text"><i class="bi-clock" style="color:grey;"></i> {{ item.jobPosition }}</p>
-      <p class="card-text"><i class="bi-cash" style="color:grey;"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
+      <p class="card-text"><i class="bi-cash" style="color:grey;"></i>Rp{{ formatPrice(item.jobSalary) }}</p>
       <p class="card-text"><i class="bi-geo-alt" style="color:grey;"></i> {{ item.jobAddress }}</p>
       <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
       <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
@@ -44,21 +44,29 @@
                   <input type="text" class="form-control" id="" v-model="edit.jobName">
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">job Position: </label>
-                  <input type="text" class="form-control" id="" v-model="edit.jobPosition">
+                  <label for="inputState" class="col-form-label">Job Position: </label>
+                    <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition"> -->
+                    <select class="form-control" id="inputState" v-model="edit.jobPosition" required>
+                      <option selected>Choose..</option>
+                      <option>Internship</option>
+                      <option>Full time</option>
+                      <option>Part Time</option>
+                      <option>Contractual</option>
+                      <option>Freelance</option>
+                    </select>
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">job Address: </label>
+                  <label for="recipient-name" class="col-form-label">Job Address: </label>
                   <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">job Requirement: </label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
+                  <label for="recipient-name" class="col-form-label">Job Requirement: </label>
+                   <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
                 </div>
 
                 <div class="mb-3">
-                  <label for="message-text" class="col-form-label">job Description:</label>
-                  <textarea class="form-control" id="message-text" v-model="edit.jobDesc" />
+                  <label for="message-text" class="col-form-label">Job Description:</label>
+                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
                 </div>
                 <div class="modal-footer">
                   <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
@@ -77,7 +85,7 @@
       <h5 class="card-title">{{item.jobName}}</h5>
       <span class="badge bg-primary">{{item.jobStatus}}</span>
       <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
-      <p class="card-text"><i class="bi-cash"></i> Rp. {{ formatPrice(item.jobSalary) }}</p>
+      <p class="card-text"><i class="bi-cash"></i> Rp{{ formatPrice(item.jobSalary) }}</p>
       <p class="card-text"><i class="bi-geo-alt"></i> {{ item.jobAddress }}</p>
           <!-- <router-link class="btn btn-primary" to="/jobdetail">Detail</router-link> -->
       <router-link class="btn btn-primary" :to="{name: 'jobdetail', params:{id:item.jobId}}">Detail</router-link>
@@ -97,21 +105,29 @@
                     <input type="text" class="form-control" id="recipient-name" v-model="edit.jobName">
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">job Position: </label>
-                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition">
+                    <label for="inputState" class="col-form-label">Job Position: </label>
+                    <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobPosition"> -->
+                    <select class="form-control" id="inputState" v-model="edit.jobPosition" required>
+                      <option selected>Choose..</option>
+                      <option>Internship</option>
+                      <option>Full time</option>
+                      <option>Part Time</option>
+                      <option>Contractual</option>
+                      <option>Freelance</option>
+                    </select>
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">job Address: </label>
+                    <label for="recipient-name" class="col-form-label">Job Address: </label>
                     <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
                   </div>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">job Requirement: </label>
+                    <label for="recipient-name" class="col-form-label">Job Requirement: </label>
                     <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
                     <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
                   </div>
                   
                   <div class="mb-3">
-                    <label for="message-text" class="col-form-label">job Description:</label>
+                    <label for="message-text" class="col-form-label">Job Description:</label>
                     <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig"></ckeditor>
                     <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc"/> -->
                   </div>
@@ -155,9 +171,18 @@ export default {
       }
     },
     methods:{
+       
        formatPrice(value) {
-        let val = (value/1).toFixed(2).replace('.', ',')
+        let val = (value/1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
+     escapeHtml(text) {
+      return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
     },
        async active(id){
         try{
