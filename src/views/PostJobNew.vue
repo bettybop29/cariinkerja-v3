@@ -83,18 +83,26 @@
       <div class="col-md-3 mt-3 col-12" >
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Visible</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Hidden</button>
             </li>
             
             
         </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">1</div>
-  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">2</div>
+  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div v-for="item in list" v-bind:key="item.id">
+        <jobcomponentnew :item="item"  v-if="item.jobStatus == 'visible'"></jobcomponentnew>
+      </div>
+  </div>
+  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div v-for="item in list" v-bind:key="item.id">
+        <jobcomponentnew :item="item"  v-if="item.jobStatus == 'active'"></jobcomponentnew>
+      </div>
+  </div>
   
 </div>
 
@@ -110,17 +118,13 @@
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   // import JobComponent from '../components/JobComponent.vue';
-//   import jobcomponentnew from '../components/JobComponentNew.vue';
+  import jobcomponentnew from '../components/JobComponentNew.vue';
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from "axios";
   import {createToast} from "mosha-vue-toastify";
   import 'boxicons';
 
-    var tabEl = document.querySelector('button[data-bs-toggle="tab"]')
-        tabEl.addEventListener('shown.bs.tab', function (event) {
-        event.target // newly activated tab
-        event.relatedTarget // previous active tab
-    })
+    
     
 
 
@@ -130,7 +134,7 @@
     components: {
       SidebarComponent: sidebarcomponent,
       // JobComponent: JobComponent,
-    //   jobcomponentnew
+      jobcomponentnew
 
     },
     data() {
